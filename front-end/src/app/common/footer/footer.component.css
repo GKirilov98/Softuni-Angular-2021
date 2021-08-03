@@ -2,12 +2,12 @@
   width: 110px;
   height: 30px;
 }
-/*footer {*/
-/*  !*min-height: calc(18vh - 39px);*!*/
-/*  position: fixed;*/
-/*  left: 0;*/
-/*  bottom: 0;*/
-/*  width: 100%;*/
-/*  color: white;*/
-/*  text-align: center;*/
-/*}*/
+footer {
+  /*min-height: calc(18vh - 39px);*/
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}

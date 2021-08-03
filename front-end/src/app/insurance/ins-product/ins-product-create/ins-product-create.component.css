@@ -38,7 +38,7 @@
 
 .input-group-prepend label{
   width: 50px;
-  background-color: deepskyblue;
+  background-color: limegreen;
   color: black;
   border:0 !important;
 }
@@ -63,13 +63,13 @@ input:focus{
 
 .login_btn{
   color: black;
-  background-color: deepskyblue;
+  background-color: limegreen;
   width: 100px;
 }
 
 .login_btn:hover{
   color: black;
-  background-color: yellow;
+  background-color: greenyellow;
 }
 
 .links{
@@ -82,4 +82,11 @@ input:focus{
 
 .login-div{
   min-height: 650px;
+}
+
+.checkbox-size{
+  padding-left: 8%;
+  padding-top: 2%;
+  width: 20px;
+  height: 20px;
 }

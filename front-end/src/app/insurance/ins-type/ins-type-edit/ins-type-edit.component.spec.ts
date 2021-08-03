@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InsTypeComponent } from './ins-type.component';
+import { InsTypeEditComponent } from './ins-type-edit.component';
 
-describe('InsTypeComponent', () => {
-  let component: InsTypeComponent;
-  let fixture: ComponentFixture<InsTypeComponent>;
+describe('InsTypeEditComponent', () => {
+  let component: InsTypeEditComponent;
+  let fixture: ComponentFixture<InsTypeEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InsTypeComponent ]
+      declarations: [ InsTypeEditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InsTypeComponent);
+    fixture = TestBed.createComponent(InsTypeEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

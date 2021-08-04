@@ -1,1 +1,160 @@
-<p>policy-create works!</p>
+<div class="d-flex justify-content-center align-items-center login-div company-body">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-center">Create Ins. Type</h3>
+      <div class="d-flex justify-content-end social_icon">
+        <span><i class="fab fa-facebook-square"></i></span>
+        <span><i class="fab fa-google-plus-square"></i></span>
+        <span><i class="fab fa-twitter-square"></i></span>
+      </div>
+    </div>
+    <div class="card-body">
+      <form>
+
+        <label for="end-date" class="text-white">Start Date</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="start-date" class="input-group-text">
+              <mat-icon>today</mat-icon>
+            </label>
+          </div>
+          <input type="date" class="form-control" placeholder="Start date" name="start-date" id="start-date"
+                 required="required">
+        </div>
+
+        <label for="end-date" class="text-white">End Date</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="end-date" class="input-group-text">
+              <mat-icon>event</mat-icon>
+            </label>
+          </div>
+          <input type="date" class="form-control" placeholder="End date" name="end-date" id="end-date"
+                 required="required">
+        </div>
+
+        <label for="client-type" class="text-white">Client Type</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="client-type" class="input-group-text">
+              <mat-icon>assignment_ind</mat-icon>
+            </label>
+          </div>
+          <select class="custom-select form-control" name="client-type" id="client-type">
+            <option selected>-- Choose client type --</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+          </select>
+        </div>
+<!-- TODO if is person-->
+        <label for="person-egn" class="text-white">Client Personal Identity Number</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="person-egn" class="input-group-text">
+              <mat-icon>person</mat-icon>
+            </label>
+          </div>
+          <input type="text" class="form-control" placeholder="0000000000" name="person-egn" id="person-egn"
+                 required="required" minlength="10" maxlength="10">
+        </div>
+
+<!-- TODO       if is not person-->
+        <label for="bulstat" class="text-white">Client Bulstat</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="bulstat" class="input-group-text">
+              <mat-icon>support_agent</mat-icon>
+            </label>
+          </div>
+          <input type="text" class="form-control" placeholder="0000000000000" name="bulstat" id="bulstat"
+                 required="required"  maxlength="13" minlength="9">
+        </div>
+
+        <label for="client-name" class="text-white">Client Name</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="client-name" class="input-group-text">
+              <mat-icon>badge</mat-icon>
+            </label>
+          </div>
+          <input type="text" class="form-control" placeholder="Name" name="client-name" id="client-name"
+                 required="required"  >
+        </div>
+
+        <label for="client-email" class="text-white">Client Email</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="client-email" class="input-group-text">
+              <mat-icon>alternate_email</mat-icon>
+            </label>
+          </div>
+          <input type="email" class="form-control" placeholder="asd@abv.bg" name="client-email" id="client-email">
+        </div>
+
+        <label for="client-phone" class="text-white">Client Phone Number</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="client-phone" class="input-group-text">
+              <mat-icon>call</mat-icon>
+            </label>
+          </div>
+          <input type="tel" class="form-control" placeholder="088 888 8888" name="client-phone" id="client-phone"
+          maxlength="15">
+        </div>
+
+        <label for="insurance-type" class="text-white">Insurance Type</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="insurance-type" class="input-group-text">
+              <mat-icon>format_list_bulleted</mat-icon>
+            </label>
+          </div>
+          <select class="custom-select form-control" name="insurance-type" id="insurance-type">
+            <option selected>-- Choose insurance type --</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+          </select>
+        </div>
+
+<!--   TODO     if insurance type is not "животозастраховане"-->
+
+        <label for="insurance-product" class="text-white">Insurance Product</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="insurance-product" class="input-group-text">
+              <mat-icon>beenhere</mat-icon>
+            </label>
+          </div>
+          <input type="text" class="form-control" placeholder="Product" name="insurance-product" id="insurance-product"
+                 required="required"  >
+        </div>
+
+        <label for="insurance-amount" class="text-white">Insurance Amount</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="insurance-amount" class="input-group-text">
+              <mat-icon>credit_card</mat-icon>
+            </label>
+          </div>
+          <input type="number" class="form-control" placeholder="999.99" name="insurance-amount" id="insurance-amount"
+                 disabled >
+        </div>
+
+        <label for="insurance-premium" class="text-white">Insurance Premium</label>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="insurance-premium" class="input-group-text">
+              <mat-icon>paid</mat-icon>
+            </label>
+          </div>
+          <input type="number" class="form-control" placeholder="999.99" name="insurance-premium" id="insurance-premium"
+                 disabled >
+        </div>
+<!--      TODO-->
+        <div class="form-group">
+          <input type="submit" value="Create" class="btn float-right login_btn">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

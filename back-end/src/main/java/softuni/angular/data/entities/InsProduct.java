@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Entity(name ="ins_products")
 public class InsProduct extends BaseEntity {
     @Basic
-    @Column(name = "ins_type_id")
+    @Column(name = "n_ins_type_id")
     private Integer insTypeId;
 
     @Basic

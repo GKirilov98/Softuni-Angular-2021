@@ -25,6 +25,10 @@ import {InsTypeEditComponent} from './insurance/ins-type/ins-type-edit/ins-type-
 import {PolicyCreateComponent} from './policy/policy-create/policy-create.component';
 import {RouterModule} from "@angular/router";
 import {AppRoutesModule} from "./routes/app.routes.module";
+import {StoreModule} from "@ngrx/store";
+import {reducers} from "./+store";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {environment} from "../environments/environment";
 
 
 @NgModule({
@@ -53,8 +57,11 @@ import {AppRoutesModule} from "./routes/app.routes.module";
     NgbModule,
     BrowserAnimationsModule,
     MatIconModule,
-    ReactiveFormsModule,
-    AppRoutesModule
+    AppRoutesModule,
+    StoreModule.forRoot(reducers),
+    (environment.production ? [] :
+    StoreDevtoolsModule.instrument()),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

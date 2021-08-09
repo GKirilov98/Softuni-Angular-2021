@@ -77,18 +77,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .mvcMatchers("/business/**", "/report/**")
-                .hasAnyAuthority("ROLE_BUSINESS", "ROLE_ADMIN")
-                .and()
-                .authorizeRequests()
-                .mvcMatchers("/admin/**")
-                .hasAuthority("ROLE_ADMIN")
-                .and()
-                .authorizeRequests()
+//                .mvcMatchers("/business/**", "/report/**")
+//                .hasAnyAuthority("ROLE_BUSINESS", "ROLE_ADMIN")
+//                .and()
+//                .authorizeRequests()
+//                .mvcMatchers("/admin/**")
+//                .hasAuthority("ROLE_ADMIN")
+//                .and()
+//                .authorizeRequests()
+
                 .antMatchers(
-                        "/auth/register", "/auth/login",
-                        "/category/getAllForSelect",
-                        "/product/getAll")
+                        "/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

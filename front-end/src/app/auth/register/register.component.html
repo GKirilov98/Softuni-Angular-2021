@@ -2,38 +2,72 @@
   <div class="card">
     <div class="card-header">
       <h3 class="text-center">Register</h3>
-      <div class="d-flex justify-content-end social_icon">
-        <span><i class="fab fa-facebook-square"></i></span>
-        <span><i class="fab fa-google-plus-square"></i></span>
-        <span><i class="fab fa-twitter-square"></i></span>
-      </div>
     </div>
     <div class="card-body">
-      <form>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><mat-icon>person</mat-icon></span>
+          <div class="row">
+              <div class="input-group-prepend col-sm-12">
+                <label class="input-group-text" for="username"><mat-icon>person</mat-icon></label>
+                <input type="text" class="form-control" placeholder="Username" name="username" id="username"
+                       formControlName="username"/>
+              </div>
           </div>
-          <input type="text" class="form-control" placeholder="username">
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div *ngIf="registerForm.get('username')!.invalid && registerForm.get('username')!.touched"
+                    class="error-messages form-control">
+            <span *ngIf="registerForm.get('username')!.errors?.required">Username is required</span>
+            <span
+              *ngIf="registerForm.get('username')!.errors?.minlength">Password should be more than 6 characters</span>
+          </div>
+            </div>
+          </div>
+
 
         </div>
         <div class="input-group form-group">
           <div class="input-group-prepend">
-            <span class="input-group-text"><mat-icon>password</mat-icon></span>
+            <label for="password" class="input-group-text"><mat-icon>password</mat-icon></label>
           </div>
-          <input type="password" class="form-control" placeholder="password">
+          <input type="password" class="form-control" placeholder="Password" name="password" id="password"
+                 formControlName="password"/>
         </div>
+        <span *ngIf="registerForm.get('password')!.invalid && registerForm.get('password')!.touched"
+              class="error-messages form-control">
+          <span *ngIf="registerForm.get('password')!.errors?.required">Password is required</span>
+          <span *ngIf="registerForm.get('password')!.errors?.minlength">Password should be more than 6 characters</span>
+        </span>
+
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <label for="confirmPassword" class="input-group-text"><mat-icon>password</mat-icon></label>
+          </div>
+          <input type="password" class="form-control" placeholder="Confirm password" id="confirmPassword"
+                 name="repeatPassword" formControlName="repeatPassword"/>
+        </div>
+        <span *ngIf="registerForm.get('repeatPassword')!.invalid && registerForm.get('repeatPassword')!.touched"
+              class="error-messages form-control">
+          <span *ngIf="registerForm.get('repeatPassword')!.errors?.required">Repeat password is required</span>
+          <span *ngIf="registerForm.get('repeatPassword')!.errors?.minlength">Repeat password should be more than 6
+            characters
+          </span>
+          <span *ngIf="registerForm.get('repeatPassword')!.errors?.hasMatches">Password and confirm password doesn't match.</span>
+        </span>
 
         <div class="form-group">
-          <input type="submit" value="Login" class="btn float-right login_btn btn-success text-white">
+          <button type="submit"
+                  class="btn float-right login_btn btn-success text-white" disabled
+                  [disabled]="registerForm.invalid"
+          > Register
+          </button>
         </div>
       </form>
     </div>
     <div class="card-footer">
-      <div class="d-flex justify-content-center links">
-        Already have an account?<a href="#">Login</a>
+      <div class=" justify-content-center links">
+        Already have an account?<a href="#">Register</a>
       </div>
-
     </div>
   </div>
 </div>

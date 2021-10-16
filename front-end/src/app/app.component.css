@@ -1,3 +1,8 @@
 .container{
   min-height: 91%;
 }
+
+input{
+  border-color: red;
+  background-color: red;
+}

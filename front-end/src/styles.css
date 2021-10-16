@@ -6,4 +6,19 @@ body {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+input.ng-invalid.ng-touched{
+  border-color: red !important;
+  background-color: #ffd7d9 !important;
+}
+
+.error-messages{
+  color: white !important;
+  background-color: red;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  margin-bottom: 1px;
+  display: block;
+}
+
 

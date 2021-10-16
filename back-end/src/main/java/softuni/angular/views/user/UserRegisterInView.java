@@ -9,7 +9,6 @@ import java.io.Serializable;
 /**
  * Project: backend
  * Created by: GKirilov
- * On: 8/4/2021
  */
 public class UserRegisterInView implements Serializable {
     @JsonProperty(value = "username", required = true)

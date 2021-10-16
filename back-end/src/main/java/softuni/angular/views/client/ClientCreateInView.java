@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class ClientCreateInView implements Serializable {
     @JsonProperty("nClientTypeId")
     @NotNull
-    private Integer clientTypeId;
+    private Long clientTypeId;
 
     @JsonProperty("egnBulstat")
     @NotNull
@@ -33,11 +33,11 @@ public class ClientCreateInView implements Serializable {
     private String note;
 
 
-    public Integer getClientTypeId() {
+    public Long getClientTypeId() {
         return clientTypeId;
     }
 
-    public void setClientTypeId(Integer clientTypeId) {
+    public void setClientTypeId(Long clientTypeId) {
         this.clientTypeId = clientTypeId;
     }
 

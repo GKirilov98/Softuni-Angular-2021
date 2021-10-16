@@ -2,6 +2,7 @@ package softuni.angular.services.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import softuni.angular.data.entities.Client;
@@ -28,6 +29,9 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public List<ClientDetailsOutView> insertOne(ClientCreateInView inView) {
+        UserDetailsImpl currentUser =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
         // TODO: 8/9/2021 check unique bulstat
         Client entity = this.modelMapper.map(inView, Client.class);
         Client saved = this.clientRepository.save(entity);

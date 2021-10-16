@@ -10,5 +10,5 @@ import softuni.angular.data.entities.Policy;
  * On: 8/4/2021
  */
 @Repository
-public interface PolicyRepository extends JpaRepository<Policy, Integer> {
+public interface PolicyRepository extends JpaRepository<Policy, Long> {
 }

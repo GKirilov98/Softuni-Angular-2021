@@ -3,10 +3,15 @@ package softuni.angular.exception;
 /**
  * Project: backend
  * Created by: GKirilov
- * On: 8/6/2021
  */
 public class GlobalServiceException extends Exception {
-    public GlobalServiceException(String logId, String s, String s1) {
+    private final String customMessage;
+    public GlobalServiceException(String message, Throwable cause) {
+        super(message, cause);
+        this.customMessage = message;
+    }
 
+    public String getCustomMessage() {
+        return customMessage;
     }
 }

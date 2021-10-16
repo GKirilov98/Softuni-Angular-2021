@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Client extends BaseEntity {
     @Basic
     @Column(name = "n_client_type_id")
-    private Integer clientTypeId;
+    private Long clientTypeId;
     @ManyToOne
     @JoinColumn(name = "n_client_type_id", insertable = false, updatable = false)
     private NClientType nClientType;
@@ -37,11 +37,11 @@ public class Client extends BaseEntity {
     @Column(name = "note")
     private String note;
 
-    public Integer getClientTypeId() {
+    public Long getClientTypeId() {
         return clientTypeId;
     }
 
-    public void setClientTypeId(Integer clientTypeId) {
+    public void setClientTypeId(Long clientTypeId) {
         this.clientTypeId = clientTypeId;
     }
 

@@ -1,6 +1,7 @@
 package softuni.angular.views.user;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Project: backend
@@ -10,6 +11,7 @@ import java.io.Serializable;
 public class UserLoginOutView implements Serializable {
     private String token;
     private String username;
+    private List<String> authorities;
 
     public String getToken() {
         return token;
@@ -25,5 +27,13 @@ public class UserLoginOutView implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<String> authorities) {
+        this.authorities = authorities;
     }
 }

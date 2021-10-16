@@ -1,9 +1,8 @@
 package softuni.angular.data.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import softuni.angular.data.entities.base.BaseEntity;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -11,31 +10,30 @@ import java.io.Serializable;
  * Created by: GKirilov
  * On: 8/4/2021
  */
-@Entity(name = "users_ins_companies")
-public class UsersInsCompanies implements Serializable {
-    @Id
+@Entity
+@Table(name = "users_ins_companies")
+public class UsersInsCompanies extends BaseEntity {
     @Basic
     @Column(name = "user_id")
-    private Integer userId;
+    private Long userId;
 
-    @Id
     @Basic
     @Column(name = "ins_companies_id")
-    private Integer insCompaniesId;
+    private Long insCompaniesId;
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getInsCompaniesId() {
+    public Long getInsCompaniesId() {
         return insCompaniesId;
     }
 
-    public void setInsCompaniesId(Integer insCompaniesId) {
+    public void setInsCompaniesId(Long insCompaniesId) {
         this.insCompaniesId = insCompaniesId;
     }
 }

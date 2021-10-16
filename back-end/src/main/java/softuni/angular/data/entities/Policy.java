@@ -1,5 +1,6 @@
 package softuni.angular.data.entities;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import softuni.angular.data.entities.base.BaseEntity;
 
@@ -23,35 +24,38 @@ public class Policy extends BaseEntity {
 
     @Basic
     @Column(name = "creation_date", columnDefinition = "DATE")
-    private DateTime creationDate;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    protected DateTime creationDate;
 
     @Basic
     @Column(name = "begin_date", columnDefinition = "DATE")
-    private DateTime beginDate;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    protected DateTime beginDate;
 
     @Basic
     @Column(name = "end_date", columnDefinition = "DATE")
-    private DateTime endDate;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    protected DateTime endDate;
 
     @Basic
     @Column(name = "ins_prod_id")
-    private Integer insProdId;
+    private Long insProdId;
 
     @Basic
     @Column(name = "ins_object_type_id")
-    private Integer insObjectTypeId;
+    private Long insObjectTypeId;
 
     @Basic
     @Column(name = "client_id")
-    private Integer clientId;
+    private Long clientId;
 
     @Basic
     @Column(name = "object_description")
     private String objectDescription;
 
-    @Basic
-    @Column(name = "is_active")
-    private Boolean isActive;
+//    @Basic
+//    @Column(name = "is_active")
+//    private Boolean isActive;
 
     @Basic
     @Column(name = "sum")
@@ -105,27 +109,27 @@ public class Policy extends BaseEntity {
         this.endDate = endDate;
     }
 
-    public Integer getInsProdId() {
+    public Long getInsProdId() {
         return insProdId;
     }
 
-    public void setInsProdId(Integer insProdId) {
+    public void setInsProdId(Long insProdId) {
         this.insProdId = insProdId;
     }
 
-    public Integer getInsObjectTypeId() {
+    public Long getInsObjectTypeId() {
         return insObjectTypeId;
     }
 
-    public void setInsObjectTypeId(Integer insObjectTypeId) {
+    public void setInsObjectTypeId(Long insObjectTypeId) {
         this.insObjectTypeId = insObjectTypeId;
     }
 
-    public Integer getClientId() {
+    public Long getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
+    public void setClientId(Long clientId) {
         this.clientId = clientId;
     }
 
@@ -137,13 +141,13 @@ public class Policy extends BaseEntity {
         this.objectDescription = objectDescription;
     }
 
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
+//    public Boolean getActive() {
+//        return isActive;
+//    }
+//
+//    public void setActive(Boolean active) {
+//        isActive = active;
+//    }
 
     public BigDecimal getSum() {
         return sum;

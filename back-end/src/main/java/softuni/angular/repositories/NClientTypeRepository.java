@@ -10,5 +10,5 @@ import softuni.angular.data.entities.NClientType;
  * On: 8/4/2021
  */
 @Repository
-public interface NClientTypeRepository extends JpaRepository<NClientType, Integer> {
+public interface NClientTypeRepository extends JpaRepository<NClientType, Long> {
 }

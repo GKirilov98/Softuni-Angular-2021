@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public class ClientDetailsOutView implements Serializable {
     @JsonProperty
-    private Integer id;
+    private Long id;
     @JsonProperty
     private String nClientTypeName;
     @JsonProperty("egnBulstat")
@@ -30,11 +30,11 @@ public class ClientDetailsOutView implements Serializable {
     @JsonProperty
     private String note;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

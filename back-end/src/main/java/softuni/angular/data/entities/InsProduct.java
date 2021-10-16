@@ -1,10 +1,12 @@
 package softuni.angular.data.entities;
 
+import org.hibernate.annotations.Type;
 import softuni.angular.data.entities.base.BaseEntity;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 /**
@@ -12,22 +14,25 @@ import java.math.BigDecimal;
  * Created by: GKirilov
  * On: 8/4/2021
  */
-@Entity(name ="ins_products")
+
+@Entity
+@Table(name = "ins_products")
 public class InsProduct extends BaseEntity {
     @Basic
     @Column(name = "n_ins_type_id")
-    private Integer insTypeId;
+    private Long insTypeId;
 
     @Basic
     @Column(name = "ins_company_id")
-    private Integer insCompanyId;
+    private Long insCompanyId;
 
     @Basic
     @Column(name = "name")
     private String name;
 
     @Basic
-    @Column(name = "defered")
+    @Column(name = "defered", columnDefinition = "tinyint(1)")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean defered;
 
     @Basic
@@ -38,19 +43,19 @@ public class InsProduct extends BaseEntity {
     @Column(name = "comiss_perc")
     private BigDecimal comissionPercent;
 
-    public Integer getInsTypeId() {
+    public Long getInsTypeId() {
         return insTypeId;
     }
 
-    public void setInsTypeId(Integer insTypeId) {
+    public void setInsTypeId(Long insTypeId) {
         this.insTypeId = insTypeId;
     }
 
-    public Integer getInsCompanyId() {
+    public Long getInsCompanyId() {
         return insCompanyId;
     }
 
-    public void setInsCompanyId(Integer insCompanyId) {
+    public void setInsCompanyId(Long insCompanyId) {
         this.insCompanyId = insCompanyId;
     }
 

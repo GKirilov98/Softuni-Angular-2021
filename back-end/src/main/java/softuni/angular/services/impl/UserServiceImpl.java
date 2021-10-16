@@ -1,11 +1,17 @@
 package softuni.angular.services.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import softuni.angular.data.entities.User;
+import softuni.angular.data.models.AuthenticateResponseModel;
+import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.UserRepository;
+import softuni.angular.services.AuthenticateService;
 import softuni.angular.services.UserService;
 import softuni.angular.views.user.UserLoginInView;
 import softuni.angular.views.user.UserLoginOutView;
@@ -18,45 +24,53 @@ import java.util.UUID;
 /**
  * Project: backend
  * Created by: GKirilov
- * On: 8/4/2021
  */
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepository;
+    protected final Logger logger = LogManager.getLogger(this.getClass());
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private AuthenticateService authenticateService;
 
     @Override
-    public void register(UserRegisterInView inView) {
-        if (!inView.getPassword().equals(inView.getConfirmPassword())){
-            throw new IllegalArgumentException("Password doesn't match!");
+    public void register(UserRegisterInView inView) throws GlobalServiceException {
+        String logId = UUID.randomUUID().toString();
+        try {
+            logger.info(String.format("%s: Start register service", logId));
+            if (!inView.getPassword().equals(inView.getConfirmPassword())) {
+                throw new GlobalServiceException("Паролите не съвпадат", new Throwable("Password doesn't match!"));
+            }
+            this.authenticateService.registerUser(inView, logId);
+        } catch (GlobalServiceException e) {
+            throw e;
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished register service", logId));
         }
-
-        String hashPass = BCrypt.hashpw(inView.getPassword(), BCrypt.gensalt());
-        User user = this.modelMapper.map(inView, User.class);
-        user.setPassword(hashPass);
-        this.userRepository.save(user);
     }
 
     @Override
-    public List<UserLoginOutView> login(UserLoginInView inView) {
-
-        User user = this.userRepository.findByUsername(inView.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("Wrong username or password"));
-        boolean isMatch = BCrypt.checkpw(inView.getPassword(), user.getPassword());
-        if (!isMatch){
-            throw new IllegalArgumentException("Wrong username or password");
+    public List<UserLoginOutView> login(UserLoginInView inView) throws GlobalServiceException {
+        String logId = UUID.randomUUID().toString();
+        try {
+            logger.info(String.format("%s: Start login service", logId));
+            AuthenticateResponseModel authenticateResponseModel =
+                    this.authenticateService.loginUser(inView.getUsername(), inView.getPassword(), logId);
+            List<UserLoginOutView> result = new ArrayList<>();
+            UserLoginOutView outView = this.modelMapper.map(authenticateResponseModel, UserLoginOutView.class);
+            result.add(outView);
+            return result;
+        } catch (GlobalServiceException e) {
+            logger.error(String.format("%s: %s", logId, e.getCustomMessage()), e);
+            throw e;
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished login service", logId));
         }
-
-        List<UserLoginOutView> result = new ArrayList<>();
-        UserLoginOutView outView = new UserLoginOutView();
-        outView.setUsername(user.getUsername());
-        // TODO: 8/4/2021 Implement security
-        outView.setToken(UUID.randomUUID().toString());
-        result.add(outView);
-        return result;
     }
-
-
 }

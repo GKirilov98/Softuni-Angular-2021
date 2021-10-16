@@ -1,5 +1,8 @@
 package softuni.angular.views.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -8,7 +11,11 @@ import java.io.Serializable;
  * On: 8/4/2021
  */
 public class UserLoginInView implements Serializable {
+    @JsonProperty
+    @NotNull
     private String username;
+    @JsonProperty
+    @NotNull
     private String password;
 
     public String getUsername() {

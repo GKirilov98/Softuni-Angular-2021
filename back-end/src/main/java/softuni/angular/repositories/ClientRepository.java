@@ -10,5 +10,5 @@ import softuni.angular.data.entities.Client;
  * On: 8/4/2021
  */
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Integer> {
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }

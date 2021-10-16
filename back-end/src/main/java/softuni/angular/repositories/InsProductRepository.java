@@ -10,5 +10,5 @@ import softuni.angular.data.entities.InsProduct;
  * On: 8/4/2021
  */
 @Repository
-public interface InsProductRepository extends JpaRepository<InsProduct, Integer> {
+public interface InsProductRepository extends JpaRepository<InsProduct, Long> {
 }

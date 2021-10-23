@@ -1,43 +1,38 @@
-<div class="d-flex justify-content-center bg-info align-items-center login-div">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="text-center">Login</h3>
-      <div class="d-flex justify-content-end social_icon">
-        <span><i class="fab fa-facebook-square"></i></span>
-        <span><i class="fab fa-google-plus-square"></i></span>
-        <span><i class="fab fa-twitter-square"></i></span>
+<div class="signup-form">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2 class="form-text">Вход</h2>
+    <div class="form-group">
+      <input type="text" class="form-control" name="username" placeholder="Потребителско име"
+             formControlName="username" >
+      <div *ngIf="loginForm.get('username')!.invalid && loginForm.get('username')!.touched"
+           class="error-messages form-control">
+        <span *ngIf="loginForm.get('username')!.errors?.required">Потребителското име е задължително</span>
+        <span
+          *ngIf="loginForm.get('username')!.errors?.minlength">Потребителското име трябва да бъде поне 6 символа!
+        </span>
       </div>
     </div>
-    <div class="card-body">
-      <form>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><mat-icon>person</mat-icon></span>
-          </div>
-          <input type="text" class="form-control" placeholder="username">
 
-        </div>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><mat-icon>password</mat-icon></span>
-          </div>
-          <input type="password" class="form-control" placeholder="password">
-        </div>
-        <div class="row align-items-center remember">
-          <input type="checkbox" id="remember-me"/> <label for="remember-me">Remember Me</label>
-        </div>
-        <div class="form-group">
-          <input type="submit" value="Login" class="btn float-right login_btn">
-        </div>
-      </form>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" placeholder="Парола" formControlName="password">
+      <span *ngIf="loginForm.get('password')!.invalid && loginForm.get('password')!.touched"
+            class="error-messages form-control">
+          <span *ngIf="loginForm.get('password')!.errors?.required">Паролата е задължително поле!</span>
+         <span
+           *ngIf="loginForm.get('password')!.errors?.minlength">Паролата трябва да бъде поне 6 символа!
+        </span>
+      </span>
     </div>
-    <div class="card-footer">
-      <div class="d-flex justify-content-center links">
-        Don't have an account?<a href="#">Register</a>
-      </div>
-<!--      <div class="d-flex justify-content-center">-->
-<!--        <a href="#">Forgot your password?</a>-->
-<!--      </div>-->
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success btn-lg btn-block"
+              [disabled]="loginForm.invalid || loginForm.untouched">
+        Влез
+      </button>
     </div>
-  </div>
+    <div class="text-center">
+      Нямате регистриран акаунт?
+      <a routerLink="/user/register">Регистрация</a>
+    </div>
+  </form>
 </div>

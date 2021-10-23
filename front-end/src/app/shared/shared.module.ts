@@ -5,6 +5,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {AppRoutesModule} from "../routes/app.routes.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpSenderService} from "./http-sender.service";
 
 
 @NgModule({

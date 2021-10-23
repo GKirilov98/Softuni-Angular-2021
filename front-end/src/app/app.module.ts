@@ -13,6 +13,21 @@ import {PolicyModule} from "./policy/policy.module";
 import {SharedModule} from "./shared/shared.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RootBackendInterceptor} from "./shared/root-backend.interceptor";
+import {
+  NgxAwesomePopupModule,
+  DialogConfigModule,
+  ConfirmBoxConfigModule,
+  ToastNotificationConfigModule,
+  ToastUserViewTypeEnum,
+  DialogLayoutDisplay,
+  ToastProgressBarEnum,
+  ToastPositionEnum,
+  ButtonMaker, ButtonLayoutDisplay
+} from '@costlydeveloper/ngx-awesome-popup';
+import {NotificationsService} from "./shared/notifications/notifications.service";
+import {notificationsConfig} from "./shared/notifications/notifications.config";
+import {NgxSpinnerModule} from "ngx-spinner";
+import {HttpSenderService} from "./shared/http-sender.service";
 
 
 @NgModule({
@@ -30,10 +45,16 @@ import {RootBackendInterceptor} from "./shared/root-backend.interceptor";
     AuthModule,
     HomeModule,
     InsuranceModule,
-    PolicyModule
+    PolicyModule,
+    NgxAwesomePopupModule.forRoot(), // Essential, mandatory main module.
+    // DialogConfigModule.forRoot(), // Needed for instantiating dynamic components.
+    // ConfirmBoxConfigModule.forRoot(), // Needed for instantiating confirm boxes.
+    ToastNotificationConfigModule.forRoot(notificationsConfig),
+    NgxSpinnerModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: RootBackendInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: RootBackendInterceptor, multi: true},
+    NotificationsService, HttpSenderService
   ],
   bootstrap: [AppComponent]
 

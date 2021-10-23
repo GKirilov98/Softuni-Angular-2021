@@ -3,15 +3,23 @@ body {
   background-color: aquamarine;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
 
-input.ng-invalid.ng-touched{
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: url("src/app/static/company-body.webp");
+}
+
+
+input.ng-invalid.ng-touched {
   border-color: red !important;
   background-color: #ffd7d9 !important;
 }
 
-.error-messages{
+.error-messages {
   color: white !important;
   background-color: red;
   padding-left: 10px;

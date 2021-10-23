@@ -15,9 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.util.PathMatcher;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+import softuni.angular.filters.AuthTokenFilter;
 import softuni.angular.services.impl.UserDetailsServiceImpl;
 import softuni.angular.utils.jwt.AuthEntryPointJwt;
 
@@ -48,17 +49,22 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter implements W
      * Overrides the configurePathMatch() method in WebMvcConfigurerAdapter
      * <br/>Allows us to set a custom path matcher, used by the MVC for @RequestMapping's
      *
-     * @param configurer
+     * @param configurer -
      */
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.setPathMatcher(pathMatcher());
     }
 
-//    @Bean
-//    public AuthTokenFilter authenticationJwtTokenFilter() {
-//        return new AuthTokenFilter();
-//    }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
+
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -89,10 +95,10 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter implements W
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/User/**")
+                .antMatchers("/user/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
-//        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

@@ -28,13 +28,17 @@ export class InsCompanyRegisterComponent implements OnInit, OnDestroy {
 
   private initForm() {
     this.registerForm = new FormGroup({
-      'name': new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      'name': new FormControl(null, [Validators.required,
+                    Validators.minLength(3), Validators.maxLength(50)]),
       'bulstat': new FormControl(null,
         [Validators.required, Validators.minLength(9), Validators.maxLength(13)]
       ),
-      'address': new FormControl(null, [Validators.required]),
+      'address': new FormControl(null, [Validators.required,
+        Validators.minLength(9), Validators.maxLength(100)]),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'phone': new FormControl(null, [Validators.required, Validators.maxLength(15), this.phoneValidator.bind(this)]),
+      'phone': new FormControl(null, [Validators.required,
+       Validators.minLength(4), Validators.maxLength(15),
+        this.phoneValidator.bind(this)]),
     });
   }
 

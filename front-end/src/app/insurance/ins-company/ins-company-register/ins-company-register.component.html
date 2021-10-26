@@ -17,8 +17,8 @@
       <div *ngIf="registerForm.get('name')!.invalid && registerForm.get('name')!.touched"
            class="error-messages form-control">
         <span *ngIf="registerForm.get('name')!.errors?.required">Име е задължително поле!</span>
-        <span
-          *ngIf="registerForm.get('name')!.errors?.minlength">Име е с минимум дължина 3 символа!</span>
+        <span *ngIf="registerForm.get('name')!.errors?.minlength">Име е с минимална дължина 3 символа!</span>
+        <span *ngIf="registerForm.get('name')!.errors?.maxlength">Име е с максимална дължина 50 символа!</span>
       </div>
     </div>
 
@@ -59,6 +59,8 @@
       <div *ngIf="registerForm.get('address')!.invalid && registerForm.get('address')!.touched"
            class="error-messages form-control">
         <span *ngIf="registerForm.get('address')!.errors?.required">Адрес е задължително поле!</span>
+        <span *ngIf="registerForm.get('address')!.errors?.minlength">Адрес е с минимална дължина 9 символа!</span>
+        <span *ngIf="registerForm.get('address')!.errors?.maxlength">Адрес е с максимална дължина 100 символа!</span>
       </div>
     </div>
 
@@ -101,8 +103,12 @@
           *ngIf="registerForm.get('phone')!.errors?.maxlength">Телефонен номер максимална дължина 15 символа!
         </span>
         <span
+          *ngIf="registerForm.get('phone')!.errors?.minlength">Телефонен номер минимална дължина 4 символа!
+        </span>
+        <span
           *ngIf="!registerForm.get('phone')!.errors?.required &&
-         !registerForm.get('phone')!.errors?.maxlength &&
+          !registerForm.get('phone')!.errors?.maxlength &&
+          !registerForm.get('phone')!.errors?.minlength &&
           registerForm.get('phone')!.errors?.phoneInvalid">Трябва да съдържа само цифри!
         </span>
       </div>

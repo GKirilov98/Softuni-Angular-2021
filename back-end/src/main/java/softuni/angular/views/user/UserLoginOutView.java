@@ -1,5 +1,7 @@
 package softuni.angular.views.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,9 +11,12 @@ import java.util.List;
  * On: 8/4/2021
  */
 public class UserLoginOutView implements Serializable {
+    @JsonProperty("token")
     private String token;
+    @JsonProperty("username")
     private String username;
-    private List<String> authorities;
+    @JsonProperty("roles")
+    private List<String> roles;
 
     public String getToken() {
         return token;
@@ -29,11 +34,11 @@ public class UserLoginOutView implements Serializable {
         this.username = username;
     }
 
-    public List<String> getAuthorities() {
-        return authorities;
+    public List<String> getRoles() {
+        return roles;
     }
 
-    public void setAuthorities(List<String> authorities) {
-        this.authorities = authorities;
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }

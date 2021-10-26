@@ -4,7 +4,8 @@
       <label for="name" class="input-group-text">
         <mat-icon>badge</mat-icon>
       </label>
-      <input type="text" class="form-control" placeholder="Име" name="name" id="name" >
+      <input type="text" class="form-control" placeholder="Име" name="name" id="name" [(ngModel)]="filterName"
+       (keyup)="changeFilter()">
     </div>
 
   </div>
@@ -13,7 +14,8 @@
       <label for="bulstat" class="input-group-text">
         <mat-icon>support_agent</mat-icon>
       </label>
-      <input type="text" class="form-control" placeholder="Булстат" name="bulstat" id="bulstat">
+      <input type="text" class="form-control" placeholder="Булстат" name="bulstat" id="bulstat" [(ngModel)]="filterBulstat"
+             (keyup)="changeFilter()">
     </div>
   </div>
   <div class="col-sm-4">
@@ -33,32 +35,18 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+    <tr *ngFor="let c of insCompanyTableModels; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{c.name}}</td>
+      <td>{{c.bulstat}}</td>
+      <td>{{c.email}}</td>
+      <td>{{c.phone}}</td>
       <td>
-        <button class="btn btn-info mr-2">Details</button>
-        <button class="btn btn-warning mr-2">Edit</button>
+        <a class="btn btn-info mr-2" routerLink="{{'/ins-company/details/' + c.id}}">Details</a>
+        <a class="btn btn-warning mr-2" routerLink="{{'/ins-company/edit/' + c.id}}">Edit</a>
         <button class="btn btn-danger">Delete</button>
       </td>
     </tr>
-
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-      <td>
-        <button class="btn btn-info mr-2">Details</button>
-        <button class="btn btn-warning mr-2">Edit</button>
-        <button class="btn btn-danger">Delete</button>
-      </td>
-    </tr>
-
     </tbody>
   </table>
 </div>

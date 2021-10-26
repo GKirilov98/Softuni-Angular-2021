@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: "ins-company", children:[
       {path:"create", component: InsCompanyRegisterComponent, pathMatch:'full' },
       {path:"edit/:id", component: InsCompanyEditComponent, pathMatch:'full' },
-      {path:"detail/:id", component: InsCompanyDetailsComponent, pathMatch:'full' },
+      {path:"details/:id", component: InsCompanyDetailsComponent, pathMatch:'full' },
       {path:"list", component: InsCompanyListComponent, pathMatch:'full' },
     ]},
   {path: "ins-product", children:[

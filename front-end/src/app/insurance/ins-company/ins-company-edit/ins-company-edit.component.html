@@ -1,64 +1,124 @@
-<div class="d-flex justify-content-center align-items-center login-div company-body">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="text-center">Edit Ins. Company</h3>
-      <div class="d-flex justify-content-end social_icon">
-        <span><i class="fab fa-facebook-square"></i></span>
-        <span><i class="fab fa-google-plus-square"></i></span>
-        <span><i class="fab fa-twitter-square"></i></span>
+<div class="signup-form">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="editForm">
+    <h2 class="form-text">Компания</h2>
+    <!--    <p class="hint-text">Create your account. It's free and only takes a minute.</p>-->
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <label for="name" class="input-group-text bg-color-icon">
+            <mat-icon>badge</mat-icon>
+          </label>
+        </div>
+        <div class="col-sm-10 pl-0">
+          <input type="text" class="form-control" name="name" placeholder="Име" id="name"
+                 formControlName="name">
+        </div>
+      </div>
+      <div *ngIf="editForm.get('name')!.invalid && editForm.get('name')!.touched"
+           class="error-messages form-control">
+        <span *ngIf="editForm.get('name')!.errors?.required">Име е задължително поле!</span>
+        <span *ngIf="editForm.get('name')!.errors?.minlength">Име е с минимална дължина 3 символа!</span>
+        <span *ngIf="editForm.get('name')!.errors?.maxlength">Име е с максимална дължина 50 символа!</span>
       </div>
     </div>
-    <div class="card-body">
-      <form>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <label for="name" class="input-group-text">
-              <mat-icon>badge</mat-icon>
-            </label>
-          </div>
-          <input type="text" class="form-control" placeholder="Name" name="name" id="name" required="required"
-                value="name">
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <label for="bulstat" class="input-group-text bg-color-icon">
+            <mat-icon>support_agent</mat-icon>
+          </label>
         </div>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <label for="bulstat" class="input-group-text">
-              <mat-icon>support_agent</mat-icon>
-            </label>
-          </div>
-          <input type="text" class="form-control" placeholder="Bulstat" name="bulstat" id="bulstat" required="required"
-                 maxlength="13" minlength="9" value="bulstats">
+        <div class="col-sm-10 pl-0">
+          <input type="text" class="form-control" name="bulstat" placeholder="Булстат" id="bulstat"
+                 formControlName="bulstat">
         </div>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <label for="address" class="input-group-text">
-              <mat-icon>pin_drop</mat-icon>
-            </label>
-          </div>
-          <input type="text" class="form-control" placeholder="Address" name="address" id="address" required="required"
-                 value="address">
-        </div>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <label for="email" class="input-group-text">
-              <mat-icon>email</mat-icon>
-            </label>
-          </div>
-          <input type="email" class="form-control" placeholder="Email" name="email" id="email" required="required"
-                 value="name@abv.bg">
-        </div>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <label for="phone" class="input-group-text">
-              <mat-icon>phone</mat-icon>
-            </label>
-          </div>
-          <input type="tel" class="form-control" placeholder="Phone number" name="phone" id="phone"
-                 required="required" maxlength="15" value="1231231231">
-        </div>
-        <div class="form-group">
-          <input type="submit" value="Save" class="btn float-right login_btn">
-        </div>
-      </form>
+      </div>
+      <div *ngIf="editForm.get('bulstat')!.invalid && editForm.get('bulstat')!.touched"
+           class="error-messages form-control">
+        <span *ngIf="editForm.get('bulstat')!.errors?.required">Булстат е задължително поле!</span>
+        <span *ngIf="editForm.get('bulstat')!.errors?.minlength ||
+                  editForm.get('bulstat')!.errors?.maxlength">
+          Булстат трябва да бъде межд 9 и 13 символа!
+        </span>
+      </div>
     </div>
-  </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <label for="address" class="input-group-text bg-color-icon">
+            <mat-icon>pin_drop</mat-icon>
+          </label>
+        </div>
+        <div class="col-sm-10 pl-0">
+          <input type="text" class="form-control" name="address" placeholder="Адрес" id="address"
+                 formControlName="address">
+        </div>
+      </div>
+      <div *ngIf="editForm.get('address')!.invalid && editForm.get('address')!.touched"
+           class="error-messages form-control">
+        <span *ngIf="editForm.get('address')!.errors?.required">Адрес е задължително поле!</span>
+        <span *ngIf="editForm.get('address')!.errors?.minlength">Адрес е с минимална дължина 9 символа!</span>
+        <span *ngIf="editForm.get('address')!.errors?.maxlength">Адрес е с максимална дължина 100 символа!</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <label for="email" class="input-group-text bg-color-icon">
+            <mat-icon>alternate_email</mat-icon>
+          </label>
+        </div>
+        <div class="col-sm-10 pl-0">
+          <input type="email" class="form-control" name="email" placeholder="Имейл" id="email"
+                 formControlName="email">
+        </div>
+      </div>
+      <div *ngIf="editForm.get('email')!.invalid && editForm.get('email')!.touched"
+           class="error-messages form-control">
+        <span *ngIf="editForm.get('email')!.errors?.required">Имейл е задължително поле!</span>
+        <span
+          *ngIf="editForm.get('email')!.errors?.email">Имейлът е невалиден!</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <label for="phone" class="input-group-text bg-color-icon">
+            <mat-icon>phone</mat-icon>
+          </label>
+        </div>
+        <div class="col-sm-10 pl-0">
+          <input type="text" class="form-control" name="phone" placeholder="Телефонен номер" id="phone"
+                 formControlName="phone">
+        </div>
+      </div>
+      <div *ngIf="editForm.get('phone')!.invalid && editForm.get('phone')!.touched"
+           class="error-messages form-control">
+        <span *ngIf="editForm.get('phone')!.errors?.required">Телефонен номер е задължително поле!</span>
+        <span
+          *ngIf="editForm.get('phone')!.errors?.maxlength">Телефонен номер максимална дължина 15 символа!
+        </span>
+        <span
+          *ngIf="editForm.get('phone')!.errors?.minlength">Телефонен номер минимална дължина 4 символа!
+        </span>
+        <span
+          *ngIf="!editForm.get('phone')!.errors?.required &&
+          !editForm.get('phone')!.errors?.maxlength &&
+          !editForm.get('phone')!.errors?.minlength &&
+          editForm.get('phone')!.errors?.phoneInvalid">Трябва да съдържа само цифри!
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success btn-lg btn-block"
+              [disabled]="editForm.invalid || editForm.untouched">
+        Запази
+      </button>
+    </div>
+  </form>
 </div>

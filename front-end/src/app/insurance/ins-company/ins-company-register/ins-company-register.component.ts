@@ -59,11 +59,12 @@ export class InsCompanyRegisterComponent implements OnInit, OnDestroy {
       this.registerForm.get('email').value,
       this.registerForm.get('phone').value
     )
-    this.insCompanyService.insertOne(model)
+    let subscription = this.insCompanyService.insertOne(model)
       .subscribe(data => {
         this.notificationService.notifySuccess("Успешно добавена компания");
-        this.router.navigate(["/company/list"])
-      })
+        this.router.navigate(["/ins-company/list"]).then();
+      });
+    this.observablesUnsubscribe.push(subscription);
   }
 
   ngOnDestroy(): void {

@@ -21,4 +21,6 @@ public interface InsCompanyService {
     List<InsCompanyTableView> getAll(String name, String bulstat) throws GlobalServiceException;
 
     List<InsCompanyDetailsView> getOneById(Long id) throws GlobalServiceException;
+
+//    void deleteOne(Long id) throws GlobalServiceException, GlobalBadRequest;
 }

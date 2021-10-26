@@ -58,6 +58,20 @@ public class InsCompanyController {
         return ResponseEntity.status(201).build();
     }
 
+//    /**
+//     *  Изтриване в базата запис
+//     * @param id - id на обекта за изтриване
+//     * @return -
+//     * @throws GlobalServiceException -
+//     * @throws GlobalBadRequest -
+//     */
+//    @DeleteMapping("/{id}")
+////    @PreAuthorize("hasAnyAuthority('ADMIN')")
+//    public ResponseEntity<?> deleteOne(@PathVariable("id") Long id) throws GlobalServiceException, GlobalBadRequest {
+//        this.insCompanyService.deleteOne(id);
+//        return ResponseEntity.status(201).build();
+//    }
+
     /**
      * Връща всички записи с филтрация по желание
      * @param name -

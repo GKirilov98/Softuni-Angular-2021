@@ -18,8 +18,6 @@ public class InsCompanyTableView implements Serializable {
     private String name;
     @JsonProperty("bulstat")
     private String bulstat;
-    @JsonProperty("address")
-    private String address;
     @JsonProperty("email")
     private String email;
     @JsonProperty("phone")
@@ -47,14 +45,6 @@ public class InsCompanyTableView implements Serializable {
 
     public void setBulstat(String bulstat) {
         this.bulstat = bulstat;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getEmail() {

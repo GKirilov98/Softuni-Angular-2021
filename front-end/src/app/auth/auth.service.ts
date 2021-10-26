@@ -1,8 +1,8 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {Observable} from "rxjs";
-import {UserRegisterModel} from "./register/models/user-register.model";
+import {UserRegisterModel} from "../shared/models/register/user-register.model";
 import {HttpSenderService} from "../shared/http-sender.service";
-import {UserModel} from "../shared/interfaces/user.model";
+import {UserModel} from "../shared/models/user/user.model";
 import {map} from "rxjs/operators";
 
 
@@ -25,6 +25,7 @@ export class AuthService implements OnDestroy {
         sessionStorage.setItem("token", data[0].token);
         sessionStorage.setItem("username", data[0].username);
         sessionStorage.setItem("roles", JSON.stringify(data[0].roles));
+        sessionStorage.setItem('isAdmin', data[0].roles.includes('ADMIN'))
         return data;
       }));
   }

@@ -1,14 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
-import {UserRegisterModel} from "./models/user-register.model";
+import {UserRegisterModel} from "../../shared/models/register/user-register.model";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {NotificationsService} from "../../shared/notifications/notifications.service";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../auth.component.css']
+  styleUrls: ['../../shared/css/forms.component.css']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   registerForm!: FormGroup;
@@ -16,6 +17,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
+    private notificationService: NotificationsService,
     private router: Router
   ) {
   }
@@ -27,6 +29,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     model.confirmPassword = this.registerForm.get('confirmPassword').value
     let subscription = this.authService.register(model).subscribe(
       res => {
+        this.notificationService.notifySuccess("Успешно регистриран потребител!")
        this.router.navigate(['/user/login']);
       }
     );

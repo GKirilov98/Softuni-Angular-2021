@@ -12,18 +12,8 @@ import {InsuranceModule} from "./insurance/insurance.module";
 import {PolicyModule} from "./policy/policy.module";
 import {SharedModule} from "./shared/shared.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {RootBackendInterceptor} from "./shared/root-backend.interceptor";
-import {
-  NgxAwesomePopupModule,
-  DialogConfigModule,
-  ConfirmBoxConfigModule,
-  ToastNotificationConfigModule,
-  ToastUserViewTypeEnum,
-  DialogLayoutDisplay,
-  ToastProgressBarEnum,
-  ToastPositionEnum,
-  ButtonMaker, ButtonLayoutDisplay
-} from '@costlydeveloper/ngx-awesome-popup';
+import {RootBackendInterceptor} from "./shared/interseptors/root-backend.interceptor";
+import {NgxAwesomePopupModule, ToastNotificationConfigModule} from '@costlydeveloper/ngx-awesome-popup';
 import {NotificationsService} from "./shared/notifications/notifications.service";
 import {notificationsConfig} from "./shared/notifications/notifications.config";
 import {NgxSpinnerModule} from "ngx-spinner";

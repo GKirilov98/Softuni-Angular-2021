@@ -1,4 +1,4 @@
-import {UserModel} from "../../../shared/interfaces/user.model";
+import {UserModel} from "../user/user.model";
 
 export class UserRegisterModel extends UserModel{
   confirmPassword: string;

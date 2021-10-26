@@ -1,14 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
-import {UserModel} from "../../shared/interfaces/user.model";
+import {UserModel} from "../../shared/models/user/user.model";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
+import {NotificationsService} from "../../shared/notifications/notifications.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../auth.component.css']
+  styleUrls: ['../../shared/css/forms.component.css']
 })
 export class LoginComponent implements OnInit,OnDestroy {
   loginForm!: FormGroup;
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit,OnDestroy {
 
   constructor(
     private authService:AuthService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationsService
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit,OnDestroy {
     model.password = this.loginForm.get("password").value;
     let subscription = this.authService.login(model)
       .subscribe(res => {
+        this.notificationService.notifyInfo(`Здравайте ${res[0].username}`)
         this.router.navigate(['/home'])
       })
     this.observablesUnsubscribe.push(subscription);

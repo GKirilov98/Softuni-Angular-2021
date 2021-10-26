@@ -7,20 +7,32 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item pt-2 " routerLinkActive="active">
-        <a class="nav-link" routerLink="/home">Home</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/about">За нас <mat-icon>menu_book</mat-icon></a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/user/register">Регистрация <mat-icon>person_add</mat-icon></a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/user/login">Вход <mat-icon>login</mat-icon></a>
-      </li>
+      <ng-container *ngIf="!sessionStorage.getItem('username')">
+        <li class="nav-item pt-2 " routerLinkActive="active">
+          <a class="nav-link" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/about">За нас <mat-icon>menu_book</mat-icon></a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/user/register">Регистрация <mat-icon>person_add</mat-icon></a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/user/login">Вход <mat-icon>login</mat-icon></a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="sessionStorage.getItem('username')">
 
+        <ng-container *ngIf="sessionStorage.getItem('isAdmin') === 'true'">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/ins-company/list">Компании<mat-icon>apartment</mat-icon></a>
+          </li>
+        </ng-container>
 
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" (click)="logOut()" >Изход <mat-icon>logout</mat-icon></a>
+        </li>
+      </ng-container>
 
     </ul>
 <!--    <form class="form-inline my-2 my-lg-0">-->

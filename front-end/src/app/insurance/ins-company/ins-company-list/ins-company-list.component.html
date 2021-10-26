@@ -1,31 +1,35 @@
-<div class="input-group form-group p-3">
-  <div class="input-group-prepend">
+<div class="row p-3 bg-info">
+  <div class="col-sm-4">
     <div class="input-group-prepend ">
       <label for="name" class="input-group-text">
         <mat-icon>badge</mat-icon>
       </label>
+      <input type="text" class="form-control" placeholder="Име" name="name" id="name" >
     </div>
-    <input type="text" class="form-control" placeholder="Name" name="name" id="name" required="required">
+
+  </div>
+  <div class="col-sm-4">
     <div class="input-group-prepend pl-3">
       <label for="bulstat" class="input-group-text">
         <mat-icon>support_agent</mat-icon>
       </label>
+      <input type="text" class="form-control" placeholder="Булстат" name="bulstat" id="bulstat">
     </div>
-
-    <input type="text" class="form-control" placeholder="Bulstat" name="bulstat" id="bulstat" required="required"
-           maxlength="13" minlength="9">
+  </div>
+  <div class="col-sm-4">
+    <a class="btn btn-success float-right border-dark" routerLink="/ins-company/create">Впиши компания</a>
   </div>
 </div>
 <div>
-  <table class="table table-hover">
+  <table class="table table-hover bg-white">
     <thead>
     <tr>
       <th scope="col" class="col-1">#</th>
-      <th scope="col" class="col-2">Name</th>
-      <th scope="col" class="col-2">Bulstat</th>
-      <th scope="col" class="col-2">Email</th>
-      <th scope="col" class="col-2">Phone</th>
-      <th scope="col" class="col-4"></th>
+      <th scope="col" class="col-2">Име</th>
+      <th scope="col" class="col-2">Булстат</th>
+      <th scope="col" class="col-2">Имейл</th>
+      <th scope="col" class="col-2">Телефон</th>
+      <th scope="col" class="col-4">Действия</th>
     </tr>
     </thead>
     <tbody>

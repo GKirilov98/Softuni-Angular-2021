@@ -96,6 +96,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter implements W
                 .and()
                 .authorizeRequests()
                 .antMatchers("/user/**")
+//                .antMatchers("/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

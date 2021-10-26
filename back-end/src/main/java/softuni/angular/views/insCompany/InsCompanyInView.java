@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -13,20 +14,24 @@ import java.io.Serializable;
  */
 public class InsCompanyInView implements Serializable {
     @JsonProperty("name")
-    @NotNull
+    @NotNull(message = "Името е задължително поле!")
+    @Size(min = 3, max = 50, message = "Името трябва да е с дължина между 3 и 50 символа!")
     private String name;
     @JsonProperty("bulstat")
-    @NotNull
+    @NotNull(message = "Булстат е задължително поле!")
+    @Size(min = 9, max = 13, message = "Булстат трябва да е с дължина между 9 и 13 символа!")
     private String bulstat;
     @JsonProperty("address")
-    @NotNull
+    @NotNull(message = "Адрес е задължително поле!")
+    @Size(min = 9, max = 100, message = "Адрес трябва да е с дължина между 9 и 100 символа!")
     private String address;
     @JsonProperty("email")
     @Email
-    @NotNull
+    @NotNull(message = "Имейл е задължително поле!")
     private String email;
     @JsonProperty("phone")
-    @NotNull
+    @NotNull(message = "Телефонен номер е задължително поле!")
+    @Size(min = 4, max = 15, message = "Телефонен номер трябва да е с дължина между 4 и 15 символа!")
     private String phone;
 
     public String getName() {

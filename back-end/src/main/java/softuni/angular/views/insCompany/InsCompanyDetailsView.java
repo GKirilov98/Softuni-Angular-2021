@@ -1,41 +1,35 @@
-package softuni.angular.data.entities;
+package softuni.angular.views.insCompany;
 
-import softuni.angular.data.entities.base.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Project: backend
  * Created by: GKirilov
- * On: 8/4/2021
+ * On: 10/26/2021
  */
-@Entity
-@Table(name = "ins_companies")
-public class InsCompany extends BaseEntity {
-    @Basic
-    @Column(name = "name", nullable = false, length = 50)
-    @Size(min = 3)
+public class InsCompanyDetailsView implements Serializable {
+    @JsonProperty("id")
+    private Long id;
+    @JsonProperty("name")
     private String name;
-    @Basic
-    @Column(name = "bulstat", nullable = false, unique = true, length = 13)
-    @Size(min = 9)
+    @JsonProperty("bulstat")
     private String bulstat;
-    @Basic
-    @Column(name = "address", nullable = false, length = 100)
-    @Size(min = 9)
+    @JsonProperty("address")
     private String address;
-    @Basic
-    @Column(name = "email", nullable = false, length = 50)
+    @JsonProperty("email")
     private String email;
-    @Basic
-    @Column(name = "phone", nullable = false, length = 15)
-    @Size(min = 4)
+    @JsonProperty("phone")
     private String phone;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

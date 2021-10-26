@@ -1,8 +1,13 @@
 package softuni.angular.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import softuni.angular.data.entities.InsCompany;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Project: backend
@@ -11,4 +16,11 @@ import softuni.angular.data.entities.InsCompany;
  */
 @Repository
 public interface InsCompanyRepository extends JpaRepository<InsCompany, Long> {
+    boolean existsByBulstatAndIsActive(String bulstat, Boolean isActive);
+
+    @Query( " SELECT c FROM InsCompany c WHERE c.isActive = true" +
+            " AND (:name IS NULL OR c.name = :name) " +
+            " AND (:bulstat IS NULL OR c.bulstat=:bulstat)")
+    List<InsCompany> findAllByIsActiveAndOptionalNameAndBulstatCustom(@Param("name") String name, @Param("bulstat") String bulstat);
+    Optional<InsCompany> findByIdAndIsActive(Long id, Boolean isActive);
 }

@@ -86,12 +86,10 @@ public class AuthenticateServiceImpl implements AuthenticateService {
             Role role = new Role();
             role.setCode(ADMIN_ROLE_CODE);
             role.setDescription("Админ");
-            role.setIsActive(true);
 
             Role role2 = new Role();
             role2.setCode(USER_ROLE_CODE);
             role2.setDescription("Потребител");
-            role2.setIsActive(true);
             List<Role> forSave = new ArrayList<>();
             forSave.add(role);
             forSave.add(role2);
@@ -102,7 +100,6 @@ public class AuthenticateServiceImpl implements AuthenticateService {
         User user = this.modelMapper.map(model, User.class);
         String hashPass = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashPass);
-        user.setIsActive(true);
         user.getRoles().add(role);
         if (this.userRepository.count() == 0) {
             Role adminRole = this.roleRepository.findByCode(ADMIN_ROLE_CODE);

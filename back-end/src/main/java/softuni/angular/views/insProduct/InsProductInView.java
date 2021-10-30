@@ -1,5 +1,10 @@
 package softuni.angular.views.insProduct;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 /**
@@ -15,6 +20,8 @@ public class InsProductInView {
     private BigDecimal premiumPercent;
     private BigDecimal comissionPercent;
 
+    @JsonProperty("insTypeId")
+    @NotNull(message = "Тип на продукта е задължително поле!")
     public Long getInsTypeId() {
         return insTypeId;
     }
@@ -23,6 +30,8 @@ public class InsProductInView {
         this.insTypeId = insTypeId;
     }
 
+    @JsonProperty("insCompanyId")
+    @NotNull(message = "Компания е задължително поле!")
     public Long getInsCompanyId() {
         return insCompanyId;
     }
@@ -31,6 +40,9 @@ public class InsProductInView {
         this.insCompanyId = insCompanyId;
     }
 
+    @JsonProperty("name")
+    @NotNull(message = "Име е задължително поле!")
+    @Size(min = 3, max = 50, message = "Името трябва да е с дължина между 3 и 50 символа!")
     public String getName() {
         return name;
     }
@@ -39,6 +51,8 @@ public class InsProductInView {
         this.name = name;
     }
 
+    @JsonProperty("defered")
+    @NotNull(message = "Разсрочено плащане е задължително поле!")
     public Boolean getDefered() {
         return defered;
     }
@@ -47,6 +61,9 @@ public class InsProductInView {
         this.defered = defered;
     }
 
+    @JsonProperty("premium")
+    @NotNull(message = "Премията е задължително поле!")
+    @PositiveOrZero(message = "Премията трябва да бъде 0 или полужително число!")
     public BigDecimal getPremiumPercent() {
         return premiumPercent;
     }
@@ -55,6 +72,9 @@ public class InsProductInView {
         this.premiumPercent = premiumPercent;
     }
 
+    @JsonProperty("comission")
+    @NotNull(message = "Комисионната е задължително поле!")
+    @PositiveOrZero(message = "Комисионната трябва да бъде 0 или полужително число!")
     public BigDecimal getComissionPercent() {
         return comissionPercent;
     }

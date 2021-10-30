@@ -6,9 +6,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import softuni.angular.data.entities.InsCompany;
+import softuni.angular.data.entities.Policy;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.InsCompanyRepository;
+import softuni.angular.repositories.PolicyRepository;
 import softuni.angular.services.InsCompanyService;
 import softuni.angular.views.insCompany.InsCompanyDetailsView;
 import softuni.angular.views.insCompany.InsCompanyInView;
@@ -25,13 +27,15 @@ import java.util.stream.Collectors;
  */
 @Service
 public class InsCompanyServiceImpl implements InsCompanyService {
-    protected final Logger logger = LogManager.getLogger(this.getClass());
+    private final Logger logger = LogManager.getLogger(this.getClass());
     private final ModelMapper modelMapper;
     private final InsCompanyRepository insCompanyRepository;
+    private final PolicyRepository policyRepository;
 
-    public InsCompanyServiceImpl(ModelMapper modelMapper, InsCompanyRepository insCompanyRepository) {
+    public InsCompanyServiceImpl(ModelMapper modelMapper, InsCompanyRepository insCompanyRepository, PolicyRepository policyRepository) {
         this.modelMapper = modelMapper;
         this.insCompanyRepository = insCompanyRepository;
+        this.policyRepository = policyRepository;
     }
 
     @Override
@@ -41,13 +45,12 @@ public class InsCompanyServiceImpl implements InsCompanyService {
         String logId = currentUser.getRequestId();
         try {
             logger.info(String.format("%s: Start insertOne service", logId));
-            if (this.insCompanyRepository.existsByBulstatAndIsActive(inView.getBulstat(), true)) {
+            if (this.insCompanyRepository.existsByBulstat(inView.getBulstat())) {
                 throw new GlobalBadRequest("Вече има съществуваща фирма с този Булстат!",
                         new Throwable("Already exist company with this bulstat!"));
             }
 
             InsCompany map = this.modelMapper.map(inView, InsCompany.class);
-            map.setIsActive(true);
             this.insCompanyRepository.save(map);
         } catch (GlobalBadRequest exc) {
             logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
@@ -77,10 +80,6 @@ public class InsCompanyServiceImpl implements InsCompanyService {
                         new Throwable("Invalid id!"));
             }
 
-            if (!insCompany.getIsActive()){
-                throw new GlobalBadRequest("Обекта вече е изтрит и не може да се редактира!",
-                        new Throwable("The object is already deleted!!"));
-            }
             this.modelMapper.map(inView, insCompany);
 
             this.insCompanyRepository.save(insCompany);
@@ -102,7 +101,7 @@ public class InsCompanyServiceImpl implements InsCompanyService {
         String logId = currentUser.getRequestId();
         try {
             logger.info(String.format("%s: Start getAll service", logId));
-            return this.insCompanyRepository.findAllByIsActiveAndOptionalNameAndBulstatCustom(name, bulstat)
+            return this.insCompanyRepository.findAllByOptionalNameAndBulstatCustom(name, bulstat)
                     .stream()
                     .map(e -> this.modelMapper.map(e, InsCompanyTableView.class))
                     .collect(Collectors.toList());
@@ -121,7 +120,7 @@ public class InsCompanyServiceImpl implements InsCompanyService {
         String logId = currentUser.getRequestId();
         try {
             logger.info(String.format("%s: Start getOneById service", logId));
-            InsCompany insCompany = this.insCompanyRepository.findByIdAndIsActive(id, true).orElse(null);
+            InsCompany insCompany = this.insCompanyRepository.findById(id).orElse(null);
             InsCompanyDetailsView map = this.modelMapper.map(insCompany, InsCompanyDetailsView.class);
             List<InsCompanyDetailsView> result = new ArrayList<>();
             result.add(map);
@@ -134,35 +133,36 @@ public class InsCompanyServiceImpl implements InsCompanyService {
         }
     }
 
-//    @Override
-//    public void deleteOne(Long id) throws GlobalServiceException, GlobalBadRequest {
-//        UserDetailsImpl currentUser =
-//                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        String logId = currentUser.getRequestId();
-//        try {
-//            logger.info(String.format("%s: Start deleteOne service", logId));
-//            InsCompany insCompany = this.insCompanyRepository.findById(id).orElse(null);
-//            if (insCompany == null){
-//                throw new GlobalBadRequest("Подаденото id е невалидно!",
-//                        new Throwable("Invalid id!"));
-//            }
-//
-//            if (!insCompany.getIsActive()){
-//                throw new GlobalBadRequest("Обекта вече е изтрит и не може да се редактира!",
-//                        new Throwable("The object is already deleted!!"));
-//            }
-//
-//            this.insCompanyRepository.save(insCompany);
-//        } catch (GlobalBadRequest exc) {
-//            logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
-//            throw exc;
-//        } catch (Exception exc) {
-//            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
-//            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
-//        } finally {
-//            logger.info(String.format("%s: Finished deleteOne service", logId));
-//        }
-//    }
+    @Override
+    public void deleteOne(Long id) throws GlobalServiceException, GlobalBadRequest {
+        UserDetailsImpl currentUser =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start deleteOne service", logId));
+            InsCompany insCompany = this.insCompanyRepository.findById(id).orElse(null);
+            if (insCompany == null){
+                throw new GlobalBadRequest("Подаденото id е невалидно!",
+                        new Throwable("Invalid id!"));
+            }
+
+            int size = this.policyRepository.findAllByInsCompanyIdCustom(id).size();
+            if (size > 0){
+                throw new GlobalBadRequest("Има сключени застраховки с този застороховател!",
+                        new Throwable("It has policy with this insurance company!"));
+            }
+
+            this.insCompanyRepository.delete(insCompany);
+        } catch (GlobalBadRequest exc) {
+            logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
+            throw exc;
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished deleteOne service", logId));
+        }
+    }
 
 
 }

@@ -22,5 +22,5 @@ public interface InsCompanyService {
 
     List<InsCompanyDetailsView> getOneById(Long id) throws GlobalServiceException;
 
-//    void deleteOne(Long id) throws GlobalServiceException, GlobalBadRequest;
+    void deleteOne(Long id) throws GlobalServiceException, GlobalBadRequest;
 }

@@ -16,11 +16,10 @@ import java.util.Optional;
  */
 @Repository
 public interface InsCompanyRepository extends JpaRepository<InsCompany, Long> {
-    boolean existsByBulstatAndIsActive(String bulstat, Boolean isActive);
+    boolean existsByBulstat(String bulstat);
 
-    @Query( " SELECT c FROM InsCompany c WHERE c.isActive = true" +
-            " AND (:name IS NULL OR c.name = :name) " +
+    @Query( " SELECT c FROM InsCompany c WHERE (:name IS NULL OR c.name = :name) " +
             " AND (:bulstat IS NULL OR c.bulstat=:bulstat)")
-    List<InsCompany> findAllByIsActiveAndOptionalNameAndBulstatCustom(@Param("name") String name, @Param("bulstat") String bulstat);
-    Optional<InsCompany> findByIdAndIsActive(Long id, Boolean isActive);
+    List<InsCompany> findAllByOptionalNameAndBulstatCustom(@Param("name") String name, @Param("bulstat") String bulstat);
+    Optional<InsCompany> findById(Long id);
 }

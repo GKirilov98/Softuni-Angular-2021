@@ -13,7 +13,7 @@ import java.io.Serializable;
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
     private Long id;
-    private boolean isActive;
+//    private boolean isActive;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,14 +26,14 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "is_active", columnDefinition = "tinyint(1)")
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    public boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean isActive) {
-       this.isActive = isActive;
-    }
+//    @Basic
+//    @Column(name = "is_active", columnDefinition = "tinyint(1)")
+//    @Type(type = "org.hibernate.type.NumericBooleanType")
+//    public boolean getIsActive() {
+//        return isActive;
+//    }
+//
+//    public void setIsActive(boolean isActive) {
+//       this.isActive = isActive;
+//    }
 }

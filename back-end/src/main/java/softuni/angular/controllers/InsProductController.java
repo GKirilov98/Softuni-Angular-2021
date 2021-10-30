@@ -37,7 +37,7 @@ public class InsProductController {
     @PostMapping("/")
 //    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> insertOne(@Valid @RequestBody InsProductInView inView) throws GlobalServiceException, GlobalBadRequest {
-//        this.insProductService.insertOne(inView);
+        this.insProductService.insertOne(inView);
         return ResponseEntity.status(201).build();
     }
 }

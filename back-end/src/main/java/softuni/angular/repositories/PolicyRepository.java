@@ -1,8 +1,12 @@
 package softuni.angular.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import softuni.angular.data.entities.Policy;
+
+import java.util.List;
 
 /**
  * Project: backend
@@ -11,4 +15,8 @@ import softuni.angular.data.entities.Policy;
  */
 @Repository
 public interface PolicyRepository extends JpaRepository<Policy, Long> {
+    @Query(value = " SELECT p FROM Policy p" +
+            " WHERE p.insProduct.insCompany.id = :companyId " +
+            " GROUP BY p")
+    List<Policy> findAllByInsCompanyIdCustom(@Param("companyId") Long id);
 }

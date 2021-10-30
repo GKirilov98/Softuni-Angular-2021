@@ -16,15 +16,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "n_ins_types")
 public class NInsType extends BaseEntity {
-    @Basic
-    @Column(name = "name")
-    private String name;
+    private String code;
+    private String description;
 
-    public String getName() {
-        return name;
+    @Basic
+    @Column(name = "code", nullable = false, unique = true)
+    public String getCode() {
+        return code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Basic
+    @Column(name = "description", nullable = false)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

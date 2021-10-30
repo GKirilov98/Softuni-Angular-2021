@@ -4,10 +4,8 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import softuni.angular.data.entities.base.BaseEntity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 /**
@@ -18,73 +16,34 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "policies")
 public class Policy extends BaseEntity {
-    @Basic
-    @Column(name = "no")
-    private String no;
-
-    @Basic
-    @Column(name = "creation_date", columnDefinition = "DATE")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    protected DateTime creationDate;
-
-    @Basic
-    @Column(name = "begin_date", columnDefinition = "DATE")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    protected DateTime beginDate;
-
-    @Basic
-    @Column(name = "end_date", columnDefinition = "DATE")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    protected DateTime endDate;
-
-    @Basic
-    @Column(name = "ins_prod_id")
-    private Long insProdId;
-
-    @Basic
-    @Column(name = "ins_object_type_id")
-    private Long insObjectTypeId;
-
-    @Basic
-    @Column(name = "client_id")
-    private Long clientId;
-
-    @Basic
-    @Column(name = "object_description")
+    private String identityNumber;
+    private DateTime creationDate;
+    private DateTime beginDate;
+    private DateTime endDate;
+    private InsProduct insProduct;
+    private NInsObjectType insObjectType;
+    private Client client;
     private String objectDescription;
-
-//    @Basic
-//    @Column(name = "is_active")
-//    private Boolean isActive;
-
-    @Basic
-    @Column(name = "sum")
     private BigDecimal sum;
-
-    @Basic
-    @Column(name = "premia")
     private BigDecimal premia;
-
-    @Basic
-    @Column(name = "tax")
     private BigDecimal tax;
-
-    @Basic
-    @Column(name = "ins_comiss")
     private BigDecimal insComission;
-
-    @Basic
-    @Column(name = "note")
     private String note;
 
-    public String getNo() {
-        return no;
+    @Basic
+    @Column(name = "identity_number", unique = true, nullable = false)
+    public String getIdentityNumber() {
+        return identityNumber;
     }
 
-    public void setNo(String no) {
-        this.no = no;
+    public void setIdentityNumber(String identityNumber) {
+        this.identityNumber = identityNumber;
     }
 
+
+    @Basic
+    @Column(name = "creation_date", columnDefinition = "DATE", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getCreationDate() {
         return creationDate;
     }
@@ -93,6 +52,9 @@ public class Policy extends BaseEntity {
         this.creationDate = creationDate;
     }
 
+    @Basic
+    @Column(name = "begin_date", columnDefinition = "DATE", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getBeginDate() {
         return beginDate;
     }
@@ -101,6 +63,9 @@ public class Policy extends BaseEntity {
         this.beginDate = beginDate;
     }
 
+    @Basic
+    @Column(name = "end_date", columnDefinition = "DATE", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getEndDate() {
         return endDate;
     }
@@ -109,30 +74,40 @@ public class Policy extends BaseEntity {
         this.endDate = endDate;
     }
 
-    public Long getInsProdId() {
-        return insProdId;
+
+    @ManyToOne
+    @JoinColumn(name = "ins_prod_id", nullable = false)
+    public InsProduct getInsProduct() {
+        return insProduct;
     }
 
-    public void setInsProdId(Long insProdId) {
-        this.insProdId = insProdId;
+    public void setInsProduct(InsProduct insProduct) {
+        this.insProduct = insProduct;
     }
 
-    public Long getInsObjectTypeId() {
-        return insObjectTypeId;
+
+    @ManyToOne
+    @JoinColumn(name = "n_ins_object_type_id", nullable = false)
+    public NInsObjectType getInsObjectType() {
+        return insObjectType;
     }
 
-    public void setInsObjectTypeId(Long insObjectTypeId) {
-        this.insObjectTypeId = insObjectTypeId;
+    public void setInsObjectType(NInsObjectType insObjectType) {
+        this.insObjectType = insObjectType;
     }
 
-    public Long getClientId() {
-        return clientId;
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
+    @Basic
+    @Column(name = "object_description", nullable = false, columnDefinition = "TEXT")
     public String getObjectDescription() {
         return objectDescription;
     }
@@ -141,14 +116,9 @@ public class Policy extends BaseEntity {
         this.objectDescription = objectDescription;
     }
 
-//    public Boolean getActive() {
-//        return isActive;
-//    }
-//
-//    public void setActive(Boolean active) {
-//        isActive = active;
-//    }
-
+    @Basic
+    @Column(name = "sum", nullable = false)
+    @PositiveOrZero
     public BigDecimal getSum() {
         return sum;
     }
@@ -157,6 +127,9 @@ public class Policy extends BaseEntity {
         this.sum = sum;
     }
 
+    @Basic
+    @Column(name = "premia", nullable = false)
+    @PositiveOrZero
     public BigDecimal getPremia() {
         return premia;
     }
@@ -165,6 +138,9 @@ public class Policy extends BaseEntity {
         this.premia = premia;
     }
 
+    @Basic
+    @Column(name = "tax", nullable = false)
+    @PositiveOrZero
     public BigDecimal getTax() {
         return tax;
     }
@@ -173,6 +149,9 @@ public class Policy extends BaseEntity {
         this.tax = tax;
     }
 
+    @Basic
+    @Column(name = "ins_comission", nullable = false)
+    @PositiveOrZero
     public BigDecimal getInsComission() {
         return insComission;
     }
@@ -181,6 +160,8 @@ public class Policy extends BaseEntity {
         this.insComission = insComission;
     }
 
+    @Basic
+    @Column(name = "note", columnDefinition = "TEXT")
     public String getNote() {
         return note;
     }

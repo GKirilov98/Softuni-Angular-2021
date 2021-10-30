@@ -3,6 +3,8 @@ package softuni.angular.data.entities;
 import softuni.angular.data.entities.base.BaseEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 /**
  * Project: backend
@@ -12,39 +14,26 @@ import javax.persistence.*;
 @Entity
 @Table(name = "clients")
 public class Client extends BaseEntity {
-    @Basic
-    @Column(name = "n_client_type_id")
-    private Long clientTypeId;
-    @ManyToOne
-    @JoinColumn(name = "n_client_type_id", insertable = false, updatable = false)
-    private NClientType nClientType;
-    @Basic
-    @Column(name = "egn_bulstat")
+    private NClientType clientType;
     private String egnBulstat;
-    @Basic
-    @Column(name = "full_name")
     private String fullName;
-    @Basic
-    @Column(name = "email")
     private String email;
-    @Basic
-    @Column(name = "phone")
-    private String telephone;
-    @Basic
-    @Column(name = "address")
+    private String phoneNumber;
     private String address;
-    @Basic
-    @Column(name = "note")
     private String note;
 
-    public Long getClientTypeId() {
-        return clientTypeId;
+    @ManyToOne
+    @JoinColumn(name = "n_client_type_id", nullable = false,referencedColumnName = "id")
+    public NClientType getClientType() {
+        return clientType;
     }
 
-    public void setClientTypeId(Long clientTypeId) {
-        this.clientTypeId = clientTypeId;
+    public void setClientType(NClientType clientType) {
+        this.clientType = clientType;
     }
 
+    @Basic
+    @Column(name = "egn_bulstat", nullable = false)
     public String getEgnBulstat() {
         return egnBulstat;
     }
@@ -53,6 +42,9 @@ public class Client extends BaseEntity {
         this.egnBulstat = egnBulstat;
     }
 
+    @Basic
+    @Column(name = "full_name", nullable = false, length = 100)
+    @Size(min = 3, max = 100)
     public String getFullName() {
         return fullName;
     }
@@ -61,6 +53,9 @@ public class Client extends BaseEntity {
         this.fullName = fullName;
     }
 
+    @Basic
+    @Column(name = "email")
+    @Email
     public String getEmail() {
         return email;
     }
@@ -69,14 +64,19 @@ public class Client extends BaseEntity {
         this.email = email;
     }
 
-    public String getTelephone() {
-        return telephone;
+    @Basic
+    @Column(name = "phone_number", nullable = false)
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPhoneNumber(String telephone) {
+        this.phoneNumber = telephone;
     }
 
+    @Basic
+    @Column(name = "address", nullable = true)
+    @Size(min = 3, max = 255)
     public String getAddress() {
         return address;
     }
@@ -85,19 +85,13 @@ public class Client extends BaseEntity {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "note", columnDefinition = "TEXT")
     public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public NClientType getnClientType() {
-        return nClientType;
-    }
-
-    public void setnClientType(NClientType nClientType) {
-        this.nClientType = nClientType;
     }
 }

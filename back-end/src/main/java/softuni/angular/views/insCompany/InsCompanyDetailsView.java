@@ -10,19 +10,14 @@ import java.io.Serializable;
  * On: 10/26/2021
  */
 public class InsCompanyDetailsView implements Serializable {
-    @JsonProperty("id")
     private Long id;
-    @JsonProperty("name")
     private String name;
-    @JsonProperty("bulstat")
     private String bulstat;
-    @JsonProperty("address")
     private String address;
-    @JsonProperty("email")
     private String email;
-    @JsonProperty("phone")
     private String phone;
 
+    @JsonProperty("id")
     public Long getId() {
         return id;
     }
@@ -31,6 +26,7 @@ public class InsCompanyDetailsView implements Serializable {
         this.id = id;
     }
 
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -39,6 +35,7 @@ public class InsCompanyDetailsView implements Serializable {
         this.name = name;
     }
 
+    @JsonProperty("bulstat")
     public String getBulstat() {
         return bulstat;
     }
@@ -47,6 +44,7 @@ public class InsCompanyDetailsView implements Serializable {
         this.bulstat = bulstat;
     }
 
+    @JsonProperty("address")
     public String getAddress() {
         return address;
     }
@@ -55,6 +53,7 @@ public class InsCompanyDetailsView implements Serializable {
         this.address = address;
     }
 
+    @JsonProperty("email")
     public String getEmail() {
         return email;
     }
@@ -63,6 +62,7 @@ public class InsCompanyDetailsView implements Serializable {
         this.email = email;
     }
 
+    @JsonProperty("phone")
     public String getPhone() {
         return phone;
     }

@@ -3,10 +3,9 @@ package softuni.angular.data.entities;
 import org.hibernate.annotations.Type;
 import softuni.angular.data.entities.base.BaseEntity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 /**
@@ -18,47 +17,37 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "ins_products")
 public class InsProduct extends BaseEntity {
-    @Basic
-    @Column(name = "n_ins_type_id")
-    private Long insTypeId;
-
-    @Basic
-    @Column(name = "ins_company_id")
-    private Long insCompanyId;
-
-    @Basic
-    @Column(name = "name")
+    private NInsType insType;
+    private InsCompany insCompany;
     private String name;
-
-    @Basic
-    @Column(name = "defered", columnDefinition = "tinyint(1)")
-    @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean defered;
-
-    @Basic
-    @Column(name = "prem_perc")
     private BigDecimal premiumPercent;
-
-    @Basic
-    @Column(name = "comiss_perc")
     private BigDecimal comissionPercent;
 
-    public Long getInsTypeId() {
-        return insTypeId;
+
+    @ManyToOne
+    @JoinColumn(name ="n_ins_type_id", nullable = false, referencedColumnName = "id")
+    public NInsType getInsType() {
+        return insType;
     }
 
-    public void setInsTypeId(Long insTypeId) {
-        this.insTypeId = insTypeId;
+    public void setInsType(NInsType insType) {
+        this.insType = insType;
     }
 
-    public Long getInsCompanyId() {
-        return insCompanyId;
+    @ManyToOne
+    @JoinColumn(name ="ins_company_id", nullable = false, referencedColumnName = "id")
+    public InsCompany getInsCompany() {
+        return insCompany;
     }
 
-    public void setInsCompanyId(Long insCompanyId) {
-        this.insCompanyId = insCompanyId;
+    public void setInsCompany(InsCompany insCompany) {
+        this.insCompany = insCompany;
     }
 
+    @Basic
+    @Column(name = "name", nullable = false, length = 50)
+    @Size(min = 3, max = 50)
     public String getName() {
         return name;
     }
@@ -67,6 +56,9 @@ public class InsProduct extends BaseEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "defered", columnDefinition = "tinyint(1)")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     public Boolean getDefered() {
         return defered;
     }
@@ -75,6 +67,9 @@ public class InsProduct extends BaseEntity {
         this.defered = defered;
     }
 
+    @Basic
+    @Column(name = "premium_percent")
+    @PositiveOrZero
     public BigDecimal getPremiumPercent() {
         return premiumPercent;
     }
@@ -83,6 +78,9 @@ public class InsProduct extends BaseEntity {
         this.premiumPercent = premiumPercent;
     }
 
+    @Basic
+    @Column(name = "comission_percent")
+    @PositiveOrZero
     public BigDecimal getComissionPercent() {
         return comissionPercent;
     }

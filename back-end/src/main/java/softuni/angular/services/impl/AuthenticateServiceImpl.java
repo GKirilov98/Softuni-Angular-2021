@@ -14,12 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import softuni.angular.data.entities.Role;
 import softuni.angular.data.entities.User;
-import softuni.angular.data.entities.UsersRoles;
 import softuni.angular.data.models.AuthenticateResponseModel;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.RoleRepository;
 import softuni.angular.repositories.UserRepository;
-import softuni.angular.repositories.UsersRolesRepository;
 import softuni.angular.services.AuthenticateService;
 import softuni.angular.utils.jwt.JwtUtils;
 import softuni.angular.views.user.UserRegisterInView;
@@ -47,8 +45,6 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     private RoleRepository roleRepository;
     @Autowired
     private ModelMapper modelMapper;
-    @Autowired
-    private UsersRolesRepository usersRolesRepository;
 
     @Override
     @Transactional
@@ -101,26 +97,17 @@ public class AuthenticateServiceImpl implements AuthenticateService {
             forSave.add(role2);
             this.roleRepository.saveAllAndFlush(forSave);
         }
+        Role role = this.roleRepository.findByCode(USER_ROLE_CODE);
 
         User user = this.modelMapper.map(model, User.class);
         String hashPass = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashPass);
         user.setIsActive(true);
-        this.userRepository.save(user);
-        Role role = this.roleRepository.findByCode(USER_ROLE_CODE);
-        UsersRoles usersRoles = new UsersRoles();
-        usersRoles.setRoleId(role.getId());
-        usersRoles.setUserId(user.getId());
-        usersRoles.setIsActive(true);
-        this.usersRolesRepository.save(usersRoles);
-
-        if (this.userRepository.count() == 1){
-            Role role2 = this.roleRepository.findByCode(ADMIN_ROLE_CODE);
-            UsersRoles usersRoles2 = new UsersRoles();
-            usersRoles2.setRoleId(role2.getId());
-            usersRoles2.setUserId(user.getId());
-            usersRoles2.setIsActive(true);
-            this.usersRolesRepository.save(usersRoles2);
+        user.getRoles().add(role);
+        if (this.userRepository.count() == 0) {
+            Role adminRole = this.roleRepository.findByCode(ADMIN_ROLE_CODE);
+            user.getRoles().add(adminRole);
         }
+        this.userRepository.save(user);
     }
 }

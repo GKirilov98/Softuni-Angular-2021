@@ -2,8 +2,6 @@ package softuni.angular.views.insCompany;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import java.io.Serializable;
 
 /**
@@ -12,17 +10,13 @@ import java.io.Serializable;
  * On: 10/26/2021
  */
 public class InsCompanyTableView implements Serializable {
-    @JsonProperty("id")
     private Long id;
-    @JsonProperty("name")
     private String name;
-    @JsonProperty("bulstat")
     private String bulstat;
-    @JsonProperty("email")
     private String email;
-    @JsonProperty("phone")
     private String phone;
 
+    @JsonProperty("id")
     public Long getId() {
         return id;
     }
@@ -31,6 +25,7 @@ public class InsCompanyTableView implements Serializable {
         this.id = id;
     }
 
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -39,6 +34,7 @@ public class InsCompanyTableView implements Serializable {
         this.name = name;
     }
 
+    @JsonProperty("bulstat")
     public String getBulstat() {
         return bulstat;
     }
@@ -47,6 +43,7 @@ public class InsCompanyTableView implements Serializable {
         this.bulstat = bulstat;
     }
 
+    @JsonProperty("email")
     public String getEmail() {
         return email;
     }
@@ -55,6 +52,7 @@ public class InsCompanyTableView implements Serializable {
         this.email = email;
     }
 
+    @JsonProperty("phone")
     public String getPhone() {
         return phone;
     }

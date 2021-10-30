@@ -12,16 +12,12 @@ import java.io.Serializable;
  */
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
+    private Long id;
+    private boolean isActive;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
-
-    @Basic
-    @Column(name = "is_active", columnDefinition = "tinyint(1)")
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean isActive;
-
     public Long getId() {
         return id;
     }
@@ -30,6 +26,9 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "is_active", columnDefinition = "tinyint(1)")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     public boolean getIsActive() {
         return isActive;
     }

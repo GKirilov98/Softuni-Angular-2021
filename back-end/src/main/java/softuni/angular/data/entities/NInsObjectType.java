@@ -2,30 +2,22 @@ package softuni.angular.data.entities;
 
 import softuni.angular.data.entities.base.BaseEntity;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Project: backend
  * Created by: GKirilov
- * On: 10/15/2021
+ * On: 8/4/2021
  */
+
 @Entity
-@Table(name = "roles")
-public class Role extends BaseEntity {
+@Table(name = "n_ins_object_types")
+public class NInsObjectType extends BaseEntity {
     private String code;
     private String description;
-    private List<User> users;
-
-    @ManyToMany(mappedBy = "roles")
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 
     @Basic
     @Column(name = "code", nullable = false, unique = true)

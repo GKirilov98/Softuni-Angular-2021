@@ -17,26 +17,15 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "ins_companies")
 public class InsCompany extends BaseEntity {
+    private String name;
+    private String bulstat;
+    private String address;
+    private String email;
+    private String phone;
+
     @Basic
     @Column(name = "name", nullable = false, length = 50)
     @Size(min = 3)
-    private String name;
-    @Basic
-    @Column(name = "bulstat", nullable = false, unique = true, length = 13)
-    @Size(min = 9)
-    private String bulstat;
-    @Basic
-    @Column(name = "address", nullable = false, length = 100)
-    @Size(min = 9)
-    private String address;
-    @Basic
-    @Column(name = "email", nullable = false, length = 50)
-    private String email;
-    @Basic
-    @Column(name = "phone", nullable = false, length = 15)
-    @Size(min = 4)
-    private String phone;
-
     public String getName() {
         return name;
     }
@@ -45,6 +34,9 @@ public class InsCompany extends BaseEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "bulstat", nullable = false, unique = true, length = 13)
+    @Size(min = 9)
     public String getBulstat() {
         return bulstat;
     }
@@ -53,6 +45,9 @@ public class InsCompany extends BaseEntity {
         this.bulstat = bulstat;
     }
 
+    @Basic
+    @Column(name = "address", nullable = false, length = 255)
+    @Size(min = 9, max = 255)
     public String getAddress() {
         return address;
     }
@@ -61,6 +56,8 @@ public class InsCompany extends BaseEntity {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "email", nullable = false, length = 50)
     public String getEmail() {
         return email;
     }
@@ -69,6 +66,9 @@ public class InsCompany extends BaseEntity {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "phone", nullable = false, length = 15)
+    @Size(min = 4)
     public String getPhone() {
         return phone;
     }

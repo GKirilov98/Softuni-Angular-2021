@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import softuni.angular.data.entities.User;
 import softuni.angular.repositories.UserRepository;
-import softuni.angular.repositories.UsersRolesRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,20 +19,21 @@ import java.util.stream.Collectors;
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private UsersRolesRepository usersRolesRepository;
+    private final UserRepository userRepository;
+
+    public UserDetailsServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
-        List<SimpleGrantedAuthority> authorities = this.usersRolesRepository
-                .findAllByUserId(user.getId())
+        List<SimpleGrantedAuthority> authorities = user
+                .getRoles()
                 .stream()
-                .map(e -> new SimpleGrantedAuthority(e.getRole().getCode()))
+                .map(e -> new SimpleGrantedAuthority(e.getCode()))
                 .collect(Collectors.toList());
         return new UserDetailsImpl(
                 user.getId(), username, user.getPassword(), authorities

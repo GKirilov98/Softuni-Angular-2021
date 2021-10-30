@@ -4,7 +4,7 @@
       <div class="col-md-4">
         <div class="profile-work">
           <p><strong>Компания</strong></p>
-          <p> Име:{{detailsModel?.name}}
+          <p> Име: {{detailsModel?.name}}
           </p>
           <p>Булстат: {{detailsModel?.bulstat}}</p>
           <p>Адрес: {{detailsModel?.address}}</p>
@@ -22,9 +22,36 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-8">
-        TODO -> list product
+      <div class="col-md-3">
+        <button class="btn btn-success" routerLink="{{'/ins-product/create/' + detailsModel?.id}}"> Добави продукт </button>
+      </div>
+      <div class="col-md-9">
+        <table class="table table-hover bg-white">
+          <thead>
+          <tr>
+            <th scope="col" class="col-1">#</th>
+            <th scope="col" class="col-2">Име</th>
+            <th scope="col" class="col-2">Булстат</th>
+            <th scope="col" class="col-2">Имейл</th>
+            <th scope="col" class="col-2">Телефон</th>
+            <th scope="col" class="col-4">Действия</th>
+          </tr>
+          </thead>
+          <tbody>
+<!--          <tr *ngFor="let c of insCompanyTableModels; let i = index">-->
+<!--            <th scope="row">{{i + 1}}</th>-->
+<!--            <td>{{c.name}}</td>-->
+<!--            <td>{{c.bulstat}}</td>-->
+<!--            <td>{{c.email}}</td>-->
+<!--            <td>{{c.phone}}</td>-->
+<!--            <td>-->
+<!--              <a class="btn btn-info mr-2" routerLink="{{'/ins-company/details/' + c.id}}">Details</a>-->
+<!--              <a class="btn btn-warning mr-2" routerLink="{{'/ins-company/edit/' + c.id}}">Edit</a>-->
+<!--              <button class="btn btn-danger">Delete</button>-->
+<!--            </td>-->
+<!--          </tr>-->
+          </tbody>
+        </table>
       </div>
     </div>
   </form>

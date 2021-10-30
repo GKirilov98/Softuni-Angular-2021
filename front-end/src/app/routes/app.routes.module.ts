@@ -30,6 +30,7 @@ const routes: Routes = [
     ]},
   {path: "ins-product", children:[
       {path:"create", component: InsProductCreateComponent, pathMatch:'full' },
+      {path:"create/:id", component: InsProductCreateComponent, pathMatch:'full' },
       {path:"edit/:id", component: InsProductEditComponent, pathMatch:'full' },
       {path:"list", component: InsProductListComponent, pathMatch:'full' },
     ]},

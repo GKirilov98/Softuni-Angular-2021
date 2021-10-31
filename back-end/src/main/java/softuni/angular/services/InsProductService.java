@@ -2,7 +2,10 @@ package softuni.angular.services;
 
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
+import softuni.angular.views.insProduct.InsProductCompanyTableView;
 import softuni.angular.views.insProduct.InsProductInView;
+
+import java.util.List;
 
 /**
  * Project: backend
@@ -11,4 +14,6 @@ import softuni.angular.views.insProduct.InsProductInView;
  */
 public interface InsProductService {
     void insertOne(InsProductInView inView) throws GlobalServiceException, GlobalBadRequest;
+
+    List<InsProductCompanyTableView> getAllByCompanyId(Long companyId) throws GlobalServiceException;
 }

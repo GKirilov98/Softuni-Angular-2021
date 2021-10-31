@@ -14,7 +14,11 @@ import softuni.angular.repositories.InsCompanyRepository;
 import softuni.angular.repositories.InsProductRepository;
 import softuni.angular.repositories.NInsTypeRepository;
 import softuni.angular.services.InsProductService;
+import softuni.angular.views.insProduct.InsProductCompanyTableView;
 import softuni.angular.views.insProduct.InsProductInView;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Project: backend
@@ -66,5 +70,29 @@ public class InsProductServiceImpl implements InsProductService {
         } finally {
             logger.info(String.format("%s: Finished insertOne service", logId));
         }
+    }
+
+    @Override
+    public List<InsProductCompanyTableView> getAllByCompanyId(Long companyId) throws GlobalServiceException {
+        UserDetailsImpl currentUser = (UserDetailsImpl) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start getAllByCompanyId service", logId));
+            return this.insProductRepository.findAllByInsCompanyId(companyId)
+                    .stream()
+                    .map(e -> {
+                        InsProductCompanyTableView map = this.modelMapper.map(e, InsProductCompanyTableView.class);
+                        map.setInsTypeDescription(e.getInsType().getDescription());
+                        return map;
+                    })
+                    .collect(Collectors.toList());
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished getAllByCompanyId service", logId));
+        }
+
     }
 }

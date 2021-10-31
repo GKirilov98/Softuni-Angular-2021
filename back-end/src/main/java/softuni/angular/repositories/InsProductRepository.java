@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import softuni.angular.data.entities.InsProduct;
 
+import java.util.List;
+
 /**
  * Project: backend
  * Created by: GKirilov
@@ -11,4 +13,5 @@ import softuni.angular.data.entities.InsProduct;
  */
 @Repository
 public interface InsProductRepository extends JpaRepository<InsProduct, Long> {
+    List<InsProduct> findAllByInsCompanyId(Long companyId);
 }

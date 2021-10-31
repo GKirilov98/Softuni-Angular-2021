@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import InsCompanyAddModel from "../../../shared/models/ins-company/ins-company-add.model";
 import {InsCompanyService} from "../ins-company.service";
-import {NotificationsService} from "../../../shared/notifications/notifications.service";
+import {NotificationsService} from "../../../shared/services/notifications.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {InsCompanyDeatilsModel} from "../../../shared/models/ins-company/ins-company-deatils.model";
 

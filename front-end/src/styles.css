@@ -19,6 +19,11 @@ input.ng-invalid.ng-touched {
   background-color: #ffd7d9 !important;
 }
 
+select.ng-invalid.ng-touched {
+  border-color: red !important;
+  background-color: #ffd7d9 !important;
+}
+
 .error-messages {
   color: white !important;
   background-color: red;

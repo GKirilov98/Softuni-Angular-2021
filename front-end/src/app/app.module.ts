@@ -13,11 +13,16 @@ import {PolicyModule} from "./policy/policy.module";
 import {SharedModule} from "./shared/shared.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RootBackendInterceptor} from "./shared/interseptors/root-backend.interceptor";
-import {NgxAwesomePopupModule, ToastNotificationConfigModule} from '@costlydeveloper/ngx-awesome-popup';
-import {NotificationsService} from "./shared/notifications/notifications.service";
+import {
+  ConfirmBoxConfigModule,
+  DialogConfigModule,
+  NgxAwesomePopupModule,
+  ToastNotificationConfigModule
+} from '@costlydeveloper/ngx-awesome-popup';
+import {NotificationsService} from "./shared/services/notifications.service";
 import {notificationsConfig} from "./shared/notifications/notifications.config";
 import {NgxSpinnerModule} from "ngx-spinner";
-import {HttpSenderService} from "./shared/http-sender.service";
+import {HttpSenderService} from "./shared/services/http-sender.service";
 
 
 @NgModule({
@@ -38,7 +43,7 @@ import {HttpSenderService} from "./shared/http-sender.service";
     PolicyModule,
     NgxAwesomePopupModule.forRoot(), // Essential, mandatory main module.
     // DialogConfigModule.forRoot(), // Needed for instantiating dynamic components.
-    // ConfirmBoxConfigModule.forRoot(), // Needed for instantiating confirm boxes.
+    ConfirmBoxConfigModule.forRoot(), // Needed for instantiating confirm boxes.
     ToastNotificationConfigModule.forRoot(notificationsConfig),
     NgxSpinnerModule
   ],

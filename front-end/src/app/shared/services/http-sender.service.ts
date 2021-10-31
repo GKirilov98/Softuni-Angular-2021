@@ -1,6 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
-import {NotificationsService} from "./notifications/notifications.service";
+import {NotificationsService} from "./notifications.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {Observable, of, throwError} from "rxjs";
 import {Injectable} from "@angular/core";
@@ -46,6 +46,16 @@ export class HttpSenderService {
 
   put(url: string, data: any) {
     return this.http.put(url, data)
+      .pipe(
+        tap(data => {
+          this.spinner.hide().then();
+        }),
+        catchError(this.handleError.bind(this))
+      )
+  }
+
+  delete(url: string) {
+    return this.http.delete(url)
       .pipe(
         tap(data => {
           this.spinner.hide().then();

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import InsCompanyAddModel from "../../shared/models/ins-company/ins-company-add.model";
 import {Observable} from "rxjs";
-import {HttpSenderService} from "../../shared/http-sender.service";
+import {HttpSenderService} from "../../shared/services/http-sender.service";
 import {InsCompanyTableModel} from "../../shared/models/ins-company/ins-company-table.model";
 import {InsCompanyDeatilsModel} from "../../shared/models/ins-company/ins-company-deatils.model";
 
@@ -29,5 +29,9 @@ export class InsCompanyService {
 
   updateOne(id: number, model: InsCompanyAddModel) {
     return this.http.put("InsCompany/" + id, model);
+  }
+
+  deleteOneById(id: number): Observable<any>{
+    return this.http.delete("InsCompany/" + id);
   }
 }

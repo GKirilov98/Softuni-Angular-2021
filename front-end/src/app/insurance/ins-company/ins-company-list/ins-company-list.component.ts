@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {InsCompanyService} from "../ins-company.service";
 import {InsCompanyTableModel} from "../../../shared/models/ins-company/ins-company-table.model";
 import {Subscription} from "rxjs";
+import {NotificationsService} from "../../../shared/services/notifications.service";
 
 @Component({
   selector: 'app-ins-company-list',
@@ -16,7 +17,8 @@ export class InsCompanyListComponent implements OnInit, OnDestroy {
   filterBulstat:string ="";
 
   constructor(
-    private insCompanyService: InsCompanyService
+    private insCompanyService: InsCompanyService,
+    private notificationService: NotificationsService
   ) {
   }
 
@@ -38,5 +40,16 @@ export class InsCompanyListComponent implements OnInit, OnDestroy {
     this.insCompanyTableModels = this.original.filter(e => {
       return  e.name.includes(this.filterName) && e.bulstat.includes(this.filterBulstat);
     })
+  }
+
+  deleteOne(id: number) {
+    this.notificationService.confirmDanger("Сигурни ли сте, че искате да изтриете този обект!")
+      .subscribe(data => {
+        if (!data.Success) {
+          let subscription = this.insCompanyService.deleteOneById(id).subscribe(() => this.ngOnInit());
+          this.observablesUnsubscribe.push(subscription);
+          this.notificationService.notifySuccess("Успешно изтрита компания!");
+        }
+      })
   }
 }

@@ -3,8 +3,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import InsCompanyAddModel from "../../../shared/models/ins-company/ins-company-add.model";
 import {InsCompanyService} from "../ins-company.service";
-import {NotificationsService} from "../../../shared/notifications/notifications.service";
+import {NotificationsService} from "../../../shared/services/notifications.service";
 import {Router} from "@angular/router";
+import CustomValidatorsValidator from "../../../shared/utils/custom-validators.validator";
 
 @Component({
   selector: 'app-ins-company-register',
@@ -18,7 +19,8 @@ export class InsCompanyRegisterComponent implements OnInit, OnDestroy {
   constructor(
     private insCompanyService: InsCompanyService,
     private notificationService: NotificationsService,
-    private router: Router
+    private router: Router,
+    private customValidator: CustomValidatorsValidator
   ) {
   }
 
@@ -38,17 +40,8 @@ export class InsCompanyRegisterComponent implements OnInit, OnDestroy {
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'phone': new FormControl(null, [Validators.required,
        Validators.minLength(4), Validators.maxLength(15),
-        this.phoneValidator.bind(this)]),
+        this.customValidator.phoneValidator.bind(this)]),
     });
-  }
-
-  phoneValidator(control: FormControl): { [p: string]: boolean } {
-    let regex = /^[0-9]+$/;
-    if (this.registerForm && !regex.test(control.value) ) {
-      return {"phoneInvalid": true};
-    }
-
-    return null;
   }
 
   onSubmit() {

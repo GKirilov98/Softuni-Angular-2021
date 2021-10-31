@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {Observable} from "rxjs";
 import {UserRegisterModel} from "../shared/models/register/user-register.model";
-import {HttpSenderService} from "../shared/http-sender.service";
+import {HttpSenderService} from "../shared/services/http-sender.service";
 import {UserModel} from "../shared/models/user/user.model";
 import {map} from "rxjs/operators";
 

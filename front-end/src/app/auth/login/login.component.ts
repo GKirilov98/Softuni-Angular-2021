@@ -4,7 +4,7 @@ import {Subscription} from "rxjs";
 import {UserModel} from "../../shared/models/user/user.model";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
-import {NotificationsService} from "../../shared/notifications/notifications.service";
+import {NotificationsService} from "../../shared/services/notifications.service";
 
 @Component({
   selector: 'app-login',

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import {DialogLayoutDisplay, ToastNotificationInitializer} from "@costlydeveloper/ngx-awesome-popup";
+import {
+  ConfirmBoxInitializer,
+  DialogLayoutDisplay,
+  ToastNotificationInitializer
+} from "@costlydeveloper/ngx-awesome-popup";
 
 @Injectable({
   providedIn: 'root'
@@ -55,4 +59,21 @@ export class NotificationsService {
     // Simply open the toast
     newToastNotification.openToastNotification$();
   }
+
+  confirmDanger(message: string) {
+    const newConfirmBox = new ConfirmBoxInitializer();
+
+    newConfirmBox.setTitle("Внимание!");
+    newConfirmBox.setMessage(message);
+
+    // Choose layout color type
+    newConfirmBox.setConfig({
+      LayoutType: DialogLayoutDisplay.DANGER, // SUCCESS | INFO | NONE | DANGER | WARNING
+      ButtonPosition: 'center',
+    });
+    newConfirmBox.setButtonLabels('Не', 'Да');
+    // Simply open the popup
+   return  newConfirmBox.openConfirmBox$();
+  }
+
 }

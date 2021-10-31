@@ -13,43 +13,65 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="profile-head">
-          TODO -> search
-        </div>
       </div>
       <div class="col-md-2">
-        <input type="submit" class="profile-edit-btn btn-warning " name="btnAddMore" value="Edit"/>
+        <a class="btn btn-warning mr-2 rounded-pill" routerLink="{{'/ins-company/edit/' + detailsModel?.id}}">Редакция</a>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button class="btn btn-success" routerLink="{{'/ins-product/create/' + detailsModel?.id}}"> Добави продукт </button>
+    <div class="row bg-info p-3">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group-prepend ">
+              <input type="text" class="form-control" placeholder="Име" name="name" id="name"
+                     [(ngModel)]="filterName"
+                     (keyup)="changeFilter()">
+            </div>
+          </div>
+          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <button class="btn btn-success border-dark" routerLink="{{'/ins-product/create/' + detailsModel?.id}}">
+              Добави продукт
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="col-md-9">
+    </div>
+    <div class="row pt-3 pb-5">
+      <div class="col-md-12">
         <table class="table table-hover bg-white">
           <thead>
           <tr>
             <th scope="col" class="col-1">#</th>
             <th scope="col" class="col-2">Име</th>
-            <th scope="col" class="col-2">Булстат</th>
-            <th scope="col" class="col-2">Имейл</th>
-            <th scope="col" class="col-2">Телефон</th>
-            <th scope="col" class="col-4">Действия</th>
+            <th scope="col" class="col-2">Тип</th>
+            <th scope="col" class="col-1">Комисионна</th>
+            <th scope="col" class="col-1">Премия</th>
+            <th scope="col" class="col-1">Разрочено плащане</th>
+            <th scope="col" class="col-3">Действия</th>
           </tr>
           </thead>
           <tbody>
-<!--          <tr *ngFor="let c of insCompanyTableModels; let i = index">-->
-<!--            <th scope="row">{{i + 1}}</th>-->
-<!--            <td>{{c.name}}</td>-->
-<!--            <td>{{c.bulstat}}</td>-->
-<!--            <td>{{c.email}}</td>-->
-<!--            <td>{{c.phone}}</td>-->
-<!--            <td>-->
-<!--              <a class="btn btn-info mr-2" routerLink="{{'/ins-company/details/' + c.id}}">Details</a>-->
-<!--              <a class="btn btn-warning mr-2" routerLink="{{'/ins-company/edit/' + c.id}}">Edit</a>-->
-<!--              <button class="btn btn-danger">Delete</button>-->
-<!--            </td>-->
-<!--          </tr>-->
+          <tr *ngFor="let p of products; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{p.name}}</td>
+            <td>{{p.typeDescription}}</td>
+            <td>{{p.comission}}</td>
+            <td>{{p.premium}}</td>
+
+            <td *ngIf="p.defered==true">
+              <mat-icon color="accent">check_circle</mat-icon>
+            </td>
+            <td *ngIf="p.defered==false">
+              <mat-icon color="warn"> highlight_off </mat-icon>
+            </td>
+
+            <td>
+              <a class="btn btn-warning mr-2" routerLink="{{'/ins-product/edit/' + p.id}}">Редакция</a>
+              <a class="btn btn-danger mr-2" routerLink="{{'/ins-product/delete/' + p.id}}">Изтрйи</a>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>

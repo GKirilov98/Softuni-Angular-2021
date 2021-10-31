@@ -42,9 +42,9 @@
       <td>{{c.email}}</td>
       <td>{{c.phone}}</td>
       <td>
-        <a class="btn btn-info mr-2" routerLink="{{'/ins-company/details/' + c.id}}">Details</a>
-        <a class="btn btn-warning mr-2" routerLink="{{'/ins-company/edit/' + c.id}}">Edit</a>
-        <button class="btn btn-danger">Delete</button>
+        <a class="btn btn-info mr-2" routerLink="{{'/ins-company/details/' + c.id}}">Детайли</a>
+        <a class="btn btn-warning mr-2" routerLink="{{'/ins-company/edit/' + c.id}}">Редакция</a>
+        <button class="btn btn-danger" (click)="deleteOne(c.id)">Изтрйи</button>
       </td>
     </tr>
     </tbody>

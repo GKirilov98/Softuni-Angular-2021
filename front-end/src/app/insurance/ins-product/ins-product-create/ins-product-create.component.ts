@@ -8,7 +8,6 @@ import NomenclatureModel from "../../../shared/models/nomenclature/nomenclature.
 import {NomenclatureService} from "../../../shared/services/nomenclature.service";
 import {InsCompanyDropdownModel} from "../../../shared/models/ins-company/ins-company-dropdown.model";
 import {InsCompanyService} from "../../ins-company/ins-company.service";
-import InsCompanyAddModel from "../../../shared/models/ins-company/ins-company-add.model";
 import {InsProductCreateModel} from "../../../shared/models/ins-product/ins-product-create.model";
 
 @Component({

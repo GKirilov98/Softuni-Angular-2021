@@ -79,6 +79,11 @@ public class InsCompanyServiceImpl implements InsCompanyService {
                 throw new GlobalBadRequest("Подаденото id е невалидно!",
                         new Throwable("Invalid id!"));
             }
+            int size = this.policyRepository.findAllByInsCompanyIdCustom(id).size();
+            if (size > 0){
+                throw new GlobalBadRequest("Има сключени застраховки с този застороховател!",
+                        new Throwable("It has policy with this insurance company!"));
+            }
 
             this.modelMapper.map(inView, insCompany);
 
@@ -152,6 +157,9 @@ public class InsCompanyServiceImpl implements InsCompanyService {
                         new Throwable("It has policy with this insurance company!"));
             }
 
+
+            // TODO: 10/31/2021 Тряба да се изтрията полисите  (бъдещите)
+            // TODO: 10/31/2021 Трябва да се изтрият продуктите
             this.insCompanyRepository.delete(insCompany);
         } catch (GlobalBadRequest exc) {
             logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);

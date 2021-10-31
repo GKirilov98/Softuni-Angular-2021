@@ -16,7 +16,14 @@ import java.util.List;
 @Repository
 public interface PolicyRepository extends JpaRepository<Policy, Long> {
     @Query(value = " SELECT p FROM Policy p" +
-            " WHERE p.insProduct.insCompany.id = :companyId " +
+            " WHERE p.insProduct.insCompany.id = :companyId" +
+            " AND current_date BETWEEN p.beginDate AND p.endDate " +
             " GROUP BY p")
     List<Policy> findAllByInsCompanyIdCustom(@Param("companyId") Long id);
+
+    @Query(value = " SELECT p FROM Policy p" +
+            " WHERE p.insProduct.id = :id " +
+            " AND current_date BETWEEN p.beginDate AND p.endDate " +
+            " GROUP BY p")
+    List<Policy> findAllByInsProductIdCustom(@Param("id") Long id);
 }

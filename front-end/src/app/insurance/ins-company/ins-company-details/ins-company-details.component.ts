@@ -5,6 +5,7 @@ import {InsCompanyDeatilsModel} from "../../../shared/models/ins-company/ins-com
 import {Subscription} from "rxjs";
 import {InsProductTableModel} from "../../../shared/models/ins-product/ins-product-table.model";
 import {InsProductService} from "../../ins-product/ins-product.service";
+import {NotificationsService} from "../../../shared/services/notifications.service";
 
 @Component({
   selector: 'app-ins-company-details',
@@ -20,7 +21,8 @@ export class InsCompanyDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private company: InsCompanyService,
     private insProductService: InsProductService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private notificationsService: NotificationsService
   ) {
   }
 
@@ -47,5 +49,13 @@ export class InsCompanyDetailsComponent implements OnInit, OnDestroy {
     this.products = this.originalProduct.filter(e => {
       return  e.name.includes(this.filterName);
     })
+  }
+
+  deleteOne(id: number) {
+    this.insProductService.deleteOneById(id)
+      .subscribe(data => {
+        this.notificationsService.notifySuccess("Успешно изтрит продукт!");
+        this.ngOnInit();
+        })
   }
 }

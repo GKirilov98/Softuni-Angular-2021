@@ -69,7 +69,7 @@
 
             <td>
               <a class="btn btn-warning mr-2" routerLink="{{'/ins-product/edit/' + p.id}}">Редакция</a>
-              <a class="btn btn-danger mr-2" routerLink="{{'/ins-product/delete/' + p.id}}">Изтрйи</a>
+              <button class="btn btn-danger mr-2" (click)="deleteOne(p.id)">Изтрйи</button>
             </td>
           </tr>
           </tbody>

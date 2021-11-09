@@ -33,4 +33,8 @@ export class InsProductService {
   deleteOneById(id: number) {
     return this.http.delete("InsProduct/" + id);
   }
+
+  getAllByTypeId(id: number): Observable<InsProductTableModel[]> {
+    return this.http.get("InsProduct/getAllByTypeId/" + id);
+  }
 }

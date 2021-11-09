@@ -1,0 +1,49 @@
+<div class="row pt-3 pb-3 bg-info mr-1">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-4">
+    <div class="input-group-prepend ">
+      <label for="name" class="input-group-text mr-1">
+        <mat-icon>badge</mat-icon>
+      </label>
+      <input type="text" class="form-control" placeholder="Идентификационен номер" name="name" id="name" [(ngModel)]="filterIdentityNumber"
+      (keyup)="changeFilter()">
+    </div>
+
+  </div>
+  <div class="col-sm-3">
+    <div class="input-group-prepend pl-3">
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <a class="btn btn-success float-right border-dark" routerLink="/policy/create">Създай полица</a>
+  </div>
+</div>
+<div>
+  <table class="table table-hover bg-white">
+    <thead>
+    <tr>
+      <th scope="col" class="col-1">#</th>
+      <th scope="col" class="col-2">Идентификационен номер</th>
+      <th scope="col" class="col-2">Продукт</th>
+      <th scope="col" class="col-1">Начална дата</th>
+      <th scope="col" class="col-1">Крайна дата</th>
+      <th scope="col" class="col-1">Сума</th>
+      <th scope="col" class="col-4">Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of policyListModels; let i = index">
+      <td >{{i + 1}}</td>
+      <td>{{p.identityNumber}}</td>
+      <td>{{p.productName}}</td>
+      <td>{{p.startDate | date:'dd-MM-yyyy'}}</td>
+      <td>{{p.endDate | date:'dd-MM-yyyy'}}</td>
+      <td>{{p.sum.toFixed(2)}}</td>
+      <td>
+        <a class="btn btn-info mr-2" routerLink="{{'/ins-company/details/' + p.id}}">Детайли</a>
+        <a class="btn btn-warning mr-2" routerLink="{{'/ins-company/edit/' + p.id}}">Редакция</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

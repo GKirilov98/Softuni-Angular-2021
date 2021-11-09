@@ -15,4 +15,8 @@ export class NomenclatureService {
   getAllNInsTypes(): Observable<NomenclatureModel[]>{
     return this.http.get("NInsType/")
   }
+
+  getAllNInsObjectTypes() {
+    return this.http.get("NInsObjectType/")
+  }
 }

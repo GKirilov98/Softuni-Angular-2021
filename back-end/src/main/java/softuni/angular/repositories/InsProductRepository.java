@@ -14,4 +14,5 @@ import java.util.List;
 @Repository
 public interface InsProductRepository extends JpaRepository<InsProduct, Long> {
     List<InsProduct> findAllByInsCompanyId(Long companyId);
+    List<InsProduct> findAllByInsTypeId(Long insTypeId);
 }

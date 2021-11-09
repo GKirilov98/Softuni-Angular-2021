@@ -199,4 +199,27 @@ public class InsProductServiceImpl implements InsProductService {
         }
     }
 
+    @Override
+    public List<InsProductCompanyTableView> getAllByTypeId(Long typeId) throws GlobalServiceException {
+        UserDetailsImpl currentUser = (UserDetailsImpl) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start getAllByTypeId service", logId));
+            return this.insProductRepository.findAllByInsTypeId(typeId)
+                    .stream()
+                    .map(e -> {
+                        InsProductCompanyTableView map = this.modelMapper.map(e, InsProductCompanyTableView.class);
+                        map.setName(e.getName() + " / " + e.getInsCompany().getName());
+                        return map;
+                    })
+                    .collect(Collectors.toList());
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished getAllByTypeId service", logId));
+        }
+    }
+
 }

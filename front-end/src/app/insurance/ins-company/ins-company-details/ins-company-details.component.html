@@ -49,7 +49,7 @@
             <th scope="col" class="col-1">Комисионна</th>
             <th scope="col" class="col-1">Премия</th>
             <th scope="col" class="col-1">Разрочено плащане</th>
-            <th scope="col" class="col-3">Действия</th>
+            <th scope="col" class="col-4">Действия</th>
           </tr>
           </thead>
           <tbody>
@@ -68,6 +68,7 @@
             </td>
 
             <td>
+              <a class="btn btn-info mr-2" routerLink="{{'/ins-product/details/' + p.id}}">Детайли</a>
               <a class="btn btn-warning mr-2" routerLink="{{'/ins-product/edit/' + p.id}}">Редакция</a>
               <button class="btn btn-danger mr-2" (click)="deleteOne(p.id)">Изтрйи</button>
             </td>

@@ -11,4 +11,6 @@ import softuni.angular.data.entities.Client;
  */
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
+    boolean existsByEgnBulstat(String egnBulstat);
+    Client findByEgnBulstat(String egnBusltat);
 }

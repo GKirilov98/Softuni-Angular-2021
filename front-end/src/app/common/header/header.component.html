@@ -22,7 +22,9 @@
         </li>
       </ng-container>
       <ng-container *ngIf="sessionStorage.getItem('username')">
-
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/policy/list">Полици<mat-icon>account_balance</mat-icon></a>
+        </li>
         <ng-container *ngIf="sessionStorage.getItem('isAdmin') === 'true'">
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/ins-company/list">Компании<mat-icon>apartment</mat-icon></a>

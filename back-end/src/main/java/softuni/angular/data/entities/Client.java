@@ -43,8 +43,8 @@ public class Client extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "full_name", nullable = false, length = 100)
-    @Size(min = 3, max = 100)
+    @Column(name = "full_name", nullable = false, length = 255)
+    @Size(min = 3, max = 255)
     public String getFullName() {
         return fullName;
     }

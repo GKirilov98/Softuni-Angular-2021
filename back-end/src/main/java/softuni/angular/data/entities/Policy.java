@@ -23,11 +23,12 @@ public class Policy extends BaseEntity {
     private InsProduct insProduct;
     private NInsObjectType insObjectType;
     private Client client;
+    private String objectName;
     private String objectDescription;
     private BigDecimal sum;
-    private BigDecimal premia;
+    private BigDecimal premium;
     private BigDecimal tax;
-    private BigDecimal insComission;
+    private BigDecimal commission;
     private String note;
 
     @Basic
@@ -107,6 +108,16 @@ public class Policy extends BaseEntity {
     }
 
     @Basic
+    @Column(name = "object_name", nullable = false)
+    public String getObjectName() {
+        return objectName;
+    }
+
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
+    }
+
+    @Basic
     @Column(name = "object_description", nullable = false, columnDefinition = "TEXT")
     public String getObjectDescription() {
         return objectDescription;
@@ -128,14 +139,14 @@ public class Policy extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "premia", nullable = false)
+    @Column(name = "premium", nullable = false)
     @PositiveOrZero
-    public BigDecimal getPremia() {
-        return premia;
+    public BigDecimal getPremium() {
+        return premium;
     }
 
-    public void setPremia(BigDecimal premia) {
-        this.premia = premia;
+    public void setPremium(BigDecimal premia) {
+        this.premium = premia;
     }
 
     @Basic
@@ -150,14 +161,14 @@ public class Policy extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "ins_comission", nullable = false)
+    @Column(name = "commission", nullable = false)
     @PositiveOrZero
-    public BigDecimal getInsComission() {
-        return insComission;
+    public BigDecimal getCommission() {
+        return commission;
     }
 
-    public void setInsComission(BigDecimal insComission) {
-        this.insComission = insComission;
+    public void setCommission(BigDecimal insComission) {
+        this.commission = insComission;
     }
 
     @Basic

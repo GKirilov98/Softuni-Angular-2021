@@ -88,6 +88,19 @@ public class InsProductController {
     }
 
     /**
+     * getAllByTypeId
+     *
+     * @param id -
+     * @return -
+     * @throws GlobalServiceException -
+     */
+    @GetMapping("/getAllByTypeId/{id}")
+    public ResponseEntity<?> getAllByTypeId(@PathVariable("id") Long id) throws GlobalServiceException {
+        List<InsProductCompanyTableView> result = this.insProductService.getAllByTypeId(id);
+        return ResponseEntity.ok(result);
+    }
+
+    /**
      * getOneById
      * @param id -
      * @return -

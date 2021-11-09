@@ -26,4 +26,9 @@ public interface PolicyRepository extends JpaRepository<Policy, Long> {
             " AND current_date BETWEEN p.beginDate AND p.endDate " +
             " GROUP BY p")
     List<Policy> findAllByInsProductIdCustom(@Param("id") Long id);
+
+    @Query("SELECT p FROM Policy p WHERE (:clientId IS NULL OR p.client.id = :clientId)")
+    List<Policy> findAllByOptionalClientIdCustom(@Param("clientId") Long clientId);
+
+    boolean existsByIdentityNumber(String identityNumber);
 }

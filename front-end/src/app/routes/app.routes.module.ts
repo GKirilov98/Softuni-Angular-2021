@@ -14,6 +14,7 @@ import {InsTypeCreateComponent} from "../insurance/ins-type/ins-type-create/ins-
 import {InsTypeEditComponent} from "../insurance/ins-type/ins-type-edit/ins-type-edit.component";
 import {InsTypeListComponent} from "../insurance/ins-type/ins-type-list/ins-type-list.component";
 import {PolicyCreateComponent} from "../policy/policy-create/policy-create.component";
+import {PolicyListComponent} from "../policy/policy-list/policy-list.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent, pathMatch: 'full'},
@@ -42,7 +43,7 @@ const routes: Routes = [
   {path: "policy", children:[
       {path:"create", component: PolicyCreateComponent, pathMatch:'full' },
       // {path:"edit/:id", component: InsTypeEditComponent, pathMatch:'full' },
-      // {path:"list", component: InsTypeListComponent, pathMatch:'full' },
+      {path:"list", component: PolicyListComponent, pathMatch:'full' },
     ]},
 ]
 

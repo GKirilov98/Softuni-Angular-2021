@@ -11,4 +11,5 @@ import softuni.angular.data.entities.NClientType;
  */
 @Repository
 public interface NClientTypeRepository extends JpaRepository<NClientType, Long> {
+    NClientType findByCode(String code);
 }

@@ -10,5 +10,5 @@ import softuni.angular.data.entities.NInsObjectType;
  * On: 8/4/2021
  */
 @Repository
-public interface NInsObjectTypesRepository extends JpaRepository<NInsObjectType, Long> {
+public interface NInsObjectTypeRepository extends JpaRepository<NInsObjectType, Long> {
 }

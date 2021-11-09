@@ -39,7 +39,12 @@ export class HttpSenderService {
   }
 
   handleError(err: any) {
-    this.notifications.notifyError(err.error.message);
+    if (err.status == 400){
+      err.error.errors.map(e => this.notifications.notifyError(e.defaultMessage));
+    } else {
+      this.notifications.notifyError(err.error.message);
+    }
+
     this.spinner.hide();
     return throwError(err);
   }

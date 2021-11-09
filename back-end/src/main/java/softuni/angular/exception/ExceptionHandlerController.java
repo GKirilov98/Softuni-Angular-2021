@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.*;
 
 /**
  * Project: backend
@@ -21,7 +20,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
  */
 @RestControllerAdvice
 public class ExceptionHandlerController {
-    @ResponseStatus(BAD_REQUEST)
+    @ResponseStatus(CONFLICT)
     @ExceptionHandler(GlobalBadRequest.class)
     public ErrorModel handleGlobalBadRequestExceptions(
             GlobalBadRequest ex,

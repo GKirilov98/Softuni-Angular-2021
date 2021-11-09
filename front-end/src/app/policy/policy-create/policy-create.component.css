@@ -1,94 +1,86 @@
-.company-body{
-  background-image: url("../../static/company-body.webp");
+.form-control {
+  /*height: 40px;*/
+  box-shadow: none;
+  color: black;
 }
-
-.container{
-  height: 100%;
-  align-content: center;
+.form-control:focus {
+  border-color: #5cb85c;
 }
-
-.card{
-  /*height: 370px;*/
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 400px;
-  background-color: rgba(0,0,0,0.5) !important;
+.form-control, .btn {
+  border-radius: 3px;
 }
-
-.social_icon span{
-  font-size: 60px;
-  margin-left: 10px;
-  color: #FFC312;
+.signup-form {
+  /*width: 450px;*/
+  margin: 0 auto;
+  padding: 30px 0;
+  font-size: 15px;
 }
-
-.social_icon span:hover{
-  color: white;
-  cursor: pointer;
+.signup-form h2 {
+  color: #636363;
+  margin: 0 0 15px;
+  position: relative;
+  text-align: center;
 }
-
-.card-header h3{
-  color: white;
-}
-
-.social_icon{
+.signup-form h2:before, .signup-form h2:after {
+  content: "";
+  height: 2px;
+  width: 20%;
+  background: #d4d4d4;
   position: absolute;
-  right: 20px;
-  top: -45px;
+  top: 50%;
+  z-index: 2;
 }
-
-.input-group-prepend label{
-  width: 50px;
-  background-color: lightpink;
-  color: black;
-  border:0 !important;
+.signup-form h2:before {
+  left: 0;
 }
-
-input:focus{
-  /*outline: 0 0 0 0  !important;*/
-  box-shadow: 0 0 0 0 !important;
-
+.signup-form h2:after {
+  right: 0;
 }
-
-.remember{
-  color: white;
+.signup-form .hint-text {
+  color: #999;
+  margin-bottom: 30px;
+  text-align: center;
 }
-
-.remember input
-{
-  width: 20px;
-  height: 20px;
-  margin-left: 15px;
-  margin-right: 5px;
+.signup-form form {
+  color: #333333;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  background: #f2f3f7;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
 }
-
-.login_btn{
-  color: black;
-  background-color: lightpink;
-  width: 100px;
+.signup-form .form-group {
+  margin-bottom: 20px;
 }
-
-.login_btn:hover{
-  color: black;
-  background-color: antiquewhite;
+.signup-form input[type="checkbox"] {
+  margin-top: 3px;
 }
-
-.links{
-  color: white;
+.signup-form .btn {
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 140px;
+  outline: none !important;
 }
-
-.links a{
-  margin-left: 4px;
+/*.signup-form .row div:first-child {*/
+/*  padding-right: 10px;*/
+/*}*/
+/*.signup-form .row div:last-child {*/
+/*  padding-left: 10px;*/
+/*}*/
+.signup-form a {
+  color: #fff;
+  text-decoration: underline;
 }
-
-.login-div{
-  min-height: 650px;
+.signup-form a:hover {
+  text-decoration: none;
 }
-
-.checkbox-size{
-  padding-left: 8%;
-  padding-top: 2%;
-  width: 20px;
-  height: 20px;
+.signup-form form a {
+  color: #5cb85c;
+  text-decoration: none;
 }
-
-
+.signup-form form a:hover {
+  text-decoration: underline;
+}
+.bg-color-icon{
+  background-color: greenyellow;
+}

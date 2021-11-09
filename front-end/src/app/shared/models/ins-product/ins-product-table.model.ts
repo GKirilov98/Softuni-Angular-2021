@@ -5,4 +5,5 @@ export class InsProductTableModel{
   public premium: number;
   public comission: number;
   public defered: boolean;
+
 }

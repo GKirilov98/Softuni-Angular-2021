@@ -13,4 +13,18 @@ export default class CustomValidatorsValidator {
 
     return null;
   }
+
+  egnValidator(control: FormControl): { [p: string]: boolean } {
+    let regex = /^[0-9]+$/;
+    let value:string =  control.value;
+    if (value){
+      if (!regex.test(value) || value.length != 10) {
+        console.log(value)
+        return {"egnInvalid": true};
+      }
+    }
+
+
+    return null;
+  }
 }

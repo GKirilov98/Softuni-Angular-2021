@@ -7,7 +7,6 @@ import NomenclatureModel from "../../shared/models/nomenclature/nomenclature.mod
 import {InsProductService} from "../../insurance/ins-product/ins-product.service";
 import {InsProductTableModel} from "../../shared/models/ins-product/ins-product-table.model";
 import {PolicyCreateModel} from "../../shared/models/policy/policy-create.model";
-import {THIS_EXPR} from "@angular/compiler/src/output/output_ast";
 import {PolicyService} from "../policy.service";
 import {NotificationsService} from "../../shared/services/notifications.service";
 import {Router} from "@angular/router";

@@ -3,6 +3,7 @@ package softuni.angular.services;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.views.policy.PolicyCalculationOutView;
+import softuni.angular.views.policy.PolicyDetailsVIew;
 import softuni.angular.views.policy.PolicyInsertInView;
 import softuni.angular.views.policy.PolicyTableOutView;
 
@@ -20,4 +21,6 @@ public interface PolicyService {
     List<PolicyCalculationOutView> getCalculations(Long productId, BigDecimal sum) throws GlobalServiceException;
 
     List<PolicyTableOutView> getAll(Long clientId) throws GlobalServiceException;
+
+    List<PolicyDetailsVIew> getOneById(Long id) throws GlobalServiceException;
 }

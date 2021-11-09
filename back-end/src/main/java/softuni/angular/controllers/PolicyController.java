@@ -7,6 +7,7 @@ import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.PolicyService;
 import softuni.angular.views.insCompany.InsCompanyTableView;
 import softuni.angular.views.policy.PolicyCalculationOutView;
+import softuni.angular.views.policy.PolicyDetailsVIew;
 import softuni.angular.views.policy.PolicyInsertInView;
 import softuni.angular.views.policy.PolicyTableOutView;
 
@@ -68,6 +69,18 @@ public class PolicyController {
             @RequestParam(value = "clientId", required = false) Long clientId
     ) throws GlobalServiceException {
         List<PolicyTableOutView> result =  this.policyService.getAll(clientId);
+        return ResponseEntity.ok(result);
+    }
+
+    /**
+     * getOneById Връща  запис по id
+     * @param id -
+     * @return -
+     * @throws GlobalServiceException -
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneById(@PathVariable(value = "id") Long id) throws GlobalServiceException {
+        List<PolicyDetailsVIew> result =  this.policyService.getOneById(id);
         return ResponseEntity.ok(result);
     }
 }

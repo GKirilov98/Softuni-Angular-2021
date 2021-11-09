@@ -9,7 +9,7 @@
             <div class="col-md-5 pr-0">
               <input type="radio" id="person" name="type-client" value="person"
                      checked
-              (click)="onChangeClientType($event)">
+                     (click)="onChangeClientType($event)">
               <label for="person">Физическо лице</label>
             </div>
             <div class="col-md-5 pl-0">
@@ -54,7 +54,7 @@
             <span *ngIf="registerForm.get('name')!.errors?.minlength">Име е с минимална дължина 3 символа!</span>
           </div>
 
-          <div class="row pt-1" *ngIf="clientType=='person' && !isExistClient" >
+          <div class="row pt-1" *ngIf="clientType=='person' && !isExistClient">
             <div class="col-md-2">
               <label for="middleName" class="input-group-text bg-color-icon">
                 <mat-icon>badge</mat-icon>
@@ -62,14 +62,17 @@
               </label>
             </div>
             <div class="col-md-10">
-              <input type="text" class="form-control" name="middleName" formControlName="middleName" placeholder="Презиме" id="middleName">
+              <input type="text" class="form-control" name="middleName" formControlName="middleName"
+                     placeholder="Презиме" id="middleName">
             </div>
           </div>
 
-          <div *ngIf="clientType=='person' && !isExistClient && registerForm.get('middleName')!.invalid && registerForm.get('middleName')!.touched"
-               class="error-messages form-control">
+          <div
+            *ngIf="clientType=='person' && !isExistClient && registerForm.get('middleName')!.invalid && registerForm.get('middleName')!.touched"
+            class="error-messages form-control">
             <span *ngIf="registerForm.get('middleName')!.errors?.required">Бащино име е задължително поле!</span>
-            <span *ngIf="registerForm.get('middleName')!.errors?.minlength">Бащино име е с минимална дължина 3 символа!</span>
+            <span
+              *ngIf="registerForm.get('middleName')!.errors?.minlength">Бащино име е с минимална дължина 3 символа!</span>
           </div>
 
           <div class="row pt-1 " *ngIf="clientType=='person' && !isExistClient">
@@ -80,16 +83,19 @@
               </label>
             </div>
             <div class="col-md-10">
-              <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="Фамилия" id="lastName">
+              <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="Фамилия"
+                     id="lastName">
             </div>
+          </div>
+          <div
+            *ngIf="clientType=='person' && !isExistClient && registerForm.get('lastName')!.invalid && registerForm.get('lastName')!.touched"
+            class="error-messages form-control">
+            <span *ngIf="registerForm.get('lastName')!.errors?.required">Фамилия е задължително поле!</span>
+            <span
+              *ngIf="registerForm.get('lastName')!.errors?.minlength">Фамилия име е с минимална дължина 3 символа!</span>
           </div>
         </div>
 
-        <div *ngIf="clientType=='person' && !isExistClient && registerForm.get('lastName')!.invalid && registerForm.get('lastName')!.touched"
-             class="error-messages form-control">
-          <span *ngIf="registerForm.get('lastName')!.errors?.required">Фамилия е задължително поле!</span>
-          <span *ngIf="registerForm.get('lastName')!.errors?.minlength">Фамилия име е с минимална дължина 3 символа!</span>
-        </div>
 
         <div class="form-group" *ngIf="clientType=='person'">
           <div class="row">
@@ -113,26 +119,32 @@
         <div class="form-group" *ngIf="clientType=='legal'">
           <div class="row">
             <div class="col-md-2">
-              <label for="legal" class="input-group-text bg-color-icon">
+              <label for="bulstat" class="input-group-text bg-color-icon">
                 <mat-icon>support_agent</mat-icon>
                 *
               </label>
             </div>
             <div class="col-md-10">
-              <input type="text" class="form-control" name="bulstat" formControlName="bulstat" placeholder="Булстат" id="bulstat">
+              <input type="text" class="form-control" name="bulstat" formControlName="bulstat" placeholder="Булстат"
+                     id="bulstat">
             </div>
+          </div>
+          <div *ngIf="registerForm.get('bulstat')!.invalid && registerForm.get('bulstat')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('bulstat')!.errors?.required">Булстат е задължително поле!</span>
           </div>
         </div>
 
         <div class="form-group" *ngIf="!isExistClient">
           <div class="row">
             <div class="col-md-2">
-              <label for="name" class="input-group-text bg-color-icon">
+              <label for="email" class="input-group-text bg-color-icon">
                 <mat-icon>email</mat-icon>
               </label>
             </div>
             <div class="col-md-10">
-              <input type="email" class="form-control" name="email" formControlName="email" placeholder="Имейл" id="email">
+              <input type="email" class="form-control" name="email" formControlName="email" placeholder="Имейл"
+                     id="email">
             </div>
           </div>
         </div>
@@ -140,38 +152,55 @@
         <div class="form-group" *ngIf="!isExistClient">
           <div class="row">
             <div class="col-md-2">
-              <label for="name" class="input-group-text bg-color-icon">
+              <label for="phoneNumber" class="input-group-text bg-color-icon">
                 <mat-icon>phone</mat-icon>
                 *
               </label>
             </div>
             <div class="col-md-10">
-              <input type="tel" class="form-control" name="phoneNumber" formControlName="phoneNumber" placeholder="Тел. номер" id="phoneNumber">
+              <input type="tel" class="form-control" name="phoneNumber" formControlName="phoneNumber"
+                     placeholder="Тел. номер" id="phoneNumber">
             </div>
           </div>
+          <div *ngIf="registerForm.get('phoneNumber')!.invalid && registerForm.get('phoneNumber')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('phoneNumber')!.errors?.required">Телефонен номер е задължително поле!</span>
+            <span *ngIf="!registerForm.get('phoneNumber')!.errors?.required &&
+                          registerForm.get('phoneNumber')!.errors?.phoneInvalid">
+              Трябва да съдържа само цифри!
+            </span>
+          </div>
         </div>
+
         <div class="form-group" *ngIf="!isExistClient">
           <div class="row">
             <div class="col-md-2">
-              <label for="name" class="input-group-text bg-color-icon">
+              <label for="address" class="input-group-text bg-color-icon">
                 <mat-icon>pin_drop</mat-icon>
                 *
               </label>
             </div>
-            <div class="col-md-10" >
-              <input type="tel" class="form-control" name="address" formControlName="address" placeholder="Адрес" id="address">
+            <div class="col-md-10">
+              <input type="tel" class="form-control" name="address" formControlName="address" placeholder="Адрес"
+                     id="address">
             </div>
           </div>
+          <div *ngIf="registerForm.get('address')!.invalid && registerForm.get('address')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('address')!.errors?.required">Булстат е задължително поле!</span>
+          </div>
         </div>
+
         <div class="form-group" *ngIf="!isExistClient">
           <div class="row">
             <div class="col-md-2">
-              <label for="name" class="input-group-text bg-color-icon">
+              <label for="note" class="input-group-text bg-color-icon">
                 <mat-icon>add_comment</mat-icon>
               </label>
             </div>
             <div class="col-md-10">
-              <textarea rows="3" class="form-control" placeholder="Доп. информация" id="note" name="note" formControlName="note"></textarea>
+              <textarea rows="3" class="form-control" placeholder="Доп. информация" id="note" name="note"
+                        formControlName="note"></textarea>
             </div>
           </div>
         </div>
@@ -182,46 +211,63 @@
           <div class="row">
             <div class="col-md-2">
               <label for="identityNumber" class="input-group-text bg-color-icon">
-                <mat-icon> pan_tool </mat-icon> *
+                <mat-icon> pan_tool</mat-icon>
+                *
               </label>
             </div>
             <div class="col-md-10">
-              <input type="text" class="form-control" name="identityNumber" formControlName="identityNumber" placeholder="Идентификационен номер" id="identityNumber">
+              <input type="text" class="form-control" name="identityNumber" formControlName="identityNumber"
+                     placeholder="Идентификационен номер" id="identityNumber">
             </div>
+          </div>
+          <div *ngIf="registerForm.get('identityNumber')!.invalid && registerForm.get('identityNumber')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('identityNumber')!.errors?.required">Идентификационен номер е задължително поле!</span>
           </div>
         </div>
 
         <div class="form-group">
           <div class="row">
             <div class="col-md-2">
-              <label for="identityNumber" class="input-group-text bg-color-icon">
-                <mat-icon> attach_money </mat-icon> *
+              <label for="policySum" class="input-group-text bg-color-icon">
+                <mat-icon> attach_money</mat-icon>
+                *
               </label>
             </div>
             <div class="col-md-10">
               <input type="number" step="0.01" class="form-control"
                      name="policySum" formControlName="policySum"
                      placeholder="Застрахователна сума"
-                     id="policySum"(change)=" setPolicySum($event)">
+                     id="policySum" (change)=" setPolicySum($event)">
             </div>
+          </div>
+          <div *ngIf="registerForm.get('policySum')!.invalid && registerForm.get('policySum')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('policySum')!.errors?.required">Застрахователна сума е задължително поле!</span>
+            <span *ngIf="registerForm.get('policySum')!.errors?.min">Застрахователна сума трябва да бъде минимум 1!</span>
           </div>
         </div>
         <div class="form-group">
           <div class="row">
             <div class="col-md-2">
               <label for="insProductType" class="input-group-text bg-color-icon">
-                <mat-icon> reorder </mat-icon> *
+                <mat-icon> reorder</mat-icon>
+                *
               </label>
             </div>
             <div class="col-md-10">
               <select class="form-control" name="insProductType" formControlName="insProductType" id="insProductType"
                       (change)="getProductByType($event)">
-                <option value="" selected hidden >-- Вид застрахователен продукт --</option>
+                <option value="" selected hidden>-- Вид застрахователен продукт --</option>
                 <option *ngFor="let n of nInsType" [ngValue]="n.id">
                   {{ n.description }}
                 </option>
               </select>
             </div>
+          </div>
+          <div *ngIf="registerForm.get('insProductType')!.invalid && registerForm.get('insProductType')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('insProductType')!.errors?.required">Вид застрахователен продукт е задължително поле!</span>
           </div>
         </div>
 
@@ -229,18 +275,23 @@
           <div class="row">
             <div class="col-md-2">
               <label for="insProduct" class="input-group-text bg-color-icon">
-                <mat-icon> assignment_late </mat-icon> *
+                <mat-icon> assignment_late</mat-icon>
+                *
               </label>
             </div>
             <div class="col-md-10">
               <select class="form-control" name="insProduct" formControlName="insProduct" id="insProduct"
                       (ngModelChange)="setSelectedProduct($event)">
-                <option value="" selected hidden   >-- Застрахователен продукт --</option>
+                <option value="" selected hidden>-- Застрахователен продукт --</option>
                 <option *ngFor="let n of insProducts" [ngValue]="n.id">
                   {{ n.name }}
                 </option>
               </select>
             </div>
+          </div>
+          <div *ngIf="registerForm.get('insProduct')!.invalid && registerForm.get('insProduct')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('insProduct')!.errors?.required">Застрахователен продукт е задължително поле!</span>
           </div>
         </div>
 
@@ -249,17 +300,23 @@
           <div class="row">
             <div class="col-md-2">
               <label for="insObjectType" class="input-group-text bg-color-icon">
-                <mat-icon>format_list_bulleted</mat-icon> *
+                <mat-icon>format_list_bulleted</mat-icon>
+                *
               </label>
             </div>
             <div class="col-md-10">
-              <select class="form-control" name="insObjectType" formControlName="insObjectType" id="insObjectType" >
-                <option value="" selected hidden >-- Вид на застрахования обект--</option>
+              <select class="form-control" name="insObjectType" formControlName="insObjectType" id="insObjectType">
+                <option value="" selected hidden>-- Вид на застрахования обект--</option>
                 <option *ngFor="let n of nInsObjectTypes" [ngValue]="n.id">
                   {{ n.description }}
                 </option>
               </select>
             </div>
+          </div>
+
+          <div *ngIf="registerForm.get('insObjectType')!.invalid && registerForm.get('insObjectType')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('insObjectType')!.errors?.required">Вид на застрахования обект е задължително поле!</span>
           </div>
         </div>
 
@@ -267,27 +324,37 @@
           <div class="row">
             <div class="col-md-2">
               <label for="objectName" class="input-group-text bg-color-icon">
-                <mat-icon> home </mat-icon>*
+                <mat-icon> home</mat-icon>
+                *
               </label>
             </div>
             <div class="col-md-10">
-              <input type="text" class="form-control" name="objectName" formControlName="objectName" placeholder="Застрахован обект" id="objectName">
+              <input type="text" class="form-control" name="objectName" formControlName="objectName"
+                     placeholder="Застрахован обект" id="objectName">
             </div>
           </div>
+          <div *ngIf="registerForm.get('objectName')!.invalid && registerForm.get('objectName')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('objectName')!.errors?.required">Застрахован обект е задължително поле!</span>
+          </div>
         </div>
-
 
 
         <div class="form-group">
           <div class="row">
             <div class="col-md-2">
               <label for="objectDescription" class="input-group-text bg-color-icon">
-                <mat-icon> help_outline </mat-icon>
+                <mat-icon> help_outline</mat-icon> *
               </label>
             </div>
             <div class="col-md-10">
-              <textarea rows="3" class="form-control" placeholder="Описание на застрахователния обект" id="objectDescription" name="objectDescription" formControlName="objectDescription"></textarea>
+              <textarea rows="3" class="form-control" placeholder="Описание на застрахователния обект"
+                        id="objectDescription" name="objectDescription" formControlName="objectDescription"></textarea>
             </div>
+          </div>
+          <div *ngIf="registerForm.get('objectDescription')!.invalid && registerForm.get('objectDescription')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('objectDescription')!.errors?.required">Описание на застрахователния обект е задължително поле!</span>
           </div>
         </div>
 
@@ -299,7 +366,8 @@
               </label>
             </div>
             <div class="col-md-10">
-              <textarea rows="3" class="form-control" placeholder="Доп. информация за полица" id="policyNote" name="policyNote" formControlName="policyNote"></textarea>
+              <textarea rows="3" class="form-control" placeholder="Доп. информация за полица" id="policyNote"
+                        name="policyNote" formControlName="policyNote"></textarea>
             </div>
           </div>
         </div>
@@ -307,13 +375,22 @@
         <div class="form-group ">
           <div class="row">
             <div class="col-md-5 ml-5">
-                  <label for="beginDate">От:</label>
-                  <input type="date" class="form-control" name="beginDate" formControlName="beginDate"  id="beginDate">
+              <label for="beginDate">От:</label>
+              <input type="date" class="form-control" name="beginDate" formControlName="beginDate" id="beginDate">
             </div>
             <div class="col-md-5">
               <label for="endDate">До: </label>
-              <input type="date" class="form-control" name="endDate" formControlName="endDate"  id="endDate">
+              <input type="date" class="form-control" name="endDate" formControlName="endDate" id="endDate">
             </div>
+          </div>
+
+          <div *ngIf="registerForm.get('beginDate')!.invalid && registerForm.get('beginDate')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('beginDate')!.errors?.required">Начална дата е задължително поле!</span>
+          </div>
+          <div *ngIf="registerForm.get('endDate')!.invalid && registerForm.get('endDate')!.touched"
+               class="error-messages form-control">
+            <span *ngIf="registerForm.get('endDate')!.errors?.required">Крайна дата е задължително поле!</span>
           </div>
         </div>
 
@@ -330,10 +407,10 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-6">
-             <h6>Данък Застрахователна Премия:</h6>
+              <h6>Данък Застрахователна Премия:</h6>
             </div>
             <div class="col-md-6">
-             <span> {{taxPremium.toFixed(2)}} лв.</span>
+              <span> {{taxPremium.toFixed(2)}} лв.</span>
             </div>
           </div>
         </div>

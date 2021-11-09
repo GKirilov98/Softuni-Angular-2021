@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {HttpSenderService} from "../shared/services/http-sender.service";
 import {PolicyCalculationsModel} from "../shared/models/policy/policy-calculations.model";
 import {PolicyListModel} from "../shared/models/policy/policy-list.model";
+import {PolicyDetailsModel} from "../shared/models/policy/policy-details.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class PolicyService {
 
   getAll(): Observable<PolicyListModel[]> {
     return this.http.get("Policy/");
+  }
+
+  getOneById(id: number): Observable<PolicyDetailsModel[]> {
+    return this.http.get("Policy/" + id);
   }
 }

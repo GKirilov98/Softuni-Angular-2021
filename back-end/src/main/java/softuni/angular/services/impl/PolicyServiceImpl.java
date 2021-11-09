@@ -13,6 +13,7 @@ import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.*;
 import softuni.angular.services.PolicyService;
 import softuni.angular.views.policy.PolicyCalculationOutView;
+import softuni.angular.views.policy.PolicyDetailsVIew;
 import softuni.angular.views.policy.PolicyInsertInView;
 import softuni.angular.views.policy.PolicyTableOutView;
 
@@ -97,6 +98,7 @@ public class PolicyServiceImpl implements PolicyService {
             }
 
             Policy entity = this.modelMapper.map(inView, Policy.class);
+            entity.setNote(inView.getPolicyNote());
             entity.setCreationDate(DateTime.now());
             InsProduct insProduct = this.productRepository.findById(inView.getInsProductId())
                     .orElseThrow(() -> new GlobalBadRequest("Невалиден продукт!",
@@ -167,6 +169,40 @@ public class PolicyServiceImpl implements PolicyService {
             throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
         } finally {
             logger.info(String.format("%s: Finished getAll service", logId));
+        }
+    }
+
+    @Override
+    public List<PolicyDetailsVIew> getOneById(Long id) throws GlobalServiceException {
+        UserDetailsImpl currentUser =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start getOneById service", logId));
+            List<PolicyDetailsVIew> result = new ArrayList<>();
+            Policy policy = this.policyRepository.findById(id).orElse(null);
+            if (policy == null){
+                return result;
+            }
+
+            PolicyDetailsVIew map = this.modelMapper.map(policy, PolicyDetailsVIew.class);
+            map.setPolicyNote(policy.getNote());
+
+            this.modelMapper.map(policy.getClient(), map);
+            map.setClientNote(policy.getClient().getNote());
+
+            map.setClientTypeCode(policy.getClient().getClientType().getCode());
+            map.setClientTypeDescription(policy.getClient().getClientType().getDescription());
+            map.setProductName(policy.getInsProduct().getName() + " / " + policy.getInsProduct().getInsCompany().getName());
+            map.setObjectTypeDescription(policy.getInsObjectType().getDescription());
+
+            result.add(map);
+            return result;
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished getOneById service", logId));
         }
     }
 

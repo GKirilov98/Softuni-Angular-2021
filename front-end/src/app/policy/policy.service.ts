@@ -31,4 +31,8 @@ export class PolicyService {
   getOneById(id: number): Observable<PolicyDetailsModel[]> {
     return this.http.get("Policy/" + id);
   }
+
+  deleteOneById(id: number) {
+    return this.http.delete("Policy/" + id);
+  }
 }

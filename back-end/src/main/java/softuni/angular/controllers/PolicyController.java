@@ -83,4 +83,17 @@ public class PolicyController {
         List<PolicyDetailsVIew> result =  this.policyService.getOneById(id);
         return ResponseEntity.ok(result);
     }
+
+    /**
+     *  Изтриване в базата запис
+     * @param id - id на обекта за изтриване
+     * @return -
+     * @throws GlobalServiceException -
+     * @throws GlobalBadRequest -
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteOne(@PathVariable("id") Long id) throws GlobalServiceException, GlobalBadRequest {
+        this.policyService.deleteOne(id);
+        return ResponseEntity.status(201).build();
+    }
 }

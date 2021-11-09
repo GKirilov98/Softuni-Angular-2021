@@ -12,6 +12,7 @@ import java.math.BigDecimal;
  * On: 11/9/2021
  */
 public class PolicyDetailsVIew implements Serializable {
+    private Long id;
     private String clientTypeCode;
     private String clientTypeDescription;
     private String fullName;
@@ -33,6 +34,15 @@ public class PolicyDetailsVIew implements Serializable {
     private DateTime beginDate;
     private DateTime endDate;
     private DateTime creationDate;
+
+    @JsonProperty("id")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @JsonProperty("clientTypeCode")
     public String getClientTypeCode() {

@@ -189,6 +189,7 @@ public class PolicyServiceImpl implements PolicyService {
             map.setPolicyNote(policy.getNote());
 
             this.modelMapper.map(policy.getClient(), map);
+            map.setId(policy.getId());
             map.setClientNote(policy.getClient().getNote());
 
             map.setClientTypeCode(policy.getClient().getClientType().getCode());
@@ -203,6 +204,31 @@ public class PolicyServiceImpl implements PolicyService {
             throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
         } finally {
             logger.info(String.format("%s: Finished getOneById service", logId));
+        }
+    }
+
+    @Override
+    public void deleteOne(Long id) throws GlobalBadRequest, GlobalServiceException {
+        UserDetailsImpl currentUser =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start deleteOne service", logId));
+            Policy policy = this.policyRepository.findById(id).orElse(null);
+            if (policy == null){
+                throw new GlobalBadRequest("Подаденото id е невалидно!",
+                        new Throwable("Invalid id!"));
+            }
+
+            this.policyRepository.delete(policy);
+        } catch (GlobalBadRequest exc) {
+            logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
+            throw exc;
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished deleteOne service", logId));
         }
     }
 

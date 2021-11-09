@@ -1,4 +1,5 @@
 export class PolicyDetailsModel{
+  public id: number;
   public clientTypeCode: string;
   public clientTypeDescription: string;
   public fullName: string;

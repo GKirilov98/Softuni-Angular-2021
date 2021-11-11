@@ -6,7 +6,7 @@
         <mat-icon>badge</mat-icon>
       </label>
       <input type="text" class="form-control" placeholder="Име" name="name" id="name" [(ngModel)]="filterName"
-       (keyup)="changeFilter()">
+             (keyup)="changeFilter()">
     </div>
 
   </div>
@@ -15,36 +15,34 @@
       <label for="bulstat" class="input-group-text">
         <mat-icon>support_agent</mat-icon>
       </label>
-      <input type="text" class="form-control" placeholder="Булстат" name="bulstat" id="bulstat" [(ngModel)]="filterBulstat"
+      <input type="text" class="form-control" placeholder="Булстат/ЕГН" name="bulstat" id="bulstat" [(ngModel)]="filterEgnBulstat"
              (keyup)="changeFilter()">
     </div>
-  </div>
-  <div class="col-sm-3">
-    <a class="btn btn-success float-right border-dark" routerLink="/ins-company/create">Впиши компания</a>
   </div>
 </div>
 <div>
   <table class="table table-hover bg-white">
     <thead>
     <tr>
-      <th scope="col" class="col-1">#</th>
+      <th scope="col" class="col-0">#</th>
+      <th scope="col" class="col-2">Вид клиент</th>
       <th scope="col" class="col-2">Име</th>
-      <th scope="col" class="col-2">Булстат</th>
+      <th scope="col" class="col-2">Булстат/ЕГН</th>
       <th scope="col" class="col-2">Имейл</th>
-      <th scope="col" class="col-2">Телефон</th>
-      <th scope="col" class="col-4">Действия</th>
+      <th scope="col" class="col-1">Телефон</th>
+      <th scope="col" class="col-3">Действия</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let c of insCompanyTableModels; let i = index">
+    <tr *ngFor="let c of clientTableModels; let i = index">
       <th scope="row">{{i + 1}}</th>
+      <td>{{c.clientTypeDescription}}</td>
       <td>{{c.name}}</td>
-      <td>{{c.bulstat}}</td>
+      <td>{{c.egnBulstat}}</td>
       <td>{{c.email}}</td>
-      <td>{{c.phone}}</td>
+      <td>{{c.phoneNumber}}</td>
       <td>
-        <a class="btn btn-info mr-2" routerLink="{{'/ins-company/details/' + c.id}}">Детайли</a>
-        <a class="btn btn-warning mr-2" routerLink="{{'/ins-company/edit/' + c.id}}">Редакция</a>
+        <a class="btn btn-info mr-2" routerLink="{{'/client/details/' + c.id}}">Детайли</a>
         <button class="btn btn-danger" (click)="deleteOne(c.id)">Изтрйи</button>
       </td>
     </tr>

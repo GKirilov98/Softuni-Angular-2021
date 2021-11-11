@@ -5,15 +5,10 @@ import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import softuni.angular.data.entities.InsCompany;
-import softuni.angular.data.entities.InsProduct;
-import softuni.angular.data.entities.NInsType;
+import softuni.angular.data.entities.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
-import softuni.angular.repositories.InsCompanyRepository;
-import softuni.angular.repositories.InsProductRepository;
-import softuni.angular.repositories.NInsTypeRepository;
-import softuni.angular.repositories.PolicyRepository;
+import softuni.angular.repositories.*;
 import softuni.angular.services.InsProductService;
 import softuni.angular.views.insProduct.InsProductCompanyTableView;
 import softuni.angular.views.insProduct.InsProductDetailsView;
@@ -36,16 +31,18 @@ public class InsProductServiceImpl implements InsProductService {
     private final InsCompanyRepository insCompanyRepository;
     private final NInsTypeRepository nInsTypeRepository;
     private final PolicyRepository policyRepository;
+    private final ClientRepository clientRepository;
 
     public InsProductServiceImpl(InsProductRepository insProductRepository,
                                  ModelMapper modelMapper,
                                  InsCompanyRepository insCompanyRepository,
-                                 NInsTypeRepository nInsTypeRepository, PolicyRepository policyRepository) {
+                                 NInsTypeRepository nInsTypeRepository, PolicyRepository policyRepository, ClientRepository clientRepository) {
         this.insProductRepository = insProductRepository;
         this.modelMapper = modelMapper;
         this.insCompanyRepository = insCompanyRepository;
         this.nInsTypeRepository = nInsTypeRepository;
         this.policyRepository = policyRepository;
+        this.clientRepository = clientRepository;
     }
 
     @Override
@@ -180,14 +177,14 @@ public class InsProductServiceImpl implements InsProductService {
                         new Throwable("Invalid id!"));
             }
 
-            int size = this.policyRepository.findAllByInsProductIdCustom(insProduct.getId()).size();
-            if (size != 0){
-                throw new GlobalBadRequest("Има активни полици свързани с този продукт!",
-                        new Throwable("Could not be deleted"));
-            }
+            List<Policy> policies = this.policyRepository.findAllByInsProductIdCustom(id);
+            this.policyRepository.deleteAll(policies);
 
-            // TODO: 10/31/2021 Тряба да се изтрията полисите (бъдещите)
             this.insProductRepository.delete(insProduct);
+
+            List<Client> clients = this.clientRepository.findAllByNoPliciesCustom();
+            this.clientRepository.deleteAll(clients);
+
         } catch (GlobalBadRequest exc) {
             logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
             throw exc;

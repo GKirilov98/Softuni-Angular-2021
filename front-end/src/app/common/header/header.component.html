@@ -23,6 +23,9 @@
       </ng-container>
       <ng-container *ngIf="sessionStorage.getItem('username')">
         <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/client/list">Клиенти<mat-icon>person_outline</mat-icon></a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/policy/list">Полици<mat-icon>account_balance</mat-icon></a>
         </li>
         <ng-container *ngIf="sessionStorage.getItem('isAdmin') === 'true'">

@@ -18,8 +18,9 @@ export class InsCompanyDetailsComponent implements OnInit, OnDestroy {
   originalProduct!: InsProductTableModel[];
   observablesUnsubscribe: Subscription[] = [];
   filterName: string;
+
   constructor(
-    private company: InsCompanyService,
+    private companyService: InsCompanyService,
     private insProductService: InsProductService,
     private activateRoute: ActivatedRoute,
     private notificationsService: NotificationsService
@@ -29,7 +30,7 @@ export class InsCompanyDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let id = null;
     this.activateRoute.params.subscribe(data => id = data['id']);
-    let subscription = this.company.getOneById(id).subscribe(data => this.detailsModel = data[0]);
+    let subscription = this.companyService.getOneById(id).subscribe(data => this.detailsModel = data[0]);
     this.observablesUnsubscribe.push(subscription);
     let subscribe = this.insProductService.getAllByCompanyId(id).subscribe(
       data => {
@@ -47,15 +48,21 @@ export class InsCompanyDetailsComponent implements OnInit, OnDestroy {
 
   changeFilter() {
     this.products = this.originalProduct.filter(e => {
-      return  e.name.includes(this.filterName);
+      return e.name.includes(this.filterName);
     })
   }
 
   deleteOne(id: number) {
-    this.insProductService.deleteOneById(id)
+    this.notificationsService.confirmDanger("Сигурни ли сте, че искате да изтриете този продукт!")
       .subscribe(data => {
-        this.notificationsService.notifySuccess("Успешно изтрит продукт!");
-        this.ngOnInit();
-        })
+        if (!data.Success) {
+          let subscription = this.insProductService.deleteOneById(id)
+            .subscribe(() => {
+              this.notificationsService.notifySuccess("Успешно изтрит продукт!");
+              this.ngOnInit()
+            });
+          this.observablesUnsubscribe.push(subscription);
+        }
+      })
   }
 }

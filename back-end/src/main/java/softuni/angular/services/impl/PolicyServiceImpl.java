@@ -208,6 +208,7 @@ public class PolicyServiceImpl implements PolicyService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteOne(Long id) throws GlobalBadRequest, GlobalServiceException {
         UserDetailsImpl currentUser =
                 (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -221,6 +222,8 @@ public class PolicyServiceImpl implements PolicyService {
             }
 
             this.policyRepository.delete(policy);
+            List<Client> clients = this.clientRepository.findAllByNoPliciesCustom();
+            this.clientRepository.deleteAll(clients);
         } catch (GlobalBadRequest exc) {
             logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
             throw exc;

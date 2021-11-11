@@ -46,9 +46,11 @@ export class InsCompanyListComponent implements OnInit, OnDestroy {
     this.notificationService.confirmDanger("Сигурни ли сте, че искате да изтриете този обект!")
       .subscribe(data => {
         if (!data.Success) {
-          let subscription = this.insCompanyService.deleteOneById(id).subscribe(() => this.ngOnInit());
+          let subscription = this.insCompanyService.deleteOneById(id).subscribe(() =>{
+            this.notificationService.notifySuccess("Успешно изтрита компания!");
+            this.ngOnInit();
+          } );
           this.observablesUnsubscribe.push(subscription);
-          this.notificationService.notifySuccess("Успешно изтрита компания!");
         }
       })
   }

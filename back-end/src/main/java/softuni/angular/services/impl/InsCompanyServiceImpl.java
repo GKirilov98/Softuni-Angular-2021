@@ -5,11 +5,16 @@ import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import softuni.angular.data.entities.Client;
 import softuni.angular.data.entities.InsCompany;
+import softuni.angular.data.entities.InsProduct;
 import softuni.angular.data.entities.Policy;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
+import softuni.angular.repositories.ClientRepository;
 import softuni.angular.repositories.InsCompanyRepository;
+import softuni.angular.repositories.InsProductRepository;
 import softuni.angular.repositories.PolicyRepository;
 import softuni.angular.services.InsCompanyService;
 import softuni.angular.views.insCompany.InsCompanyDetailsView;
@@ -31,11 +36,15 @@ public class InsCompanyServiceImpl implements InsCompanyService {
     private final ModelMapper modelMapper;
     private final InsCompanyRepository insCompanyRepository;
     private final PolicyRepository policyRepository;
+    private final InsProductRepository productRepository;
+    private final ClientRepository clientRepository;
 
-    public InsCompanyServiceImpl(ModelMapper modelMapper, InsCompanyRepository insCompanyRepository, PolicyRepository policyRepository) {
+    public InsCompanyServiceImpl(ModelMapper modelMapper, InsCompanyRepository insCompanyRepository, PolicyRepository policyRepository, InsProductRepository productRepository, ClientRepository clientRepository) {
         this.modelMapper = modelMapper;
         this.insCompanyRepository = insCompanyRepository;
         this.policyRepository = policyRepository;
+        this.productRepository = productRepository;
+        this.clientRepository = clientRepository;
     }
 
     @Override
@@ -70,23 +79,21 @@ public class InsCompanyServiceImpl implements InsCompanyService {
         String logId = currentUser.getRequestId();
         try {
             logger.info(String.format("%s: Start updateOne service", logId));
-//            if (this.insCompanyRepository.existsByBulstatAndIsActive(inView.getBulstat(), true)) {
-//                throw new GlobalBadRequest("Вече има съществуваща фирма с този Булстат!",
-//                        new Throwable("Already exist company with this bulstat!"));
-//            }
             InsCompany insCompany = this.insCompanyRepository.findById(id).orElse(null);
-            if (insCompany == null){
+            if (insCompany == null) {
                 throw new GlobalBadRequest("Подаденото id е невалидно!",
                         new Throwable("Invalid id!"));
             }
-            int size = this.policyRepository.findAllByInsCompanyIdCustom(id).size();
-            if (size > 0){
-                throw new GlobalBadRequest("Има сключени застраховки с този застороховател!",
-                        new Throwable("It has policy with this insurance company!"));
-            }
+//            int size = this.policyRepository.findAllByInsCompanyIdCustom(id).size();
+//            if (size > 0){
+//                throw new GlobalBadRequest("Има сключени застраховки с този застороховател!",
+//                        new Throwable("It has policy with this insurance company!"));
+//            }
 
-            this.modelMapper.map(inView, insCompany);
-
+            insCompany.setAddress(inView.getAddress());
+            insCompany.setEmail(inView.getEmail());
+            insCompany.setName(inView.getName());
+            insCompany.setPhone(inView.getPhone());
             this.insCompanyRepository.save(insCompany);
         } catch (GlobalBadRequest exc) {
             logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
@@ -139,6 +146,7 @@ public class InsCompanyServiceImpl implements InsCompanyService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteOne(Long id) throws GlobalServiceException, GlobalBadRequest {
         UserDetailsImpl currentUser =
                 (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -146,21 +154,22 @@ public class InsCompanyServiceImpl implements InsCompanyService {
         try {
             logger.info(String.format("%s: Start deleteOne service", logId));
             InsCompany insCompany = this.insCompanyRepository.findById(id).orElse(null);
-            if (insCompany == null){
+            if (insCompany == null) {
                 throw new GlobalBadRequest("Подаденото id е невалидно!",
                         new Throwable("Invalid id!"));
             }
 
-            int size = this.policyRepository.findAllByInsCompanyIdCustom(id).size();
-            if (size > 0){
-                throw new GlobalBadRequest("Има сключени застраховки с този застороховател!",
-                        new Throwable("It has policy with this insurance company!"));
-            }
+            List<Policy> policies = this.policyRepository.findAllByInsCompanyIdCustom(id);
+            this.policyRepository.deleteAll(policies);
 
+            List<InsProduct> products = this.productRepository.findAllByInsCompanyId(id);
+            this.productRepository.deleteAll(products);
 
-            // TODO: 10/31/2021 Тряба да се изтрията полисите  (бъдещите)
-            // TODO: 10/31/2021 Трябва да се изтрият продуктите
             this.insCompanyRepository.delete(insCompany);
+
+            List<Client> clients = this.clientRepository.findAllByNoPliciesCustom();
+            this.clientRepository.deleteAll(clients);
+
         } catch (GlobalBadRequest exc) {
             logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
             throw exc;

@@ -15,39 +15,55 @@ import {InsTypeEditComponent} from "../insurance/ins-type/ins-type-edit/ins-type
 import {InsTypeListComponent} from "../insurance/ins-type/ins-type-list/ins-type-list.component";
 import {PolicyCreateComponent} from "../policy/policy-create/policy-create.component";
 import {PolicyListComponent} from "../policy/policy-list/policy-list.component";
-import {PolicyDetailsModel} from "../shared/models/policy/policy-details.model";
 import {PolicyDetailsComponent} from "../policy/policy-details/policy-details.component";
+import {ClientListComponent} from "../client/client-list/client-list.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent, pathMatch: 'full'},
   {path: "home", component: HomeComponent, pathMatch: 'full'},
-  {path: "user", children:[
-      {path:"register", component: RegisterComponent, pathMatch:'full' },
-      {path:"login", component: LoginComponent, pathMatch:'full' },
-    ]},
-  {path: "ins-company", children:[
-      {path:"create", component: InsCompanyRegisterComponent, pathMatch:'full' },
-      {path:"edit/:id", component: InsCompanyEditComponent, pathMatch:'full' },
-      {path:"details/:id", component: InsCompanyDetailsComponent, pathMatch:'full' },
-      {path:"list", component: InsCompanyListComponent, pathMatch:'full' },
-    ]},
-  {path: "ins-product", children:[
-      {path:"create", component: InsProductCreateComponent, pathMatch:'full' },
-      {path:"create/:id", component: InsProductCreateComponent, pathMatch:'full' },
-      {path:"edit/:id", component: InsProductEditComponent, pathMatch:'full' },
-      {path:"list", component: InsProductListComponent, pathMatch:'full' },
-    ]},
-  {path: "ins-type", children:[
-      {path:"create", component: InsTypeCreateComponent, pathMatch:'full' },
-      {path:"edit/:id", component: InsTypeEditComponent, pathMatch:'full' },
-      {path:"list", component: InsTypeListComponent, pathMatch:'full' },
-    ]},
-  {path: "policy", children:[
-      {path:"create", component: PolicyCreateComponent, pathMatch:'full' },
+  {
+    path: "user", children: [
+      {path: "register", component: RegisterComponent, pathMatch: 'full'},
+      {path: "login", component: LoginComponent, pathMatch: 'full'},
+    ]
+  },
+  {
+    path: "ins-company", children: [
+      {path: "create", component: InsCompanyRegisterComponent, pathMatch: 'full'},
+      {path: "edit/:id", component: InsCompanyEditComponent, pathMatch: 'full'},
+      {path: "details/:id", component: InsCompanyDetailsComponent, pathMatch: 'full'},
+      {path: "list", component: InsCompanyListComponent, pathMatch: 'full'},
+    ]
+  },
+  {
+    path: "ins-product", children: [
+      {path: "create", component: InsProductCreateComponent, pathMatch: 'full'},
+      {path: "create/:id", component: InsProductCreateComponent, pathMatch: 'full'},
+      {path: "edit/:id", component: InsProductEditComponent, pathMatch: 'full'},
+      {path: "list", component: InsProductListComponent, pathMatch: 'full'},
+    ]
+  },
+  {
+    path: "ins-type", children: [
+      {path: "create", component: InsTypeCreateComponent, pathMatch: 'full'},
+      {path: "edit/:id", component: InsTypeEditComponent, pathMatch: 'full'},
+      {path: "list", component: InsTypeListComponent, pathMatch: 'full'},
+    ]
+  },
+  {
+    path: "policy", children: [
+      {path: "create", component: PolicyCreateComponent, pathMatch: 'full'},
       // {path:"edit/:id", component: InsTypeEditComponent, pathMatch:'full' },
-      {path:"list", component: PolicyListComponent, pathMatch:'full' },
-      {path:"details/:id", component: PolicyDetailsComponent, pathMatch:'full' }
-    ]},
+      {path: "list", component: PolicyListComponent, pathMatch: 'full'},
+      {path: "details/:id", component: PolicyDetailsComponent, pathMatch: 'full'}
+    ]
+  },
+  {
+    path: "client", children: [
+      {path: "list", component: ClientListComponent, pathMatch: 'full'},
+      {path: "details/:id", component: PolicyDetailsComponent, pathMatch: 'full'}
+    ]
+  },
 ]
 
 @NgModule({

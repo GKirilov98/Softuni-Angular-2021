@@ -31,7 +31,8 @@
         </div>
         <div class="col-sm-10 pl-0">
           <input type="text" class="form-control" name="bulstat" placeholder="Булстат" id="bulstat"
-                 formControlName="bulstat">
+                 value="{{editForm.get('bulstat').value}}"
+                 disabled>
         </div>
       </div>
       <div *ngIf="editForm.get('bulstat')!.invalid && editForm.get('bulstat')!.touched"

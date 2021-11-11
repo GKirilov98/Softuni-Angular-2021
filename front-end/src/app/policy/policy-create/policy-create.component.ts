@@ -144,6 +144,8 @@ export class PolicyCreateComponent implements OnInit, OnDestroy {
       this.registerForm.addControl('note', new FormControl(null, []),)
     } else {
       this.registerForm.removeControl('name');
+      this.registerForm.removeControl("middleName")
+      this.registerForm.removeControl("lastName")
       this.registerForm.removeControl('email');
       this.registerForm.removeControl('phoneNumber');
       this.registerForm.removeControl('address');
@@ -184,5 +186,9 @@ export class PolicyCreateComponent implements OnInit, OnDestroy {
   setPolicySum($event: any) {
     this.policySum = +$event.target.value;
     this.setNeededMoney();
+  }
+
+  test(){
+    debugger;
   }
 }

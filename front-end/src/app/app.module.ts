@@ -23,13 +23,15 @@ import {NotificationsService} from "./shared/services/notifications.service";
 import {notificationsConfig} from "./shared/notifications/notifications.config";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {HttpSenderService} from "./shared/services/http-sender.service";
+import { ClientListComponent } from './client/client-list/client-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ClientListComponent
   ],
   imports: [
     BrowserModule,

@@ -32,8 +32,8 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-6">
-              <h6 *ngIf="policy.clientTypeCode=='PERSON'">ЕГН:</h6>
-              <h6 *ngIf="policy.clientTypeCode!='PERSON'">Булстат:</h6>
+              <h6 *ngIf="policy?.clientTypeCode=='PERSON'">ЕГН:</h6>
+              <h6 *ngIf="policy?.clientTypeCode!='PERSON'">Булстат:</h6>
             </div>
             <div class="col-md-6">
               <span> {{policy.egnBulstat}}</span>

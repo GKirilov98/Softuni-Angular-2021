@@ -1,7 +1,10 @@
 package softuni.angular.services;
 
+import softuni.angular.exception.GlobalBadRequest;
+import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.views.client.ClientCreateInView;
 import softuni.angular.views.client.ClientDetailsOutView;
+import softuni.angular.views.client.ClientTableOutView;
 
 import java.util.List;
 
@@ -11,5 +14,8 @@ import java.util.List;
  * On: 8/4/2021
  */
 public interface ClientService {
-    List<ClientDetailsOutView> insertOne(ClientCreateInView inView);
+
+    List<ClientTableOutView> getAll() throws GlobalServiceException;
+
+    void deleteOneById(Long id) throws GlobalBadRequest, GlobalServiceException;
 }

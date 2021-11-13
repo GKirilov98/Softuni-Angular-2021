@@ -25,4 +25,8 @@ public interface PolicyService {
     List<PolicyDetailsVIew> getOneById(Long id) throws GlobalServiceException;
 
     void deleteOne(Long id) throws GlobalBadRequest, GlobalServiceException;
+
+    List<PolicyTableOutView> getAllByProductId(Long id) throws GlobalServiceException;
+
+    List<PolicyTableOutView> getAllByClientId(Long id) throws GlobalServiceException;
 }

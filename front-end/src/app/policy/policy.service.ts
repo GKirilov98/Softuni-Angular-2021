@@ -35,4 +35,12 @@ export class PolicyService {
   deleteOneById(id: number) {
     return this.http.delete("Policy/" + id);
   }
+
+  getAllByProductId(id: number): Observable<PolicyListModel[]>{
+    return this.http.get("Policy/getAllByProductId/" + id);
+  }
+
+  getAllByClientId(id: number): Observable<PolicyListModel[]>{
+    return this.http.get("Policy/getAllByClientId/" + id);
+  }
 }

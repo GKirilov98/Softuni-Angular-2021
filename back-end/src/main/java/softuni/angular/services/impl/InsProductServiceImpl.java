@@ -111,6 +111,7 @@ public class InsProductServiceImpl implements InsProductService {
 
             InsProductDetailsView map  = this.modelMapper.map(insProduct, InsProductDetailsView.class);
             map.setInsTypeId(insProduct.getInsType().getId());
+            map.setInsTypeDescription(insProduct.getInsType().getDescription());
             map.setInsCompanyId(insProduct.getInsCompany().getId());
             map.setInsCompanyName(insProduct.getInsCompany().getName());
             List<InsProductDetailsView> result = new ArrayList<>();

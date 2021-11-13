@@ -18,6 +18,8 @@ import {PolicyListComponent} from "../policy/policy-list/policy-list.component";
 import {PolicyDetailsComponent} from "../policy/policy-details/policy-details.component";
 import {ClientListComponent} from "../client/client-list/client-list.component";
 import {UserListComponent} from "../admin/user-list/user-list.component";
+import {InsProductDetailsComponent} from "../insurance/ins-product/ins-product-details/ins-product-details.component";
+import {ClientDetailsComponent} from "../client/client-details/client-details.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent, pathMatch: 'full'},
@@ -41,6 +43,7 @@ const routes: Routes = [
       {path: "create", component: InsProductCreateComponent, pathMatch: 'full'},
       {path: "create/:id", component: InsProductCreateComponent, pathMatch: 'full'},
       {path: "edit/:id", component: InsProductEditComponent, pathMatch: 'full'},
+      {path: "details/:id", component: InsProductDetailsComponent, pathMatch: 'full'},
       {path: "list", component: InsProductListComponent, pathMatch: 'full'},
     ]
   },
@@ -62,7 +65,7 @@ const routes: Routes = [
   {
     path: "client", children: [
       {path: "list", component: ClientListComponent, pathMatch: 'full'},
-      {path: "details/:id", component: PolicyDetailsComponent, pathMatch: 'full'}
+      {path: "details/:id", component: ClientDetailsComponent, pathMatch: 'full'}
     ]
   },
   {

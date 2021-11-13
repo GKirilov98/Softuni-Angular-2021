@@ -3,6 +3,7 @@ import {HttpSenderService} from "../shared/services/http-sender.service";
 
 import {Observable} from "rxjs";
 import ClientTableModel from "../shared/models/client/client-table.model";
+import {ClientDetailsModel} from "../shared/models/client/client-details.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class ClientService {
 
   deleteOneById(id: number) {
     return this.http.delete("Client/" + id);
+  }
+
+  getOneById(id: number): Observable<ClientDetailsModel[]> {
+    return this.http.get("Client/" + id);
   }
 }

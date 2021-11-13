@@ -6,11 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.ClientService;
-import softuni.angular.views.client.ClientCreateInView;
 import softuni.angular.views.client.ClientDetailsOutView;
 import softuni.angular.views.client.ClientTableOutView;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -25,12 +23,24 @@ public class ClientController {
     private ClientService service;
 
     /**
-     *  Връща всички записи от базата
+     * Връща всички записи от базата
+     *
      * @return -
      */
     @GetMapping("/")
     public ResponseEntity<?> getAll() throws GlobalServiceException {
         List<ClientTableOutView> list = service.getAll();
+        return ResponseEntity.ok().body(list);
+    }
+
+    /**
+     * Връща 1 запис от базата
+     *
+     * @return -
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneById(@PathVariable("id") Long id) throws GlobalServiceException {
+        List<ClientDetailsOutView> list = service.getOneById(id);
         return ResponseEntity.ok().body(list);
     }
 

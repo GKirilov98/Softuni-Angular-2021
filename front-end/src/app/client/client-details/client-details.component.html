@@ -1,0 +1,27 @@
+<div class="container emp-profile">
+  <form >
+    <div class="row">
+      <div class="col-md-6">
+        <div class="profile-work">
+          <p><strong>КЛИЕНТ</strong></p>
+          <p> Име: {{detailsModel?.name}}
+          </p>
+          <p>Вид: {{detailsModel?.clientTypeDescription}}</p>
+          <p>ЕГН/Булстат: {{detailsModel?.egnBulstat}}</p>
+          <p>Имайл: {{detailsModel?.email}}</p>
+          <p>Телефонен номер: {{detailsModel?.phoneNumber}}</p>
+          <p>Адрес: {{detailsModel?.address}}</p>
+          <p>Доп. информация: {{detailsModel?.note}}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+
+    </div>
+    <div class="row pt-3 pb-5">
+      <div class="col-md-12" *ngIf="detailsModel.id">
+        <app-policy-list [clientId]="detailsModel.id" ></app-policy-list>
+      </div>
+    </div>
+  </form>
+</div>

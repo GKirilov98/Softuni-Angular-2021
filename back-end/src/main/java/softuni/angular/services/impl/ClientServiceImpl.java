@@ -12,8 +12,10 @@ import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.ClientRepository;
 import softuni.angular.repositories.PolicyRepository;
 import softuni.angular.services.ClientService;
+import softuni.angular.views.client.ClientDetailsOutView;
 import softuni.angular.views.client.ClientTableOutView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,6 +83,31 @@ public class ClientServiceImpl implements ClientService {
         } catch (GlobalBadRequest exc) {
             logger.error(String.format("%s: %s", logId, exc.getCustomMessage()), exc);
             throw exc;
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished deleteOneById service", logId));
+        }
+    }
+
+    @Override
+    public List<ClientDetailsOutView> getOneById(Long id) throws GlobalServiceException {
+
+        UserDetailsImpl currentUser = (UserDetailsImpl) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start deleteOneById service", logId));
+            List<ClientDetailsOutView> result = new ArrayList<>();
+            Client client = this.clientRepository.findById(id).orElse(null);
+            if (client != null){
+                ClientDetailsOutView map = this.modelMapper.map(client, ClientDetailsOutView.class);
+                map.setObjectTypeDescription(client.getClientType().getDescription());
+                result.add(map);
+            }
+
+            return result;
         } catch (Exception exc) {
             logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
             throw new GlobalServiceException("Грешка при работа с базата данни!", exc);

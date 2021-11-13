@@ -1,0 +1,33 @@
+<div class="container emp-profile">
+  <form >
+    <div class="row">
+      <div class="col-md-6">
+        <div class="profile-work">
+          <p><strong>ПРОДУКТ</strong></p>
+          <p> Име: {{detailsModel?.name}}
+          </p>
+          <p>Вид: {{detailsModel?.insTypeDescription}}</p>
+          <p>Комисиона: {{detailsModel?.comission.toFixed(2)}} %</p>
+          <p>Премия: {{detailsModel?.premium.toFixed(2)}} %</p>
+          <p>Разрочено плащане:  <span *ngIf="detailsModel?.defered==true">
+          <mat-icon color="accent">check_circle</mat-icon>
+        </span>
+          <span *ngIf="detailsModel?.defered==false">
+            <mat-icon color="warn"> highlight_off</mat-icon>
+          </span></p>
+          <a routerLink="{{'/ins-company/details/' + detailsModel?.insCompanyId}}" ><strong>Компания:</strong> {{detailsModel?.insCompanyName}}</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-2">
+        <a class="btn btn-warning mr-2 rounded-pill" routerLink="{{'/ins-product/edit/' + detailsModel?.id}}">Редакция</a>
+      </div>
+    </div>
+    <div class="row pt-3 pb-5">
+      <div class="col-md-12" *ngIf="detailsModel.id">
+        <app-policy-list [productId]="detailsModel.id"></app-policy-list>
+      </div>
+    </div>
+  </form>
+</div>

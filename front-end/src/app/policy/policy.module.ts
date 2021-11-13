@@ -8,13 +8,16 @@ import { PolicyDetailsComponent } from './policy-details/policy-details.componen
 
 
 @NgModule({
-  declarations: [
-    PolicyCreateComponent,
-    PolicyListComponent,
-    PolicyDetailsComponent
-  ],
-  imports: [
-    SharedModule
-  ]
+    declarations: [
+        PolicyCreateComponent,
+        PolicyListComponent,
+        PolicyDetailsComponent
+    ],
+    exports: [
+        PolicyListComponent
+    ],
+    imports: [
+        SharedModule
+    ]
 })
 export class PolicyModule { }

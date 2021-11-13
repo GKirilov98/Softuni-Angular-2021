@@ -18,4 +18,6 @@ public interface ClientService {
     List<ClientTableOutView> getAll() throws GlobalServiceException;
 
     void deleteOneById(Long id) throws GlobalBadRequest, GlobalServiceException;
+
+    List<ClientDetailsOutView> getOneById(Long id) throws GlobalServiceException;
 }

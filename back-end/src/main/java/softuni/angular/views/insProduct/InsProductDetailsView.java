@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 public class InsProductDetailsView implements Serializable {
     private Long id;
     private Long insTypeId;
+    private String insTypeDescription;
     private Long insCompanyId;
     private String  insCompanyName;
     private String name;
@@ -36,6 +37,14 @@ public class InsProductDetailsView implements Serializable {
 
     public void setInsTypeId(Long insTypeId) {
         this.insTypeId = insTypeId;
+    }
+    @JsonProperty("insTypeDescription")
+    public String getInsTypeDescription() {
+        return insTypeDescription;
+    }
+
+    public void setInsTypeDescription(String insTypeDescription) {
+        this.insTypeDescription = insTypeDescription;
     }
 
     @JsonProperty("insCompanyId")

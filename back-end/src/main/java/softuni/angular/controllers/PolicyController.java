@@ -6,6 +6,7 @@ import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.PolicyService;
 import softuni.angular.views.insCompany.InsCompanyTableView;
+import softuni.angular.views.insProduct.InsProductCompanyTableView;
 import softuni.angular.views.policy.PolicyCalculationOutView;
 import softuni.angular.views.policy.PolicyDetailsVIew;
 import softuni.angular.views.policy.PolicyInsertInView;
@@ -95,5 +96,31 @@ public class PolicyController {
     public ResponseEntity<?> deleteOne(@PathVariable("id") Long id) throws GlobalServiceException, GlobalBadRequest {
         this.policyService.deleteOne(id);
         return ResponseEntity.status(201).build();
+    }
+
+    /**
+     * getAllByProductId
+     *
+     * @param id -
+     * @return -
+     * @throws GlobalServiceException -
+     */
+    @GetMapping("/getAllByProductId/{id}")
+    public ResponseEntity<?> getAllByProductId(@PathVariable("id") Long id) throws GlobalServiceException {
+        List<PolicyTableOutView> result = this.policyService.getAllByProductId(id);
+        return ResponseEntity.ok(result);
+    }
+
+    /**
+     * getAllByClientId
+     *
+     * @param id -
+     * @return -
+     * @throws GlobalServiceException -
+     */
+    @GetMapping("/getAllByClientId/{id}")
+    public ResponseEntity<?> getAllByClientId(@PathVariable("id") Long id) throws GlobalServiceException {
+        List<PolicyTableOutView> result = this.policyService.getAllByClientId(id);
+        return ResponseEntity.ok(result);
     }
 }

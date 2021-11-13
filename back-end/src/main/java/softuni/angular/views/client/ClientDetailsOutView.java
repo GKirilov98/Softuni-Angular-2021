@@ -11,25 +11,16 @@ import java.io.Serializable;
  * On: 8/9/2021
  */
 public class ClientDetailsOutView implements Serializable {
-    @JsonProperty
     private Long id;
-    @JsonProperty
-    private String nClientTypeName;
-    @JsonProperty("egnBulstat")
-    private String egnBulstat;
-
-    @JsonProperty("fullName")
     private String fullName;
-
-    @JsonProperty("email")
+    private String objectTypeDescription;
+    private String egnBulstat;
     private String email;
-
-    @JsonProperty("address")
+    private String phoneNumber;
     private String address;
-
-    @JsonProperty
     private String note;
 
+    @JsonProperty("id")
     public Long getId() {
         return id;
     }
@@ -38,22 +29,7 @@ public class ClientDetailsOutView implements Serializable {
         this.id = id;
     }
 
-    public String getnClientTypeName() {
-        return nClientTypeName;
-    }
-
-    public void setnClientTypeName(String nClientTypeName) {
-        this.nClientTypeName = nClientTypeName;
-    }
-
-    public String getEgnBulstat() {
-        return egnBulstat;
-    }
-
-    public void setEgnBulstat(String egnBulstat) {
-        this.egnBulstat = egnBulstat;
-    }
-
+    @JsonProperty("name")
     public String getFullName() {
         return fullName;
     }
@@ -62,6 +38,25 @@ public class ClientDetailsOutView implements Serializable {
         this.fullName = fullName;
     }
 
+    @JsonProperty("clientTypeDescription")
+    public String getObjectTypeDescription() {
+        return objectTypeDescription;
+    }
+
+    public void setObjectTypeDescription(String objectTypeDescription) {
+        this.objectTypeDescription = objectTypeDescription;
+    }
+
+    @JsonProperty("egnBulstat")
+    public String getEgnBulstat() {
+        return egnBulstat;
+    }
+
+    public void setEgnBulstat(String egnBulstat) {
+        this.egnBulstat = egnBulstat;
+    }
+
+    @JsonProperty("email")
     public String getEmail() {
         return email;
     }
@@ -70,6 +65,16 @@ public class ClientDetailsOutView implements Serializable {
         this.email = email;
     }
 
+    @JsonProperty("phoneNumber")
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @JsonProperty("address")
     public String getAddress() {
         return address;
     }
@@ -78,6 +83,7 @@ public class ClientDetailsOutView implements Serializable {
         this.address = address;
     }
 
+    @JsonProperty("note")
     public String getNote() {
         return note;
     }

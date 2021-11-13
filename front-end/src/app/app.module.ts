@@ -25,6 +25,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {HttpSenderService} from "./shared/services/http-sender.service";
 import { ClientListComponent } from './client/client-list/client-list.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
+import { ClientDetailsComponent } from './client/client-details/client-details.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { UserListComponent } from './admin/user-list/user-list.component';
     HeaderComponent,
     FooterComponent,
     ClientListComponent,
-    UserListComponent
+    UserListComponent,
+    ClientDetailsComponent
   ],
   imports: [
     BrowserModule,

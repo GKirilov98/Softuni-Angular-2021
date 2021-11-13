@@ -235,6 +235,53 @@ public class PolicyServiceImpl implements PolicyService {
         }
     }
 
+    @Override
+    public List<PolicyTableOutView> getAllByProductId(Long id) throws GlobalServiceException {
+        UserDetailsImpl currentUser =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start deleteOne service", logId));
+         return   this.policyRepository.findAllByInsProductIdCustom(id)
+                   .stream()
+                   .map(e -> {
+                       PolicyTableOutView map = this.modelMapper.map(e, PolicyTableOutView.class);
+                       map.setProductName(e.getInsProduct().getName() );
+                       return map;
+                   })
+                   .collect(Collectors.toList());
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished deleteOne service", logId));
+        }
+
+    }
+
+    @Override
+    public List<PolicyTableOutView> getAllByClientId(Long id) throws GlobalServiceException {
+        UserDetailsImpl currentUser =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start deleteOne service", logId));
+            return   this.policyRepository.findAllByOptionalClientIdCustom(id)
+                    .stream()
+                    .map(e -> {
+                        PolicyTableOutView map = this.modelMapper.map(e, PolicyTableOutView.class);
+                        map.setProductName(e.getInsProduct().getName() );
+                        return map;
+                    })
+                    .collect(Collectors.toList());
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished deleteOne service", logId));
+        }
+    }
+
     private PolicyCalculationOutView getPolicyCalculations(InsProduct insProduct, BigDecimal sum) {
         PolicyCalculationOutView view = new PolicyCalculationOutView();
         view.setPremium(

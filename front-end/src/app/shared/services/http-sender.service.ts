@@ -17,7 +17,7 @@ export class HttpSenderService {
   ) {
   }
 
-  post(url: string, data: any): Observable<any> {
+  post(url: string, data: any = undefined): Observable<any> {
     return this.http.post(url, data)
       .pipe(
         tap(data => {

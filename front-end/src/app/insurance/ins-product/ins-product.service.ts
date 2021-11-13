@@ -22,7 +22,7 @@ export class InsProductService {
     return this.http.get("InsProduct/getAllByCompanyId/" + id);
   }
 
-  getOneById(id: number): Observable<InsProductEditModel[]> {
+  getOneById(id: number): Observable<any> {
     return this.http.get("InsProduct/" + id);
   }
 

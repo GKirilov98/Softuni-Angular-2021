@@ -25,4 +25,6 @@ public interface InsProductService {
     void deleteOne(Long id) throws GlobalBadRequest, GlobalServiceException;
 
     List<InsProductCompanyTableView> getAllByTypeId(Long typeId) throws GlobalServiceException;
+
+    List<InsProductCompanyTableView> getAll() throws GlobalServiceException;
 }

@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.InsProductService;
-import softuni.angular.views.insCompany.InsCompanyInView;
 import softuni.angular.views.insProduct.InsProductCompanyTableView;
 import softuni.angular.views.insProduct.InsProductDetailsView;
 import softuni.angular.views.insProduct.InsProductInView;
@@ -43,12 +42,13 @@ public class InsProductController {
     }
 
     /**
-     *  Редактира в базата запис
-     * @param id - id на обекта за редакция
+     * Редактира в базата запис
+     *
+     * @param id     - id на обекта за редакция
      * @param inView - body на заявката
      * @return -
      * @throws GlobalServiceException -
-     * @throws GlobalBadRequest -
+     * @throws GlobalBadRequest       -
      */
     @PutMapping("/{id}")
 //    @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -60,11 +60,10 @@ public class InsProductController {
     }
 
     /**
-     *
      * @param id -
      * @return -
      * @throws GlobalServiceException -
-     * @throws GlobalBadRequest -
+     * @throws GlobalBadRequest       -
      */
     @DeleteMapping("/{id}")
     //    @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -72,6 +71,18 @@ public class InsProductController {
             @PathVariable("id") Long id) throws GlobalServiceException, GlobalBadRequest {
         this.insProductService.deleteOne(id);
         return ResponseEntity.status(200).build();
+    }
+
+    /**
+     * getAll
+     *
+     * @return -
+     * @throws GlobalServiceException -
+     */
+    @GetMapping("/")
+    public ResponseEntity<?> getAll() throws GlobalServiceException {
+        List<InsProductCompanyTableView> result = this.insProductService.getAll();
+        return ResponseEntity.ok(result);
     }
 
     /**
@@ -102,6 +113,7 @@ public class InsProductController {
 
     /**
      * getOneById
+     *
      * @param id -
      * @return -
      * @throws GlobalServiceException-

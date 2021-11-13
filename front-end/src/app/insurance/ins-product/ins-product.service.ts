@@ -37,4 +37,8 @@ export class InsProductService {
   getAllByTypeId(id: number): Observable<InsProductTableModel[]> {
     return this.http.get("InsProduct/getAllByTypeId/" + id);
   }
+
+  getAll(): Observable<InsProductTableModel[]> {
+    return this.http.get("InsProduct/");
+  }
 }

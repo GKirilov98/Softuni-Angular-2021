@@ -3,11 +3,13 @@ package softuni.angular.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.UserService;
 import softuni.angular.views.user.UserLoginInView;
 import softuni.angular.views.user.UserLoginOutView;
 import softuni.angular.views.user.UserRegisterInView;
+import softuni.angular.views.user.UserTableOutView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,5 +35,42 @@ public class UserController {
     public ResponseEntity<?> login(@Valid @RequestBody UserLoginInView inView) throws GlobalServiceException {
         List<UserLoginOutView>list = this.userService.login(inView);
         return ResponseEntity.ok(list);
+    }
+
+    /**
+     *  getAll
+     * @return -
+     * @throws GlobalServiceException -
+     */
+    @GetMapping("/")
+    public ResponseEntity<?> getAll() throws GlobalServiceException {
+        List<UserTableOutView> list = this.userService.getAll();
+        return ResponseEntity.ok(list);
+    }
+
+    /**
+     *  addRemoveAdminRole
+     * @return -
+     * @throws GlobalServiceException -
+     */
+    @PostMapping("/addRemoveAdminRole/{id}")
+    public ResponseEntity<?> addRemoveAdminRole(
+            @PathVariable Long id
+    ) throws GlobalServiceException, GlobalBadRequest {
+        this.userService.addRemoveAdminRole(id);
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     *  deleteUserByUserId
+     * @return -
+     * @throws GlobalServiceException -
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUserByUserId(
+            @PathVariable Long id
+    ) throws GlobalServiceException, GlobalBadRequest {
+        this.userService.deleteUserByUserId(id);
+        return ResponseEntity.ok().build();
     }
 }

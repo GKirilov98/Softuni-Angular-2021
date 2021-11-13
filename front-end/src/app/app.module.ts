@@ -24,6 +24,7 @@ import {notificationsConfig} from "./shared/notifications/notifications.config";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {HttpSenderService} from "./shared/services/http-sender.service";
 import { ClientListComponent } from './client/client-list/client-list.component';
+import { UserListComponent } from './admin/user-list/user-list.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ClientListComponent } from './client/client-list/client-list.component'
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ClientListComponent
+    ClientListComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

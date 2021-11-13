@@ -17,6 +17,7 @@ import {PolicyCreateComponent} from "../policy/policy-create/policy-create.compo
 import {PolicyListComponent} from "../policy/policy-list/policy-list.component";
 import {PolicyDetailsComponent} from "../policy/policy-details/policy-details.component";
 import {ClientListComponent} from "../client/client-list/client-list.component";
+import {UserListComponent} from "../admin/user-list/user-list.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent, pathMatch: 'full'},
@@ -62,6 +63,11 @@ const routes: Routes = [
     path: "client", children: [
       {path: "list", component: ClientListComponent, pathMatch: 'full'},
       {path: "details/:id", component: PolicyDetailsComponent, pathMatch: 'full'}
+    ]
+  },
+  {
+    path: "user", children: [
+      {path: "list", component: UserListComponent, pathMatch: 'full'}
     ]
   },
 ]

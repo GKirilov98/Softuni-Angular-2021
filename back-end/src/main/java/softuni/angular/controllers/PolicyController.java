@@ -1,6 +1,7 @@
 package softuni.angular.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
@@ -93,6 +94,7 @@ public class PolicyController {
      * @throws GlobalBadRequest -
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> deleteOne(@PathVariable("id") Long id) throws GlobalServiceException, GlobalBadRequest {
         this.policyService.deleteOne(id);
         return ResponseEntity.status(201).build();

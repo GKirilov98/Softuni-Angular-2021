@@ -2,7 +2,6 @@ package softuni.angular.views.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**

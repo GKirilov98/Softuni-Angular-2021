@@ -10,6 +10,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./ins-product-details.component.css']
 })
 export class InsProductDetailsComponent implements OnInit, OnDestroy {
+  sessionStorage = sessionStorage;
   detailsModel!: InsProductDetailsModel;
   observablesUnsubscribe: Subscription[] = [];
 

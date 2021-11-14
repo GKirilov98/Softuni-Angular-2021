@@ -28,12 +28,12 @@
       <td>{{c.roleDescription}}</td>
       <td>
         <button *ngIf="c.id != 1"
-          class="btn btn-info mr-2"
+                class="btn btn-info m-1"
                 (click)="changeRole(c.id, c.roleCode.includes('ADMIN'))"
         >
-          {{c.roleCode.includes('ADMIN') ?'Премахни Админ':'Добави Админ'}}
+          {{c.roleCode.includes('ADMIN') ? 'Премахни Админ' : 'Добави Админ'}}
         </button>
-        <button *ngIf="c.id != 1" class="btn btn-danger" (click)="deleteOne(c.id)">Изтрйи</button>
+        <button *ngIf="c.id != 1" class="btn btn-danger m-1" (click)="deleteOne(c.id)">Изтрйи</button>
       </td>
     </tr>
     </tbody>

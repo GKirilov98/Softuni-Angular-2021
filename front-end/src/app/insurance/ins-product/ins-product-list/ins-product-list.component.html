@@ -9,7 +9,7 @@
   </div>
   <div class="col-md-4"></div>
   <div class="col-md-3">
-    <button class="btn btn-success border-dark" routerLink="{{'/ins-product/create/'}}">
+    <button *ngIf="sessionStorage.getItem('isAdmin')" class="btn btn-success border-dark" routerLink="{{'/ins-product/create/'}}">
       Добави продукт
     </button>
   </div>
@@ -43,9 +43,9 @@
         </td>
 
         <td>
-          <a class="btn btn-info mr-2" routerLink="{{'/ins-product/details/' + p.id}}">Детайли</a>
-          <a class="btn btn-warning mr-2" routerLink="{{'/ins-product/edit/' + p.id}}">Редакция</a>
-          <button class="btn btn-danger mr-2" (click)="deleteOne(p.id)">Изтрйи</button>
+          <a class="btn btn-info m-1" routerLink="{{'/ins-product/details/' + p.id}}">Детайли</a>
+          <a class="btn btn-warning m-1" *ngIf="sessionStorage.getItem('isAdmin')" routerLink="{{'/ins-product/edit/' + p.id}}">Редакция</a>
+          <button class="btn btn-danger m-1" *ngIf="sessionStorage.getItem('isAdmin')" (click)="deleteOne(p.id)">Изтрйи</button>
         </td>
       </tr>
       </tbody>

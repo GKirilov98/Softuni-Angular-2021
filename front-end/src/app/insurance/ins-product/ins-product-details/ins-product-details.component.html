@@ -21,7 +21,7 @@
       <div class="col-md-4">
       </div>
       <div class="col-md-2">
-        <a class="btn btn-warning mr-2 rounded-pill" routerLink="{{'/ins-product/edit/' + detailsModel?.id}}">Редакция</a>
+        <a *ngIf="sessionStorage.getItem('isAdmin')" class="btn btn-warning mr-2 rounded-pill" routerLink="{{'/ins-product/edit/' + detailsModel?.id}}">Редакция</a>
       </div>
     </div>
     <div class="row pt-3 pb-5">

@@ -15,7 +15,7 @@
       <div class="col-md-6">
       </div>
       <div class="col-md-2">
-        <a class="btn btn-warning mr-2 rounded-pill" routerLink="{{'/ins-company/edit/' + detailsModel?.id}}">Редакция</a>
+        <a class="btn btn-warning mr-2 rounded-pill" *ngIf="sessionStorage.getItem('isAdmin')" routerLink="{{'/ins-company/edit/' + detailsModel?.id}}">Редакция</a>
       </div>
     </div>
     <div class="row bg-info p-3">
@@ -31,7 +31,7 @@
           </div>
           <div class="col-md-3"></div>
           <div class="col-md-3">
-            <button class="btn btn-success border-dark" routerLink="{{'/ins-product/create/' + detailsModel?.id}}">
+            <button *ngIf="sessionStorage.getItem('isAdmin')" class="btn btn-success border-dark" routerLink="{{'/ins-product/create/' + detailsModel?.id}}">
               Добави продукт
             </button>
           </div>
@@ -69,8 +69,8 @@
 
             <td>
               <a class="btn btn-info mr-2" routerLink="{{'/ins-product/details/' + p.id}}">Детайли</a>
-              <a class="btn btn-warning mr-2" routerLink="{{'/ins-product/edit/' + p.id}}">Редакция</a>
-              <button class="btn btn-danger mr-2" (click)="deleteOne(p.id)">Изтрйи</button>
+              <a class="btn btn-warning mr-2" *ngIf="sessionStorage.getItem('isAdmin')" routerLink="{{'/ins-product/edit/' + p.id}}">Редакция</a>
+              <button class="btn btn-danger mr-2" *ngIf="sessionStorage.getItem('isAdmin')" (click)="deleteOne(p.id)">Изтрйи</button>
             </td>
           </tr>
           </tbody>

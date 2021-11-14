@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="col-sm-3">
-    <a class="btn btn-success float-right border-dark" routerLink="/ins-company/create">Впиши компания</a>
+    <a *ngIf="sessionStorage.getItem('isAdmin')" class="btn btn-success float-right border-dark" routerLink="/ins-company/create">Впиши компания</a>
   </div>
 </div>
 <div>
@@ -43,9 +43,12 @@
       <td>{{c.email}}</td>
       <td>{{c.phone}}</td>
       <td>
-        <a class="btn btn-info mr-2" routerLink="{{'/ins-company/details/' + c.id}}">Детайли</a>
-        <a class="btn btn-warning mr-2" routerLink="{{'/ins-company/edit/' + c.id}}">Редакция</a>
-        <button class="btn btn-danger" (click)="deleteOne(c.id)">Изтрйи</button>
+        <a
+          class="btn btn-info m-1" routerLink="{{'/ins-company/details/' + c.id}}">Детайли</a>
+        <a *ngIf="sessionStorage.getItem('isAdmin')"
+          class="btn btn-warning m-1" routerLink="{{'/ins-company/edit/' + c.id}}">Редакция</a>
+        <button *ngIf="sessionStorage.getItem('isAdmin')"
+          class="btn btn-danger m-1" (click)="deleteOne(c.id)">Изтрйи</button>
       </td>
     </tr>
     </tbody>

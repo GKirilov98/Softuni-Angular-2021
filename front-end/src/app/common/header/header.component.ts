@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  sessionStorage;
+  sessionStorage = sessionStorage;
   constructor(
     private router: Router
   ) {
@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sessionStorage = sessionStorage
   }
 
   logOut() {

@@ -10,6 +10,7 @@ import {ClientService} from "../client.service";
   styleUrls: ['./client-list.component.css']
 })
 export class ClientListComponent implements OnInit, OnDestroy {
+  sessionStorage = sessionStorage;
   original: ClientTableModel[];
   clientTableModels: ClientTableModel[];
   observablesUnsubscribe: Subscription[] = [];

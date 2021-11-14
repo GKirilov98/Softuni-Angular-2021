@@ -12,6 +12,7 @@ import { Location } from '@angular/common'
   styleUrls: ['./policy-details.component.css']
 })
 export class PolicyDetailsComponent implements OnInit, OnDestroy {
+  sessionStorage = sessionStorage;
   policy: PolicyDetailsModel
   observablesUnsubscribe: Subscription[] = [];
   constructor(
@@ -36,7 +37,7 @@ export class PolicyDetailsComponent implements OnInit, OnDestroy {
         if (!data.Success) {
           let subscription = this.policyService.deleteOneById(id).subscribe(() => {
             this.notificationService.notifySuccess("Успешно изтрита полица!");
-            this.location.back()
+            this.location.back();
           });
           this.observablesUnsubscribe.push(subscription);
         }

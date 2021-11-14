@@ -1,6 +1,7 @@
 package softuni.angular.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
@@ -35,7 +36,7 @@ public class InsProductController {
      * @throws GlobalBadRequest       -
      */
     @PostMapping("/")
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> insertOne(@Valid @RequestBody InsProductInView inView) throws GlobalServiceException, GlobalBadRequest {
         this.insProductService.insertOne(inView);
         return ResponseEntity.status(201).build();
@@ -51,7 +52,7 @@ public class InsProductController {
      * @throws GlobalBadRequest       -
      */
     @PutMapping("/{id}")
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> updateOne(
             @PathVariable("id") Long id,
             @Valid @RequestBody InsProductInView inView) throws GlobalServiceException, GlobalBadRequest {
@@ -66,7 +67,7 @@ public class InsProductController {
      * @throws GlobalBadRequest       -
      */
     @DeleteMapping("/{id}")
-    //    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> deleteOne(
             @PathVariable("id") Long id) throws GlobalServiceException, GlobalBadRequest {
         this.insProductService.deleteOne(id);

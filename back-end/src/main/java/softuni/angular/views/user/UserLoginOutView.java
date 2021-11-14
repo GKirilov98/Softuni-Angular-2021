@@ -11,13 +11,11 @@ import java.util.List;
  * On: 8/4/2021
  */
 public class UserLoginOutView implements Serializable {
-    @JsonProperty("token")
     private String token;
-    @JsonProperty("username")
     private String username;
-    @JsonProperty("roles")
     private List<String> roles;
 
+    @JsonProperty("token")
     public String getToken() {
         return token;
     }
@@ -26,6 +24,7 @@ public class UserLoginOutView implements Serializable {
         this.token = token;
     }
 
+    @JsonProperty("username")
     public String getUsername() {
         return username;
     }
@@ -34,6 +33,7 @@ public class UserLoginOutView implements Serializable {
         this.username = username;
     }
 
+    @JsonProperty("roles")
     public List<String> getRoles() {
         return roles;
     }

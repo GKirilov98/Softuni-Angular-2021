@@ -10,9 +10,6 @@ import {InsCompanyListComponent} from "../insurance/ins-company/ins-company-list
 import {InsProductCreateComponent} from "../insurance/ins-product/ins-product-create/ins-product-create.component";
 import {InsProductEditComponent} from "../insurance/ins-product/ins-product-edit/ins-product-edit.component";
 import {InsProductListComponent} from "../insurance/ins-product/ins-product-list/ins-product-list.component";
-import {InsTypeCreateComponent} from "../insurance/ins-type/ins-type-create/ins-type-create.component";
-import {InsTypeEditComponent} from "../insurance/ins-type/ins-type-edit/ins-type-edit.component";
-import {InsTypeListComponent} from "../insurance/ins-type/ins-type-list/ins-type-list.component";
 import {PolicyCreateComponent} from "../policy/policy-create/policy-create.component";
 import {PolicyListComponent} from "../policy/policy-list/policy-list.component";
 import {PolicyDetailsComponent} from "../policy/policy-details/policy-details.component";
@@ -20,6 +17,8 @@ import {ClientListComponent} from "../client/client-list/client-list.component";
 import {UserListComponent} from "../admin/user-list/user-list.component";
 import {InsProductDetailsComponent} from "../insurance/ins-product/ins-product-details/ins-product-details.component";
 import {ClientDetailsComponent} from "../client/client-details/client-details.component";
+import {NotFoun404Component} from "../error/not-foun404/not-foun404.component";
+import {AuthGuard} from "../guard/AuthGuard";
 
 const routes: Routes = [
   {path: "", component: HomeComponent, pathMatch: 'full'},
@@ -32,32 +31,54 @@ const routes: Routes = [
   },
   {
     path: "ins-company", children: [
-      {path: "create", component: InsCompanyRegisterComponent, pathMatch: 'full'},
-      {path: "edit/:id", component: InsCompanyEditComponent, pathMatch: 'full'},
+      {
+        path: "create",
+        component: InsCompanyRegisterComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+        data: {role: 'ADMIN'}
+      },
+      {
+        path: "edit/:id",
+        component: InsCompanyEditComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+        data: {role: 'ADMIN'}
+      },
       {path: "details/:id", component: InsCompanyDetailsComponent, pathMatch: 'full'},
       {path: "list", component: InsCompanyListComponent, pathMatch: 'full'},
     ]
   },
   {
     path: "ins-product", children: [
-      {path: "create", component: InsProductCreateComponent, pathMatch: 'full'},
-      {path: "create/:id", component: InsProductCreateComponent, pathMatch: 'full'},
-      {path: "edit/:id", component: InsProductEditComponent, pathMatch: 'full'},
+      {
+        path: "create",
+        component: InsProductCreateComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+        data: {role: 'ADMIN'}
+      },
+      {
+        path: "create/:id",
+        component: InsProductCreateComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+        data: {role: 'ADMIN'}
+      },
+      {
+        path: "edit/:id",
+        component: InsProductEditComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+        data: {role: 'ADMIN'}
+      },
       {path: "details/:id", component: InsProductDetailsComponent, pathMatch: 'full'},
       {path: "list", component: InsProductListComponent, pathMatch: 'full'},
     ]
   },
   {
-    path: "ins-type", children: [
-      {path: "create", component: InsTypeCreateComponent, pathMatch: 'full'},
-      {path: "edit/:id", component: InsTypeEditComponent, pathMatch: 'full'},
-      {path: "list", component: InsTypeListComponent, pathMatch: 'full'},
-    ]
-  },
-  {
     path: "policy", children: [
       {path: "create", component: PolicyCreateComponent, pathMatch: 'full'},
-      // {path:"edit/:id", component: InsTypeEditComponent, pathMatch:'full' },
       {path: "list", component: PolicyListComponent, pathMatch: 'full'},
       {path: "details/:id", component: PolicyDetailsComponent, pathMatch: 'full'}
     ]
@@ -73,6 +94,7 @@ const routes: Routes = [
       {path: "list", component: UserListComponent, pathMatch: 'full'}
     ]
   },
+  {path: "**", component: NotFoun404Component}
 ]
 
 @NgModule({

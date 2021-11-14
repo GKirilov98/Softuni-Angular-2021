@@ -1,7 +1,5 @@
 package softuni.angular.exception;
 
-import javassist.tools.web.BadHttpRequest;
-
 /**
  * Project: backend
  * Created by: GKirilov
@@ -9,8 +7,9 @@ import javassist.tools.web.BadHttpRequest;
  */
 public class GlobalBadRequest extends Exception {
     private final String customMessage;
+
     public GlobalBadRequest(String message, Throwable cause) {
-        super(message,cause);
+        super(message, cause);
         this.customMessage = message;
     }
 

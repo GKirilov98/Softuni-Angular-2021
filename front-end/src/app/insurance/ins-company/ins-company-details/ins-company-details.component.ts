@@ -13,6 +13,7 @@ import {NotificationsService} from "../../../shared/services/notifications.servi
   styleUrls: ['./ins-company-details.component.css']
 })
 export class InsCompanyDetailsComponent implements OnInit, OnDestroy {
+  sessionStorage = sessionStorage;
   detailsModel!: InsCompanyDeatilsModel;
   products!: InsProductTableModel[];
   originalProduct!: InsProductTableModel[];

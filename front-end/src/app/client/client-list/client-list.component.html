@@ -42,8 +42,10 @@
       <td>{{c.email}}</td>
       <td>{{c.phoneNumber}}</td>
       <td>
-        <a class="btn btn-info mr-2" routerLink="{{'/client/details/' + c.id}}">Детайли</a>
-        <button class="btn btn-danger" (click)="deleteOne(c.id)">Изтрйи</button>
+        <a class="btn btn-info m-1" routerLink="{{'/client/details/' + c.id}}">Детайли</a>
+        <button *ngIf="sessionStorage.getItem('isAdmin')"
+          class="btn btn-danger m-1"
+          (click)="deleteOne(c.id)">Изтрйи</button>
       </td>
     </tr>
     </tbody>

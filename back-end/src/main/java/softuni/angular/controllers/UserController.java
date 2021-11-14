@@ -2,6 +2,7 @@ package softuni.angular.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
@@ -43,6 +44,7 @@ public class UserController {
      * @throws GlobalServiceException -
      */
     @GetMapping("/")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> getAll() throws GlobalServiceException {
         List<UserTableOutView> list = this.userService.getAll();
         return ResponseEntity.ok(list);
@@ -54,6 +56,7 @@ public class UserController {
      * @throws GlobalServiceException -
      */
     @PostMapping("/addRemoveAdminRole/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> addRemoveAdminRole(
             @PathVariable Long id
     ) throws GlobalServiceException, GlobalBadRequest {
@@ -67,6 +70,7 @@ public class UserController {
      * @throws GlobalServiceException -
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> deleteUserByUserId(
             @PathVariable Long id
     ) throws GlobalServiceException, GlobalBadRequest {

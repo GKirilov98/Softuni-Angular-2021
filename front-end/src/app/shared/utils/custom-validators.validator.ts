@@ -19,7 +19,6 @@ export default class CustomValidatorsValidator {
     let value:string =  control.value;
     if (value){
       if (!regex.test(value) || value.length != 10) {
-        console.log(value)
         return {"egnInvalid": true};
       }
     }

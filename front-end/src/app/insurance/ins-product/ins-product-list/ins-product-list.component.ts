@@ -10,11 +10,11 @@ import {InsProductTableModel} from "../../../shared/models/ins-product/ins-produ
   styleUrls: ['./ins-product-list.component.css']
 })
 export class InsProductListComponent implements OnInit, OnDestroy {
+  sessionStorage = sessionStorage
   original: InsProductTableModel[];
   productsTableModels: InsProductTableModel[];
   observablesUnsubscribe: Subscription[] = [];
   filterName: string = "";
-  filterBulstat: string = "";
 
   constructor(
     private insProductService: InsProductService,

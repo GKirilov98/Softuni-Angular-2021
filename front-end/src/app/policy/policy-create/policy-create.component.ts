@@ -187,8 +187,4 @@ export class PolicyCreateComponent implements OnInit, OnDestroy {
     this.policySum = +$event.target.value;
     this.setNeededMoney();
   }
-
-  test(){
-    debugger;
-  }
 }

@@ -12,6 +12,6 @@ export default class CarouselComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/1200/600`);
+   this.images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/1390/600`);
   }
 }

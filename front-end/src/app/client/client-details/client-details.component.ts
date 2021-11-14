@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {ClientService} from "../client.service";
-import ClientTableModel from "../../shared/models/client/client-table.model";
 import {ClientDetailsModel} from "../../shared/models/client/client-details.model";
 
 @Component({

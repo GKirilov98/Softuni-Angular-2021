@@ -22,7 +22,6 @@ export class PolicyListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    debugger
     if (this.productId) {
       let subscription = this.policyService.getAllByProductId(this.productId)
         .subscribe(data => {

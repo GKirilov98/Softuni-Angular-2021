@@ -6,9 +6,6 @@ import {InsCompanyEditComponent} from "./ins-company/ins-company-edit/ins-compan
 import {InsProductCreateComponent} from "./ins-product/ins-product-create/ins-product-create.component";
 import {InsProductListComponent} from "./ins-product/ins-product-list/ins-product-list.component";
 import {InsProductEditComponent} from "./ins-product/ins-product-edit/ins-product-edit.component";
-import {InsTypeCreateComponent} from "./ins-type/ins-type-create/ins-type-create.component";
-import {InsTypeListComponent} from "./ins-type/ins-type-list/ins-type-list.component";
-import {InsTypeEditComponent} from "./ins-type/ins-type-edit/ins-type-edit.component";
 import {SharedModule} from "../shared/shared.module";
 import {InsProductDetailsComponent} from "./ins-product/ins-product-details/ins-product-details.component";
 import {PolicyModule} from "../policy/policy.module";
@@ -23,14 +20,12 @@ import {PolicyModule} from "../policy/policy.module";
     InsProductCreateComponent,
     InsProductListComponent,
     InsProductEditComponent,
-    InsProductDetailsComponent,
-    InsTypeCreateComponent,
-    InsTypeListComponent,
-    InsTypeEditComponent
+    InsProductDetailsComponent
   ],
   imports: [
     SharedModule,
     PolicyModule
   ],
 })
-export class InsuranceModule { }
+export class InsuranceModule {
+}

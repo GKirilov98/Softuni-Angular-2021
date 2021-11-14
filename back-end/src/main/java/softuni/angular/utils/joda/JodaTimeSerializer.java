@@ -27,7 +27,7 @@ public class JodaTimeSerializer extends StdSerializer<DateTime> {
     public void serialize(DateTime value, JsonGenerator jsonGenerator, SerializerProvider provider)
             throws IOException {
         jsonGenerator.writeStartObject();
-        if (value == null) {
+        if (value != null) {
             value = value.toDateTime(DateTimeZone.UTC);
             jsonGenerator.writeObjectField("date", null);
             jsonGenerator.writeObjectField("month", null);
@@ -36,16 +36,14 @@ public class JodaTimeSerializer extends StdSerializer<DateTime> {
             jsonGenerator.writeObjectField("minutes", null);
             jsonGenerator.writeObjectField("seconds", null);
             jsonGenerator.writeObjectField("miliseconds", null);
+            jsonGenerator.writeNumberField("date", value.getDayOfMonth());
+            jsonGenerator.writeObjectField("month", value.getMonthOfYear());
+            jsonGenerator.writeObjectField("year", value.getYear());
+            jsonGenerator.writeObjectField("hours", value.getHourOfDay());
+            jsonGenerator.writeObjectField("minutes", value.getMinuteOfHour());
+            jsonGenerator.writeObjectField("seconds", value.getSecondOfMinute());
+            jsonGenerator.writeObjectField("miliseconds", value.getMillisOfSecond());
+            jsonGenerator.writeEndObject();
         }
-
-        jsonGenerator.writeNumberField("date", value.getDayOfMonth());
-        jsonGenerator.writeObjectField("month", value.getMonthOfYear());
-        jsonGenerator.writeObjectField("year", value.getYear());
-        jsonGenerator.writeObjectField("hours", value.getHourOfDay());
-        jsonGenerator.writeObjectField("minutes", value.getMinuteOfHour());
-        jsonGenerator.writeObjectField("seconds", value.getSecondOfMinute());
-        jsonGenerator.writeObjectField("miliseconds", value.getMillisOfSecond());
-        jsonGenerator.writeEndObject();
-        //        jsonGenerator.writeString(_dtf.print(value));
     }
 }

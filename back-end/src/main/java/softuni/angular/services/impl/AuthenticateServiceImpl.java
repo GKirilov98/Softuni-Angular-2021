@@ -35,16 +35,19 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     public static final String ADMIN_ROLE_CODE = "ADMIN";
     public static final String USER_ROLE_CODE = "USER";
     private final Logger logger = LogManager.getLogger(AuthenticateServiceImpl.class);
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtUtils jwtUtils;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final ModelMapper modelMapper;
+
+    public AuthenticateServiceImpl(AuthenticationManager authenticationManager, JwtUtils jwtUtils, UserRepository userRepository, RoleRepository roleRepository, ModelMapper modelMapper) {
+        this.authenticationManager = authenticationManager;
+        this.jwtUtils = jwtUtils;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     @Transactional

@@ -9,11 +9,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnDestroy {
-  ngOnDestroy(): void {
-    console.log("destroy");
-  }
-
+export class AuthService  {
   constructor(
     private http: HttpSenderService
   ) {
@@ -25,7 +21,9 @@ export class AuthService implements OnDestroy {
         sessionStorage.setItem("token", data[0].token);
         sessionStorage.setItem("username", data[0].username);
         sessionStorage.setItem("roles", JSON.stringify(data[0].roles));
-        sessionStorage.setItem('isAdmin', data[0].roles.includes('ADMIN'))
+        if (data[0].roles.includes('ADMIN')) {
+          sessionStorage.setItem('isAdmin', 'true');
+        }
         return data;
       }));
   }
@@ -33,21 +31,4 @@ export class AuthService implements OnDestroy {
   register(data: UserRegisterModel) {
     return this.http.post('user/register', data);
   }
-
-  //
-  // logout(): Observable<any> {
-  //   return this.http.post(`/users/logout`, {}).pipe(
-  //     tap((user: UserModel) => this.store.dispatch(logout()))
-  //   );
-  // }
-  //
-  // autheticate(data: any): Observable<any> {
-  //   return this.http.post(`/users/profile`, data).pipe(
-  //     tap((user: UserModel) => this.store.dispatch(authenticate({user}))),
-  //     catchError(() => {
-  //       this.store.dispatch(authenticate({user: null}));
-  //       return [null];
-  //     })
-  //   );
-  // }
 }

@@ -11,13 +11,11 @@ import java.io.Serializable;
  * On: 8/4/2021
  */
 public class UserLoginInView implements Serializable {
-    @JsonProperty
-    @NotNull
     private String username;
-    @JsonProperty
-    @NotNull
     private String password;
 
+    @JsonProperty
+    @NotNull
     public String getUsername() {
         return username;
     }
@@ -26,6 +24,8 @@ public class UserLoginInView implements Serializable {
         this.username = username;
     }
 
+    @JsonProperty
+    @NotNull
     public String getPassword() {
         return password;
     }

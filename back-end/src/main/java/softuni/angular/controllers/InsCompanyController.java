@@ -35,7 +35,7 @@ public class InsCompanyController {
      * @throws GlobalBadRequest -
      */
     @PostMapping("/")
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> insertOne(@Valid @RequestBody InsCompanyInView inView) throws GlobalServiceException, GlobalBadRequest {
         this.insCompanyService.insertOne(inView);
         return ResponseEntity.status(201).build();
@@ -50,7 +50,7 @@ public class InsCompanyController {
      * @throws GlobalBadRequest -
      */
     @PutMapping("/{id}")
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> updateOne(
             @PathVariable("id") Long id,
             @Valid @RequestBody InsCompanyInView inView) throws GlobalServiceException, GlobalBadRequest {
@@ -66,7 +66,7 @@ public class InsCompanyController {
      * @throws GlobalBadRequest -
      */
     @DeleteMapping("/{id}")
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> deleteOne(@PathVariable("id") Long id) throws GlobalServiceException, GlobalBadRequest {
         this.insCompanyService.deleteOne(id);
         return ResponseEntity.status(201).build();

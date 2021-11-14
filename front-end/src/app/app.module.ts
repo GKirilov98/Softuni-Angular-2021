@@ -15,7 +15,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RootBackendInterceptor} from "./shared/interseptors/root-backend.interceptor";
 import {
   ConfirmBoxConfigModule,
-  DialogConfigModule,
   NgxAwesomePopupModule,
   ToastNotificationConfigModule
 } from '@costlydeveloper/ngx-awesome-popup';
@@ -23,9 +22,10 @@ import {NotificationsService} from "./shared/services/notifications.service";
 import {notificationsConfig} from "./shared/notifications/notifications.config";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {HttpSenderService} from "./shared/services/http-sender.service";
-import { ClientListComponent } from './client/client-list/client-list.component';
-import { UserListComponent } from './admin/user-list/user-list.component';
-import { ClientDetailsComponent } from './client/client-details/client-details.component';
+import {ClientListComponent} from './client/client-list/client-list.component';
+import {UserListComponent} from './admin/user-list/user-list.component';
+import {ClientDetailsComponent} from './client/client-details/client-details.component';
+import {NotFoun404Component} from './error/not-foun404/not-foun404.component';
 
 
 @NgModule({
@@ -35,7 +35,8 @@ import { ClientDetailsComponent } from './client/client-details/client-details.c
     FooterComponent,
     ClientListComponent,
     UserListComponent,
-    ClientDetailsComponent
+    ClientDetailsComponent,
+    NotFoun404Component
   ],
   imports: [
     BrowserModule,

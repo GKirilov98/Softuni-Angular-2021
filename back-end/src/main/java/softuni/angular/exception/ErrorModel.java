@@ -11,19 +11,13 @@ import softuni.angular.utils.joda.JodaTimeSerializer;
  * On: 10/23/2021
  */
 public class ErrorModel {
-
-    @JsonProperty("uuid")
     private String uuid;
-    @JsonProperty("message")
     private String message;
-    @JsonProperty("systemMessage")
     private String systemMessage;
-    @JsonProperty("path")
     private String path;
-    @JsonProperty("dateTime")
-    @JsonSerialize(using = JodaTimeSerializer.class)
     private DateTime dateTime;
 
+    @JsonProperty("uuid")
     public String getUuid() {
         return uuid;
     }
@@ -32,6 +26,7 @@ public class ErrorModel {
         this.uuid = uuid;
     }
 
+    @JsonProperty("message")
     public String getMessage() {
         return message;
     }
@@ -40,6 +35,7 @@ public class ErrorModel {
         this.message = message;
     }
 
+    @JsonProperty("systemMessage")
     public String getSystemMessage() {
         return systemMessage;
     }
@@ -48,6 +44,7 @@ public class ErrorModel {
         this.systemMessage = systemMessage;
     }
 
+    @JsonProperty("path")
     public String getPath() {
         return path;
     }
@@ -56,6 +53,8 @@ public class ErrorModel {
         this.path = path;
     }
 
+    @JsonProperty("dateTime")
+    @JsonSerialize(using = JodaTimeSerializer.class)
     public DateTime getDateTime() {
         return dateTime;
     }

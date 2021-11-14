@@ -2,6 +2,7 @@ package softuni.angular.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
@@ -45,21 +46,9 @@ public class ClientController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> deleteOneById(@PathVariable("id") Long id) throws GlobalBadRequest, GlobalServiceException {
         service.deleteOneById(id);
         return ResponseEntity.ok().build();
     }
-
-
-//    /**
-//     * this method create record, and saves it in db
-//     * @param inView -
-//     * @return -
-//     */
-//    @PostMapping
-//    public ResponseEntity<?> insertOne(
-//            @Valid @RequestBody ClientCreateInView inView){
-//        List<ClientDetailsOutView> list = service.insertOne(inView);
-//        return ResponseEntity.ok().body(list);
-//    }
 }

@@ -11,16 +11,12 @@ import java.io.Serializable;
  * Created by: GKirilov
  */
 public class UserRegisterInView implements Serializable {
-    @JsonProperty(value = "username", required = true)
-    @NotNull
     private String username;
-    @JsonProperty(value = "password", required = true)
-    @NotNull
     private String password;
-    @JsonProperty(value = "confirmPassword", required = true)
-    @NotNull
     private String confirmPassword;
 
+    @JsonProperty(value = "username", required = true)
+    @NotNull
     public String getUsername() {
         return username;
     }
@@ -29,6 +25,8 @@ public class UserRegisterInView implements Serializable {
         this.username = username;
     }
 
+    @JsonProperty(value = "password", required = true)
+    @NotNull
     public String getPassword() {
         return password;
     }
@@ -37,6 +35,8 @@ public class UserRegisterInView implements Serializable {
         this.password = password;
     }
 
+    @JsonProperty(value = "confirmPassword", required = true)
+    @NotNull
     public String getConfirmPassword() {
         return confirmPassword;
     }

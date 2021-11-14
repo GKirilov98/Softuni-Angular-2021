@@ -10,6 +10,7 @@ import {NotificationsService} from "../../../shared/services/notifications.servi
   styleUrls: ['./ins-company-list.component.css']
 })
 export class InsCompanyListComponent implements OnInit, OnDestroy {
+  sessionStorage = sessionStorage
   original: InsCompanyTableModel[];
   insCompanyTableModels: InsCompanyTableModel[];
   observablesUnsubscribe: Subscription[] = [];

@@ -208,7 +208,7 @@
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-danger" (click)="deleteOne(policy?.id)">
+    <button *ngIf="sessionStorage.getItem('isAdmin')" type="button" class="btn btn-danger" (click)="deleteOne(policy?.id)">
       Изтрйи
     </button>
   </form>

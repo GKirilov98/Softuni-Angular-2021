@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Project: backend
@@ -99,5 +100,34 @@ public class InsProductDetailsView implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    @Override
+    public String toString() {
+        return "InsProductDetailsView{" +
+                "id=" + id +
+                ", insTypeId=" + insTypeId +
+                ", insTypeDescription='" + insTypeDescription + '\'' +
+                ", insCompanyId=" + insCompanyId +
+                ", insCompanyName='" + insCompanyName + '\'' +
+                ", name='" + name + '\'' +
+                ", defered=" + defered +
+                ", premiumPercent=" + premiumPercent +
+                ", comissionPercent=" + comissionPercent +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InsProductDetailsView that = (InsProductDetailsView) o;
+        return Objects.equals(id, that.id) && Objects.equals(insTypeId, that.insTypeId) && Objects.equals(insTypeDescription, that.insTypeDescription) && Objects.equals(insCompanyId, that.insCompanyId) && Objects.equals(insCompanyName, that.insCompanyName) && Objects.equals(name, that.name) && Objects.equals(defered, that.defered) && Objects.equals(premiumPercent, that.premiumPercent) && Objects.equals(comissionPercent, that.comissionPercent);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, insTypeId, insTypeDescription, insCompanyId, insCompanyName, name, defered, premiumPercent, comissionPercent);
     }
 }

@@ -3,6 +3,7 @@ package softuni.angular.views.insCompany;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Project: backend
@@ -59,5 +60,29 @@ public class InsCompanyTableView implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InsCompanyTableView that = (InsCompanyTableView) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(bulstat, that.bulstat) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, bulstat, email, phone);
+    }
+
+    @Override
+    public String toString() {
+        return "InsCompanyTableView{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", bulstat='" + bulstat + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

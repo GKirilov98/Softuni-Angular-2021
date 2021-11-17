@@ -3,6 +3,7 @@ package softuni.angular.views.nomenclature;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Project: backend
@@ -39,5 +40,28 @@ public class NomenclatureOutView implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    @Override
+    public String toString() {
+        return "NomenclatureOutView{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NomenclatureOutView that = (NomenclatureOutView) o;
+        return Objects.equals(id, that.id) && Objects.equals(code, that.code) && Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, code, description);
     }
 }

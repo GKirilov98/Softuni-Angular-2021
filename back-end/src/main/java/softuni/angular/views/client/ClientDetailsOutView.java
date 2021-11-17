@@ -3,6 +3,7 @@ package softuni.angular.views.client;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Project: backend
@@ -89,5 +90,32 @@ public class ClientDetailsOutView implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientDetailsOutView that = (ClientDetailsOutView) o;
+        return Objects.equals(id, that.id) && Objects.equals(fullName, that.fullName) && Objects.equals(objectTypeDescription, that.objectTypeDescription) && Objects.equals(egnBulstat, that.egnBulstat) && Objects.equals(email, that.email) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address) && Objects.equals(note, that.note);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, fullName, objectTypeDescription, egnBulstat, email, phoneNumber, address, note);
+    }
+
+    @Override
+    public String toString() {
+        return "ClientDetailsOutView{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", objectTypeDescription='" + objectTypeDescription + '\'' +
+                ", egnBulstat='" + egnBulstat + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", note='" + note + '\'' +
+                '}';
     }
 }

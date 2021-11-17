@@ -44,7 +44,7 @@ public class ClientServiceImpl implements ClientService {
                 .getAuthentication().getPrincipal();
         String logId = currentUser.getRequestId();
         try {
-            logger.info(String.format("%s: Start deleteOneById service", logId));
+            logger.info(String.format("%s: Start getAll service", logId));
 
             return  this.clientRepository.findAll()
                     .stream()
@@ -59,7 +59,7 @@ public class ClientServiceImpl implements ClientService {
             logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
             throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
         } finally {
-            logger.info(String.format("%s: Finished deleteOneById service", logId));
+            logger.info(String.format("%s: Finished getAll service", logId));
         }
     }
 

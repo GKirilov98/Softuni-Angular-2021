@@ -13,7 +13,7 @@ import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.*;
 import softuni.angular.services.PolicyService;
 import softuni.angular.views.policy.PolicyCalculationOutView;
-import softuni.angular.views.policy.PolicyDetailsVIew;
+import softuni.angular.views.policy.PolicyDetailsView;
 import softuni.angular.views.policy.PolicyInsertInView;
 import softuni.angular.views.policy.PolicyTableOutView;
 
@@ -30,8 +30,8 @@ import java.util.stream.Collectors;
 @Service
 public class PolicyServiceImpl implements PolicyService {
     private final Logger logger = LogManager.getLogger(this.getClass());
-    private static final String N_CLIENT_TYPE_LEGAL = "LEGAL";
-    private static final String N_CLIENT_TYPE_PERSON = "PERSON";
+    public static final String N_CLIENT_TYPE_LEGAL = "LEGAL";
+    public static final String N_CLIENT_TYPE_PERSON = "PERSON";
     private final ModelMapper modelMapper;
     private final ClientRepository clientRepository;
     private final PolicyRepository policyRepository;
@@ -173,19 +173,19 @@ public class PolicyServiceImpl implements PolicyService {
     }
 
     @Override
-    public List<PolicyDetailsVIew> getOneById(Long id) throws GlobalServiceException {
+    public List<PolicyDetailsView> getOneById(Long id) throws GlobalServiceException {
         UserDetailsImpl currentUser =
                 (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String logId = currentUser.getRequestId();
         try {
             logger.info(String.format("%s: Start getOneById service", logId));
-            List<PolicyDetailsVIew> result = new ArrayList<>();
+            List<PolicyDetailsView> result = new ArrayList<>();
             Policy policy = this.policyRepository.findById(id).orElse(null);
             if (policy == null){
                 return result;
             }
 
-            PolicyDetailsVIew map = this.modelMapper.map(policy, PolicyDetailsVIew.class);
+            PolicyDetailsView map = this.modelMapper.map(policy, PolicyDetailsView.class);
             map.setPolicyNote(policy.getNote());
 
             this.modelMapper.map(policy.getClient(), map);

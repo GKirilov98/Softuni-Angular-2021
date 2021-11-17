@@ -24,7 +24,8 @@ public class NInsObjectTypeServiceImpl implements NInsObjectTypeService {
     private final ModelMapper modelMapper;
     private final NInsObjectTypeRepository nInsObjectTypeRepository;
 
-    public NInsObjectTypeServiceImpl(ModelMapper modelMapper, NInsObjectTypeRepository nInsObjectTypeRepository) {
+    public NInsObjectTypeServiceImpl(ModelMapper modelMapper,
+                                     NInsObjectTypeRepository nInsObjectTypeRepository) {
         this.modelMapper = modelMapper;
         this.nInsObjectTypeRepository = nInsObjectTypeRepository;
     }
@@ -46,6 +47,5 @@ public class NInsObjectTypeServiceImpl implements NInsObjectTypeService {
         } finally {
             logger.info(String.format("%s: Finished getAll service", logId));
         }
-
     }
 }

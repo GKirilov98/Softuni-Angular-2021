@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.util.PathMatcher;
@@ -25,8 +26,8 @@ import softuni.angular.utils.jwt.AuthEntryPointJwt;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        // securedEnabled = true,
-        // jsr250Enabled = true,
+         securedEnabled = true,
+         jsr250Enabled = true,
         prePostEnabled = true)
 public class SecurityWebConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
     @Autowired
@@ -34,6 +35,16 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter implements W
 
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
+
+//        @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(encoder)
+//                .withUser("USER!@")
+//                .password(encoder.encode("asdasd"))
+//                .roles("ADMIN");
+//    }
 
     /**
      * Creates a patchMatcher bean that matches case insensitively

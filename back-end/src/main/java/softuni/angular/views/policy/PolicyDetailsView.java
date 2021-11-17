@@ -5,13 +5,14 @@ import org.joda.time.DateTime;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Project: backend
  * Created by: GKirilov
  * On: 11/9/2021
  */
-public class PolicyDetailsVIew implements Serializable {
+public class PolicyDetailsView implements Serializable {
     private Long id;
     private String clientTypeCode;
     private String clientTypeDescription;
@@ -231,5 +232,46 @@ public class PolicyDetailsVIew implements Serializable {
 
     public void setCreationDate(DateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "PolicyDetailsView{" +
+                "id=" + id +
+                ", clientTypeCode='" + clientTypeCode + '\'' +
+                ", clientTypeDescription='" + clientTypeDescription + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", egnBulstat='" + egnBulstat + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", clientNote='" + clientNote + '\'' +
+                ", identityNumber='" + identityNumber + '\'' +
+                ", sum=" + sum +
+                ", tax=" + tax +
+                ", commission=" + commission +
+                ", premium=" + premium +
+                ", productName='" + productName + '\'' +
+                ", objectName='" + objectName + '\'' +
+                ", objectTypeDescription='" + objectTypeDescription + '\'' +
+                ", objectDescription='" + objectDescription + '\'' +
+                ", policyNote='" + policyNote + '\'' +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", creationDate=" + creationDate +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PolicyDetailsView that = (PolicyDetailsView) o;
+        return Objects.equals(id, that.id) && Objects.equals(clientTypeCode, that.clientTypeCode) && Objects.equals(clientTypeDescription, that.clientTypeDescription) && Objects.equals(fullName, that.fullName) && Objects.equals(egnBulstat, that.egnBulstat) && Objects.equals(email, that.email) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address) && Objects.equals(clientNote, that.clientNote) && Objects.equals(identityNumber, that.identityNumber) && Objects.equals(sum, that.sum) && Objects.equals(tax, that.tax) && Objects.equals(commission, that.commission) && Objects.equals(premium, that.premium) && Objects.equals(productName, that.productName) && Objects.equals(objectName, that.objectName) && Objects.equals(objectTypeDescription, that.objectTypeDescription) && Objects.equals(objectDescription, that.objectDescription) && Objects.equals(policyNote, that.policyNote) && Objects.equals(beginDate, that.beginDate) && Objects.equals(endDate, that.endDate) && Objects.equals(creationDate, that.creationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, clientTypeCode, clientTypeDescription, fullName, egnBulstat, email, phoneNumber, address, clientNote, identityNumber, sum, tax, commission, premium, productName, objectName, objectTypeDescription, objectDescription, policyNote, beginDate, endDate, creationDate);
     }
 }

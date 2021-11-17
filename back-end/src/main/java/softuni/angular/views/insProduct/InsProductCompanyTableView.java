@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Project: backend
@@ -70,5 +71,30 @@ public class InsProductCompanyTableView implements Serializable {
 
     public void setDefered(boolean defered) {
         this.defered = defered;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InsProductCompanyTableView that = (InsProductCompanyTableView) o;
+        return defered == that.defered && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(insTypeDescription, that.insTypeDescription) && Objects.equals(premiumPercent, that.premiumPercent) && Objects.equals(comissionPercent, that.comissionPercent);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, insTypeDescription, premiumPercent, comissionPercent, defered);
+    }
+
+    @Override
+    public String toString() {
+        return "InsProductCompanyTableView{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", insTypeDescription='" + insTypeDescription + '\'' +
+                ", premiumPercent=" + premiumPercent +
+                ", comissionPercent=" + comissionPercent +
+                ", defered=" + defered +
+                '}';
     }
 }

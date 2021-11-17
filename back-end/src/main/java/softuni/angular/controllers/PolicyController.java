@@ -6,10 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.PolicyService;
-import softuni.angular.views.insCompany.InsCompanyTableView;
-import softuni.angular.views.insProduct.InsProductCompanyTableView;
 import softuni.angular.views.policy.PolicyCalculationOutView;
-import softuni.angular.views.policy.PolicyDetailsVIew;
+import softuni.angular.views.policy.PolicyDetailsView;
 import softuni.angular.views.policy.PolicyInsertInView;
 import softuni.angular.views.policy.PolicyTableOutView;
 
@@ -82,7 +80,7 @@ public class PolicyController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> getOneById(@PathVariable(value = "id") Long id) throws GlobalServiceException {
-        List<PolicyDetailsVIew> result =  this.policyService.getOneById(id);
+        List<PolicyDetailsView> result =  this.policyService.getOneById(id);
         return ResponseEntity.ok(result);
     }
 

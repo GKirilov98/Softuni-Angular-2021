@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Project: backend
@@ -71,5 +72,30 @@ public class PolicyTableOutView implements Serializable {
 
     public void setSum(BigDecimal sum) {
         this.sum = sum;
+    }
+
+    @Override
+    public String toString() {
+        return "PolicyTableOutView{" +
+                "id=" + id +
+                ", identityNumber='" + identityNumber + '\'' +
+                ", productName='" + productName + '\'' +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", sum=" + sum +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PolicyTableOutView that = (PolicyTableOutView) o;
+        return Objects.equals(id, that.id) && Objects.equals(identityNumber, that.identityNumber) && Objects.equals(productName, that.productName) && Objects.equals(beginDate, that.beginDate) && Objects.equals(endDate, that.endDate) && Objects.equals(sum, that.sum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, identityNumber, productName, beginDate, endDate, sum);
     }
 }

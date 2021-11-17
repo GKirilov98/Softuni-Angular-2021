@@ -84,11 +84,6 @@ public class InsCompanyServiceImpl implements InsCompanyService {
                 throw new GlobalBadRequest("Подаденото id е невалидно!",
                         new Throwable("Invalid id!"));
             }
-//            int size = this.policyRepository.findAllByInsCompanyIdCustom(id).size();
-//            if (size > 0){
-//                throw new GlobalBadRequest("Има сключени застраховки с този застороховател!",
-//                        new Throwable("It has policy with this insurance company!"));
-//            }
 
             insCompany.setAddress(inView.getAddress());
             insCompany.setEmail(inView.getEmail());
@@ -180,6 +175,4 @@ public class InsCompanyServiceImpl implements InsCompanyService {
             logger.info(String.format("%s: Finished deleteOne service", logId));
         }
     }
-
-
 }

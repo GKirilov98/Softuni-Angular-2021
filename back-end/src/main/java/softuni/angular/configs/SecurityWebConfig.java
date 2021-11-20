@@ -1,7 +1,6 @@
 package softuni.angular.configs;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,16 +11,19 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.util.PathMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import softuni.angular.filters.AuthTokenFilter;
+import softuni.angular.interceptors.LogAccessWriterInterceptor;
+import softuni.angular.interceptors.LogErrorWriterInterceptor;
 import softuni.angular.services.impl.UserDetailsServiceImpl;
 import softuni.angular.utils.jwt.AuthEntryPointJwt;
+import softuni.angular.utils.jwt.JwtUtils;
 
 @Configuration
 @EnableWebSecurity
@@ -30,21 +32,20 @@ import softuni.angular.utils.jwt.AuthEntryPointJwt;
          jsr250Enabled = true,
         prePostEnabled = true)
 public class SecurityWebConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
-    @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
+    private final LogAccessWriterInterceptor logAccessWriter;
+    private final LogErrorWriterInterceptor logErrorWriterInterceptor;
+    private final AuthEntryPointJwt unauthorizedHandler;
+    private final JwtUtils jwtUtils;
 
-    @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
+    public SecurityWebConfig(AuthEntryPointJwt unauthorizedHandler, UserDetailsServiceImpl userDetailsService, LogAccessWriterInterceptor logAccessWriter, LogErrorWriterInterceptor logErrorWriterInterceptor, JwtUtils jwtUtils) {
+        this.unauthorizedHandler = unauthorizedHandler;
+        this.userDetailsService = userDetailsService;
+        this.logAccessWriter = logAccessWriter;
+        this.logErrorWriterInterceptor = logErrorWriterInterceptor;
+        this.jwtUtils = jwtUtils;
+    }
 
-//        @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(encoder)
-//                .withUser("USER!@")
-//                .password(encoder.encode("asdasd"))
-//                .roles("ADMIN");
-//    }
 
     /**
      * Creates a patchMatcher bean that matches case insensitively
@@ -74,7 +75,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter implements W
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
-        return new AuthTokenFilter();
+        return new AuthTokenFilter(jwtUtils, userDetailsService);
     }
 
     @Override
@@ -93,6 +94,11 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter implements W
         return new BCryptPasswordEncoder();
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(logAccessWriter);
+        registry.addInterceptor(logErrorWriterInterceptor);
+    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors()

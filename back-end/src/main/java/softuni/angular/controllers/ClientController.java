@@ -20,8 +20,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/Client")
 public class ClientController {
-    @Autowired
-    private ClientService service;
+    private final ClientService service;
+
+    public ClientController(ClientService service) {
+        this.service = service;
+    }
 
     /**
      * Връща всички записи от базата

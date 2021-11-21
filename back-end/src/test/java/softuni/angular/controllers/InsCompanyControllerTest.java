@@ -15,13 +15,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import softuni.angular.TestInitEntitiesUtils;
-import softuni.angular.data.entities.Client;
 import softuni.angular.data.entities.InsCompany;
-import softuni.angular.data.entities.NClientType;
 import softuni.angular.repositories.InsCompanyRepository;
-import softuni.angular.views.client.ClientDetailsOutView;
-import softuni.angular.views.insCompany.InsCompanyDetailsView;
-import softuni.angular.views.insCompany.InsCompanyTableView;
+import softuni.angular.data.views.insCompany.InsCompanyDetailsView;
+import softuni.angular.data.views.insCompany.InsCompanyTableView;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;

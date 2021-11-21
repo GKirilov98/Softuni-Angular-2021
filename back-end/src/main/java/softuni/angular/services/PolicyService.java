@@ -2,10 +2,10 @@ package softuni.angular.services;
 
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
-import softuni.angular.views.policy.PolicyCalculationOutView;
-import softuni.angular.views.policy.PolicyDetailsView;
-import softuni.angular.views.policy.PolicyInsertInView;
-import softuni.angular.views.policy.PolicyTableOutView;
+import softuni.angular.data.views.policy.PolicyCalculationOutView;
+import softuni.angular.data.views.policy.PolicyDetailsView;
+import softuni.angular.data.views.policy.PolicyInsertInView;
+import softuni.angular.data.views.policy.PolicyTableOutView;
 
 import java.math.BigDecimal;
 import java.util.List;

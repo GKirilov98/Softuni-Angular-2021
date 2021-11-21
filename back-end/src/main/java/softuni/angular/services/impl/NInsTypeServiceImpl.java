@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.NInsTypeRepository;
 import softuni.angular.services.NInsTypeService;
-import softuni.angular.views.nomenclature.NomenclatureOutView;
+import softuni.angular.data.views.nomenclature.NomenclatureOutView;
 
 import java.util.List;
 import java.util.stream.Collectors;

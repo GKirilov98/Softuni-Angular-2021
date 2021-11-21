@@ -1,4 +1,4 @@
-package softuni.angular.views.user;
+package softuni.angular.data.views.user;
 
 import java.io.Serializable;
 import java.util.Arrays;

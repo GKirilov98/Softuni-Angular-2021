@@ -18,4 +18,9 @@ public interface SiteUrlActionsLogService {
      * @throws GlobalServiceException -
      */
     void insertOne(String logId, String username, String method, String url, String token) throws GlobalServiceException;
+
+    /**
+     * Delete all records
+     */
+    void deleteAll() throws GlobalServiceException;
 }

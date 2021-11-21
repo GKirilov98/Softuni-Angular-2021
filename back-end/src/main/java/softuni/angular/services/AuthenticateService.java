@@ -2,7 +2,7 @@ package softuni.angular.services;
 
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.data.models.AuthenticateResponseModel;
-import softuni.angular.views.user.UserRegisterInView;
+import softuni.angular.data.views.user.UserRegisterInView;
 
 /**
  * Project: backend

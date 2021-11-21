@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import softuni.angular.data.entities.SiteUrlActionsLog;
 import softuni.angular.exception.GlobalServiceException;
@@ -43,6 +44,22 @@ public class SiteUrlActionsLogServiceImpl implements SiteUrlActionsLogService {
             throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
         } finally {
             logger.info(String.format("%s: Finished insertOne service", logId));
+        }
+    }
+
+    @Override
+    public void deleteAll() throws GlobalServiceException {
+        UserDetailsImpl currentUser =
+                (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String logId = currentUser.getRequestId();
+        try {
+            logger.info(String.format("%s: Start deleteAll service", logId));
+            this.siteUrlActionsRepository.deleteAll();
+        } catch (Exception exc) {
+            logger.error(String.format("%s: Unexpected error: %s", logId, exc.getMessage()));
+            throw new GlobalServiceException("Грешка при работа с базата данни!", exc);
+        } finally {
+            logger.info(String.format("%s: Finished deleteAll service", logId));
         }
     }
 }

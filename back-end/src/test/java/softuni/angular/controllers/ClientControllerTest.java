@@ -18,8 +18,8 @@ import softuni.angular.TestInitEntitiesUtils;
 import softuni.angular.data.entities.Client;
 import softuni.angular.data.entities.NClientType;
 import softuni.angular.repositories.ClientRepository;
-import softuni.angular.views.client.ClientDetailsOutView;
-import softuni.angular.views.client.ClientTableOutView;
+import softuni.angular.data.views.client.ClientDetailsOutView;
+import softuni.angular.data.views.client.ClientTableOutView;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;

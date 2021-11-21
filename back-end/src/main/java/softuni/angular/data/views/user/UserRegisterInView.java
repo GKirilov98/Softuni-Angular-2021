@@ -1,8 +1,7 @@
-package softuni.angular.views.user;
+package softuni.angular.data.views.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 

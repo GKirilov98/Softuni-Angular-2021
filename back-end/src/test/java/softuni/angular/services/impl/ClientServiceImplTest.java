@@ -18,8 +18,8 @@ import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.ClientRepository;
 import softuni.angular.repositories.PolicyRepository;
 import softuni.angular.services.ClientService;
-import softuni.angular.views.client.ClientDetailsOutView;
-import softuni.angular.views.client.ClientTableOutView;
+import softuni.angular.data.views.client.ClientDetailsOutView;
+import softuni.angular.data.views.client.ClientTableOutView;
 
 import java.util.ArrayList;
 import java.util.List;

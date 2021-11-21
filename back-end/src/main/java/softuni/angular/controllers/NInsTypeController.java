@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.NInsTypeService;
-import softuni.angular.views.nomenclature.NomenclatureOutView;
+import softuni.angular.data.views.nomenclature.NomenclatureOutView;
 
 import java.util.List;
 

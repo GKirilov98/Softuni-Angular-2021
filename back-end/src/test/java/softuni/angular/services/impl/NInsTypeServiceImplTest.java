@@ -10,20 +10,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import softuni.angular.TestInitEntitiesUtils;
-import softuni.angular.data.entities.NInsObjectType;
 import softuni.angular.data.entities.NInsType;
 import softuni.angular.exception.GlobalServiceException;
-import softuni.angular.repositories.NInsObjectTypeRepository;
 import softuni.angular.repositories.NInsTypeRepository;
-import softuni.angular.services.NInsObjectTypeService;
 import softuni.angular.services.NInsTypeService;
-import softuni.angular.views.nomenclature.NomenclatureOutView;
+import softuni.angular.data.views.nomenclature.NomenclatureOutView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class NInsTypeServiceImplTest {
     private ModelMapper modelMapper;

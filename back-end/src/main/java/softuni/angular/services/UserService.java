@@ -2,10 +2,10 @@ package softuni.angular.services;
 
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
-import softuni.angular.views.user.UserLoginInView;
-import softuni.angular.views.user.UserLoginOutView;
-import softuni.angular.views.user.UserRegisterInView;
-import softuni.angular.views.user.UserTableOutView;
+import softuni.angular.data.views.user.UserLoginInView;
+import softuni.angular.data.views.user.UserLoginOutView;
+import softuni.angular.data.views.user.UserRegisterInView;
+import softuni.angular.data.views.user.UserTableOutView;
 
 import java.util.List;
 

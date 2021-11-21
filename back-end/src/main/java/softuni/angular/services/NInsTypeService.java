@@ -1,7 +1,7 @@
 package softuni.angular.services;
 
 import softuni.angular.exception.GlobalServiceException;
-import softuni.angular.views.nomenclature.NomenclatureOutView;
+import softuni.angular.data.views.nomenclature.NomenclatureOutView;
 
 import java.util.List;
 

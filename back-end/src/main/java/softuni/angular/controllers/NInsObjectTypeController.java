@@ -4,10 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.NInsObjectTypeService;
-import softuni.angular.views.nomenclature.NomenclatureOutView;
+import softuni.angular.data.views.nomenclature.NomenclatureOutView;
 
 import java.util.List;
 

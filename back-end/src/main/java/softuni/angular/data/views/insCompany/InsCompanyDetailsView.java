@@ -1,4 +1,4 @@
-package softuni.angular.views.insCompany;
+package softuni.angular.data.views.insCompany;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

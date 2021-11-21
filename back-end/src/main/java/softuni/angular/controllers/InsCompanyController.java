@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.InsCompanyService;
-import softuni.angular.views.insCompany.InsCompanyDetailsView;
-import softuni.angular.views.insCompany.InsCompanyInView;
-import softuni.angular.views.insCompany.InsCompanyTableView;
+import softuni.angular.data.views.insCompany.InsCompanyDetailsView;
+import softuni.angular.data.views.insCompany.InsCompanyInView;
+import softuni.angular.data.views.insCompany.InsCompanyTableView;
 
 import javax.validation.Valid;
 import java.util.List;

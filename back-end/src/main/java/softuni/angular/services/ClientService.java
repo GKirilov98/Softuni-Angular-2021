@@ -2,8 +2,8 @@ package softuni.angular.services;
 
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
-import softuni.angular.views.client.ClientDetailsOutView;
-import softuni.angular.views.client.ClientTableOutView;
+import softuni.angular.data.views.client.ClientDetailsOutView;
+import softuni.angular.data.views.client.ClientTableOutView;
 
 import java.util.List;
 

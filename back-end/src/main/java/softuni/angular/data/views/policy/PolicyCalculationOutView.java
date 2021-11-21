@@ -1,4 +1,4 @@
-package softuni.angular.views.policy;
+package softuni.angular.data.views.policy;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

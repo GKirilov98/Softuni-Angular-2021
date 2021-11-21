@@ -10,9 +10,9 @@ import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.repositories.*;
 import softuni.angular.services.InsProductService;
-import softuni.angular.views.insProduct.InsProductCompanyTableView;
-import softuni.angular.views.insProduct.InsProductDetailsView;
-import softuni.angular.views.insProduct.InsProductInView;
+import softuni.angular.data.views.insProduct.InsProductCompanyTableView;
+import softuni.angular.data.views.insProduct.InsProductDetailsView;
+import softuni.angular.data.views.insProduct.InsProductInView;
 
 import java.util.ArrayList;
 import java.util.List;

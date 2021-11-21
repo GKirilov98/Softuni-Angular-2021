@@ -1,4 +1,4 @@
-package softuni.angular.views.nomenclature;
+package softuni.angular.data.views.nomenclature;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

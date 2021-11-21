@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,7 @@ import softuni.angular.TestInitEntitiesUtils;
 import softuni.angular.data.entities.Role;
 import softuni.angular.data.entities.User;
 import softuni.angular.repositories.UserRepository;
-import softuni.angular.views.user.UserTableOutView;
+import softuni.angular.data.views.user.UserTableOutView;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;

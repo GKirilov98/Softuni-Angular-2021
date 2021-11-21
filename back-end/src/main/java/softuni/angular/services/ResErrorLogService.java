@@ -1,5 +1,7 @@
 package softuni.angular.services;
 
+import softuni.angular.exception.GlobalServiceException;
+
 /**
  * Project: backend
  * Created by: GKirilov
@@ -16,5 +18,10 @@ public interface ResErrorLogService {
      * @param username-
      * @param e- exception
      */
-    void insertOne(String logId, String method, String url, Integer status, String username, Exception e);
+    void insertOne(String logId, String method, String url, Integer status, String username, Exception e) throws GlobalServiceException;
+
+    /**
+     * Delete all records
+     */
+    void deleteAll() throws GlobalServiceException;
 }

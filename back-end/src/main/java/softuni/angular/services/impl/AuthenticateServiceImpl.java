@@ -3,7 +3,6 @@ package softuni.angular.services.impl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,7 +19,7 @@ import softuni.angular.repositories.RoleRepository;
 import softuni.angular.repositories.UserRepository;
 import softuni.angular.services.AuthenticateService;
 import softuni.angular.utils.jwt.JwtUtils;
-import softuni.angular.views.user.UserRegisterInView;
+import softuni.angular.data.views.user.UserRegisterInView;
 
 import java.util.ArrayList;
 import java.util.List;

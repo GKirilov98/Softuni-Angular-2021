@@ -17,9 +17,9 @@ import softuni.angular.repositories.InsCompanyRepository;
 import softuni.angular.repositories.InsProductRepository;
 import softuni.angular.repositories.PolicyRepository;
 import softuni.angular.services.InsCompanyService;
-import softuni.angular.views.insCompany.InsCompanyDetailsView;
-import softuni.angular.views.insCompany.InsCompanyInView;
-import softuni.angular.views.insCompany.InsCompanyTableView;
+import softuni.angular.data.views.insCompany.InsCompanyDetailsView;
+import softuni.angular.data.views.insCompany.InsCompanyInView;
+import softuni.angular.data.views.insCompany.InsCompanyTableView;
 
 import java.util.ArrayList;
 import java.util.List;

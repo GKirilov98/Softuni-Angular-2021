@@ -1,14 +1,13 @@
 package softuni.angular.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import softuni.angular.exception.GlobalBadRequest;
 import softuni.angular.exception.GlobalServiceException;
 import softuni.angular.services.ClientService;
-import softuni.angular.views.client.ClientDetailsOutView;
-import softuni.angular.views.client.ClientTableOutView;
+import softuni.angular.data.views.client.ClientDetailsOutView;
+import softuni.angular.data.views.client.ClientTableOutView;
 
 import java.util.List;
 

@@ -1,2 +1,2 @@
-# Softuni-Angular-2021
+# Softuni-Java-Angular-2021
 InsBrokerSystem
